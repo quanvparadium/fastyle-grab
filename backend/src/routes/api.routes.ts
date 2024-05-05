@@ -2,6 +2,8 @@ import { Router } from 'express'
 import { wrapAsync } from '~/utils/handler'
 // import { loginValidator } from '~/middlewares/users.middlewares'
 import { loginController } from '~/controllers/users.controllers'
+import clothesRouter from './clothes.routes'
+import staticRouter from './static.routes'
 const apiRouter = Router()
 
 /**
@@ -11,5 +13,8 @@ const apiRouter = Router()
  * Body: {username: string, password: string}
  */
 apiRouter.post('/login', wrapAsync(loginController))
+
+apiRouter.use('/clothes', clothesRouter)
+apiRouter.use('/static', staticRouter)
 
 export default apiRouter
