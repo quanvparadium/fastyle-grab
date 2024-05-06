@@ -17,7 +17,7 @@ const Header: React.FC<HeaderProps> = ({ title, description, icon }) => {
       </div>
       <div>
         <h2 className='text-3xl font-bold'>{title}</h2>
-        <p className='text-sm text-muted-foreground'>{description}</p>
+        <p className='text-sm text-wolf'>{description}</p>
       </div>
     </div>
   )

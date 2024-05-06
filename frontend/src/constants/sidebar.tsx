@@ -1,6 +1,5 @@
-import React from 'react'
 import { Lightbulb, Search } from 'lucide-react'
-import { ROUTES } from '@/lib/constants'
+import { ROUTE } from '@/constants/route'
 
 export interface Sidebar {
   href: string
@@ -8,14 +7,14 @@ export interface Sidebar {
   label: string
 }
 
-export const sidebarData: Sidebar[] = [
+export const sidebar: Sidebar[] = [
   {
-    href: `/${ROUTES.RETRIVAL}`,
+    href: `/${ROUTE.RETRIVAL}`,
     icon: <Search size={18} />,
     label: 'Research',
   },
   {
-    href: `/${ROUTES.SUGGESTION}`,
+    href: `/${ROUTE.SUGGESTION}`,
     icon: <Lightbulb size={18} />,
     label: 'Suggestion',
   },
