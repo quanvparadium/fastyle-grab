@@ -19,13 +19,17 @@ const config = {
     },
     extend: {
       colors: {
-        border: "hsl(var(--border))",
+        border: "#E5E5E5",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        iguana: "#DDF4FF",
+        'blue-jay': "#84D8FF",
+        macaw: '#1cb0f6',
+        wolf: '#777777',
         primary: {
-          DEFAULT: "hsl(var(--primary))",
+          DEFAULT: "#1CB0F6",
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
