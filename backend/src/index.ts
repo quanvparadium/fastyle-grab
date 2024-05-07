@@ -5,6 +5,7 @@ import databaseService from './services/database.services'
 import { defaultErrorHandler } from '~/middlewares/errors.middlewares'
 import dotenv from 'dotenv'
 import apiRouter from './routes/api.routes'
+import { createData } from './utils/initialdb'
 dotenv.config()
 
 const app = express()
@@ -19,6 +20,7 @@ app.use(cors())
 // Router
 // app.use('/', authRouter)
 app.use('/api', apiRouter)
+// createData()
 
 databaseService.close()
 app.use(defaultErrorHandler)

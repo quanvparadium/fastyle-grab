@@ -1,6 +1,7 @@
 import { MongoClient, ServerApiVersion, Db, Collection } from 'mongodb'
 
 import dotenv from 'dotenv'
+import Clothes from '~/models/schemas/Clothes.schema'
 dotenv.config()
 
 class DatabaseService {
@@ -39,6 +40,30 @@ class DatabaseService {
             console.log('Error', error)
             throw error
         }
+    }
+
+    get headwear(): Collection<Clothes> {
+        return this.db.collection((process.env.DB_HEADWEAR_COLLECTION as string) || 'headwear')
+    }
+
+    get topwear(): Collection<Clothes> {
+        return this.db.collection((process.env.DB_TOPWEAR_COLLECTION as string) || 'headwear')
+    }
+
+    get bottomwear(): Collection<Clothes> {
+        return this.db.collection((process.env.DB_BOTTOMWEAR_COLLECTION as string) || 'bottomwear')
+    }
+
+    get footwear(): Collection<Clothes> {
+        return this.db.collection((process.env.DB_FOOTWEAR_COLLECTION as string) || 'footwear')
+    }
+
+    get dress(): Collection<Clothes> {
+        return this.db.collection((process.env.DB_DRESS_COLLECTION as string) || 'dress')
+    }
+
+    get others(): Collection<Clothes> {
+        return this.db.collection((process.env.DB_OTHERS_COLLECTION as string) || 'others')
     }
 
     async close() {
