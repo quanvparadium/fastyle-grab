@@ -1,0 +1,12 @@
+@keyframes jump {
+    0%   { top: 0px;}
+    50%  { top: -24px;}
+    100% { top: 0px;}
+}
+
+.jump-animation{
+    animation: jump 1s ease-in-out infinite;
+    animation-direction: alternate;
+    position: relative;
+    margin-top: 24px;
+}
