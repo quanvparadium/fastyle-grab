@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
 import { ObjectId } from 'mongodb'
-import HTTPSTATUS from '~/constants/httpStatus'
 import databaseService from '~/services/database.services'
 
 export const getClothesController = async (req: Request, res: Response, next: NextFunction) => {
@@ -14,7 +13,14 @@ export const getClothesController = async (req: Request, res: Response, next: Ne
 
 export const getAllClothesController = async (req: Request, res: Response, next: NextFunction) => {
     const { type } = req.params
-    const result = await databaseService[type].find().toArray()
+    const { limit, offset } = req.query
+    console.log('Limit: ', limit)
+    console.log('Pagination: ', typeof offset)
+    const result = await databaseService[type]
+        .find()
+        .skip(parseInt(offset as string))
+        .limit(parseInt(limit as string) || 30)
+        .toArray()
     res.json({
         result
     })

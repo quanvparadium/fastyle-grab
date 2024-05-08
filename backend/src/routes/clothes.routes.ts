@@ -15,5 +15,4 @@ clothesRouter.get('/:type/:id', clothesValidator, wrapAsync(getClothesController
 
 clothesRouter.get('/:type', clothesValidator, wrapAsync(getAllClothesController))
 
-
 export default clothesRouter
