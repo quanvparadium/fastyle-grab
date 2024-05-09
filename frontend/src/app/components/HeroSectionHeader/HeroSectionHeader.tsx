@@ -15,15 +15,21 @@ const HeroSectionHeader = () => {
       style={{ padding: isDesktopOrLaptop ? 64 : 24 }}
     >
       <div className='flex items-center'>
-        <Button className='link-button' variant='link' onClick={() => {}}>
-          Introduction
-        </Button>
-        <Button className='link-button' variant='link' onClick={() => {}}>
-          Features
-        </Button>
-        <Button className='link-button' variant='link' onClick={() => {}}>
-          About us
-        </Button>
+        <a href='#intro'>
+          <Button className='link-button' variant='link'>
+            Introduction
+          </Button>
+        </a>
+        <a href='#features'>
+          <Button className='link-button' variant='link'>
+            Features
+          </Button>
+        </a>
+        <a href='#about'>
+          <Button className='link-button' variant='link'>
+            About us
+          </Button>
+        </a>
       </div>
 
       {isDesktopOrLaptop && <img src='abc.png' />}

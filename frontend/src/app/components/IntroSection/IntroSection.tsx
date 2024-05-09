@@ -4,7 +4,7 @@ import './JumpAnimation.css'
 
 const IntroSection = () => {
   return (
-    <div className='mt-12'>
+    <div id='intro' className='mt-12'>
       <div className='flex justify-center'>
         <Image className='jump-animation' src={TriangleIcon} alt='' />
       </div>

@@ -21,7 +21,6 @@ const HeroSection = () => {
         borderRadius: 36,
         height: 'calc(100vh - 16px)',
         background: 'linear-gradient(#D8C2FA, #B1B4FF)',
-        opacity: 0.7,
       }}
     >
       <HeroSectionHeader />

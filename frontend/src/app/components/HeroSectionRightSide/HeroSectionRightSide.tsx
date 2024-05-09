@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button'
 import HeroImage from '../../../assets/HeroImage.gif'
+import Item0 from '../../../assets/HeroSectionItem0.png'
 import Image from 'next/image'
 
 const HeroSectionRightSide = () => {
@@ -74,8 +75,11 @@ const HeroSectionRightSide = () => {
               boxShadow: 'rgba(99, 99, 99, 0.3) 0px 2px 8px 0px',
               position: 'relative',
               left: 16,
+              padding: 0,
             }}
-          ></Button>
+          >
+            <Image src={Item0} alt='' style={{ height: 60, width: 60 }} />
+          </Button>
           <Button
             style={{
               width: 60,

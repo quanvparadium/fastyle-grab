@@ -1,0 +1,14 @@
+.selected-slide{
+    animation: moveIn 0.3s ease normal forwards;
+}
+
+@keyframes moveIn {
+    from {
+        top: 0;
+        left: 10px;
+    }
+    to {
+        top: -16px;
+        left: 0;
+    }
+}
