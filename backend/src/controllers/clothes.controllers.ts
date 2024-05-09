@@ -18,7 +18,7 @@ export const getAllClothesController = async (req: Request, res: Response, next:
     console.log('Pagination: ', typeof offset)
     const result = await databaseService[type]
         .find()
-        .skip(parseInt(offset as string))
+        .skip(parseInt(offset as string) || 0)
         .limit(parseInt(limit as string) || 30)
         .toArray()
     res.json({
