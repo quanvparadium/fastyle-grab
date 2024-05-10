@@ -1,0 +1,8 @@
+.link-button{
+    color: #9C9BB1;
+    font-size: large;
+}
+
+.link-button:hover{
+    color: black;
+}
