@@ -1,3 +1,4 @@
+import useSelectSuggestOutfit from '@/hooks/useSelectSuggestOutfit'
 import { useGetClothes } from '@/services/clothes/queries'
 import { CategoryID } from '@/types/product'
 import Image from 'next/image'
@@ -10,13 +11,12 @@ interface ListOutfitProps {
 
 const ListOutfit = ({ categoryID }: ListOutfitProps) => {
   const { ref, inView } = useInView()
+  const { handleSelectProduct, isSelectedProduct } = useSelectSuggestOutfit()
 
   const {
     data: clothes,
     fetchNextPage,
     hasNextPage,
-    isFetchingNextPage,
-    status,
   } = useGetClothes(categoryID)
 
   useEffect(() => {
@@ -31,7 +31,8 @@ const ListOutfit = ({ categoryID }: ListOutfitProps) => {
         page?.result?.map((item) => (
           <div
             key={item._id}
-            className='relative w-full h-[150px] rounded-lg cursor-pointer border-2'
+            className={`relative w-full h-[150px] rounded-lg cursor-pointer border-2 ${isSelectedProduct(categoryID, item._id) ? 'border-macaw' : 'border-transparent'}`}
+            onClick={() => handleSelectProduct(categoryID, item)}
           >
             <Image
               src={item.view.default}
