@@ -1,4 +1,5 @@
-import { useMediaQuery } from 'react-responsive'
+'use client'
+
 import FeaturesSectionItem from '../FeaturesSectionItem/FeatureSectionItem'
 
 const FeaturesSection = () => {

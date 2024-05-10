@@ -1,3 +1,5 @@
+'use client'
+
 import MemberInfo from '@/app/interfaces/MemberInfo'
 import AboutUsSectionSlider from '../AboutUsSectionSlider/AboutUsSectionSlider'
 import { useState } from 'react'
@@ -66,6 +68,8 @@ const AboutUsSection = () => {
       />
 
       <AboutUsSectionInfoCard member={members[selectedIndex]} />
+
+      <div style={{ height: 60 }} />
     </div>
   )
 }

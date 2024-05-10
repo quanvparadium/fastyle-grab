@@ -1,3 +1,5 @@
+'use client'
+
 import MemberInfo from '@/app/interfaces/MemberInfo'
 import { Button } from '@/components/ui/button'
 import 'swiper/css'
@@ -33,7 +35,7 @@ const AboutUsSectionSlider = ({
     setIsPreventClick(true)
     const timerId = setTimeout(() => {
       setIsPreventClick(false)
-    }, 400)
+    }, 350)
 
     onChange(currentIndex)
 
@@ -46,8 +48,8 @@ const AboutUsSectionSlider = ({
     <div
       className='w-full flex justify-center items-center'
       style={{
-        paddingLeft: isDesktopOrLaptop ? '25%' : '10%',
-        paddingRight: isDesktopOrLaptop ? '25%' : '10%',
+        paddingLeft: isDesktopOrLaptop ? '25%' : '16%',
+        paddingRight: isDesktopOrLaptop ? '25%' : '16%',
         ...style,
       }}
     >

@@ -1,12 +1,14 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
+import { useRouter } from 'next/navigation'
 import { useMediaQuery } from 'react-responsive'
 
 const HeroSectionLeftSide = () => {
   const isDesktopOrLaptop = useMediaQuery({
     query: '(min-width: 1224px)',
   })
+  const router = useRouter()
 
   return (
     <div style={{ width: isDesktopOrLaptop ? '40%' : '80%', padding: 32 }}>
@@ -27,6 +29,7 @@ const HeroSectionLeftSide = () => {
             fontSize: 24,
             padding: '32px 48px',
           }}
+          onClick={() => router.push('/retrival')}
         >
           More Features
         </Button>
