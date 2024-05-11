@@ -4,11 +4,11 @@ export type CategoryID = keyof typeof CATEGORY_MAP
 
 type ViewOption = {
   default: string
-  left?: string
-  right?: string
-  front?: string
-  back?: string
-  top?: string
+  left?: string | null
+  right?: string | null
+  front?: string | null
+  back?: string | null
+  top?: string | null
 }
 
 export type Clothes = {
@@ -25,4 +25,8 @@ export type Clothes = {
 
 export type SelectedOutfit = {
   [key in CategoryID]?: Clothes[]
+}
+
+export type TryOnOutfit = {
+  [key in CategoryID]?: Clothes
 }

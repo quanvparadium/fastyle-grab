@@ -1,5 +1,6 @@
 import Header from '@/app/(dashboard)/components/Header'
 import Form from '@/app/(dashboard)/suggestion/components/Form'
+import ListSuggestOutfit from '@/app/(dashboard)/suggestion/components/ListSuggestOutfit'
 import React from 'react'
 
 const Suggestion = () => {
@@ -11,7 +12,11 @@ const Suggestion = () => {
         icon={'Lightbulb'}
       />
 
-      <Form />
+      <div className='flex flex-col gap-6'>
+        <Form />
+
+        <ListSuggestOutfit />
+      </div>
     </div>
   )
 }
