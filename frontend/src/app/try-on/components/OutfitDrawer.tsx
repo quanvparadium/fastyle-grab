@@ -12,8 +12,13 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet'
 import { ChevronRight } from 'lucide-react'
+import { handleRenderImage } from '@/utils/canvas'
 
-const OutfitDrawer = () => {
+interface OutfitDrawerProps {
+  canvas: React.MutableRefObject<fabric.Canvas | null>
+}
+
+const OutfitDrawer = ({ canvas }: OutfitDrawerProps) => {
   const { tryOnOutfit } = useTryOnOutfitStore((state) => state)
 
   const renderOutfit = () => {
@@ -23,6 +28,7 @@ const OutfitDrawer = () => {
       <div
         key={categoryID}
         className='w-[200px] h-[200px] rounded cursor-pointer'
+        onClick={() => handleRenderImage({canvas, clothes: item})}
       >
         <img
           src={item?.view?.default}
@@ -35,7 +41,7 @@ const OutfitDrawer = () => {
   return (
     <Sheet defaultOpen={!!tryOnOutfit}>
       <SheetTrigger asChild>
-        <Button className='w-10 h-10 p-0 absolute top-1/2 left-4 -translate-y-1/2'>
+        <Button className='w-10 h-10 p-0 absolute z-10 top-1/2 left-4 -translate-y-1/2'>
           <ChevronRight size={24} />
         </Button>
       </SheetTrigger>
