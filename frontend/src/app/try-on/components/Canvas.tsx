@@ -1,8 +1,16 @@
+'use client'
+
 import React from 'react'
 
-const Canvas = () => {
+interface CanvasProps {
+  canvasRef: React.MutableRefObject<HTMLCanvasElement | null>
+}
+
+const Canvas = ({ canvasRef }: CanvasProps) => {
   return (
-    <div className='flex-1'>Canvas</div>
+    <div id='canvas' className='relative flex-1 w-full h-full'>
+      <canvas ref={canvasRef} />
+    </div>
   )
 }
 
