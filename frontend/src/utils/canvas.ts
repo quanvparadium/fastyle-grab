@@ -1,4 +1,10 @@
-import { CanvasMouseDown, RenderImage } from '@/types/canvas'
+import {
+  CanvasMouseDown,
+  CanvasSelectionCreated,
+  RenderImage,
+} from '@/types/canvas'
+import { TryOnOutfit } from '@/types/product'
+import { findClothesInTryOnById } from '@/utils/clothes'
 import { fabric } from 'fabric'
 
 // initialize fabric canvas
@@ -28,30 +34,47 @@ export const handleCanvasMouseDown = ({
   options,
   canvas,
   setIsChangeViewBtnDisable,
+  setActiveObject,
+  tryOnOutfit,
 }: CanvasMouseDown) => {
-  /**
-   * get target object i.e., the object that is clicked
-   * findtarget() returns the object that is clicked
-   *
-   * findTarget: http://fabricjs.com/docs/fabric.Canvas.html#findTarget
-   */
   const target = canvas.findTarget(options.e, false)
 
-  setIsChangeViewBtnDisable(true)
-
+  // Click vào object
   if (target) {
-    if (target instanceof fabric.Group) {
-    } else {
+    // click vào image
+    if (target instanceof fabric.Image) {
+      // @ts-ignore
+      const objectId = target.get('objectId')
+      const clothes = findClothesInTryOnById(
+        tryOnOutfit as TryOnOutfit,
+        objectId,
+      )
+
+      setActiveObject(clothes)
       setIsChangeViewBtnDisable(false)
     }
+  } else {
+    setIsChangeViewBtnDisable(true)
+    setActiveObject(null)
   }
+}
+
+export const handleCanvasSelectionCreated = ({
+  options,
+  canvas,
+  setActiveObject,
+  setIsChangeViewBtnDisable,
+  tryOnOutfit,
+}: CanvasSelectionCreated) => {
+  if (!options?.selected) return
 }
 
 export const handleRenderImage = ({ canvas, clothes }: RenderImage) => {
   fabric.Image.fromURL(clothes.view.default, (img) => {
     img.scaleToWidth(200)
     img.scaleToHeight(200)
-
+    // @ts-ignore
+    img.objectId = clothes._id
     canvas.current?.add(img)
   })
 }

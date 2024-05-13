@@ -4,20 +4,19 @@ import Canvas from '@/app/try-on/components/Canvas'
 import OutfitDrawer from '@/app/try-on/components/OutfitDrawer'
 import ParameterSidebar from '@/app/try-on/components/ParameterSidebar'
 import useTryOnOutfitStore from '@/store/tryonStore'
-import { handleCanvasMouseDown, initializeFabric } from '@/utils/canvas'
-import React, { useEffect, useRef, useState } from 'react'
+import {
+  handleCanvasMouseDown,
+  handleCanvasSelectionCreated,
+  initializeFabric,
+} from '@/utils/canvas'
+import React, { useEffect, useRef } from 'react'
 
 const TryOn = () => {
-  const [activeTool, setActiveTool] = useState<string>('move')
-  const { setIsChangeViewBtnDisable } = useTryOnOutfitStore((state) => state)
+  const { tryOnOutfit, setIsChangeViewBtnDisable, setActiveObject } =
+    useTryOnOutfitStore((state) => state)
 
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const fabricRef = useRef<fabric.Canvas | null>(null)
-
-  const handleActiveTool = (ele: string) => {
-    setActiveTool(ele)
-    console.log('ele', ele)
-  }
 
   useEffect(() => {
     // initialize the fabric canvas
@@ -26,11 +25,37 @@ const TryOn = () => {
       fabricRef,
     })
 
-    canvas.on('mouse:down', function (options) {
+    /**
+     * listen to the mouse down event on the canvas which is fired when the
+     * user clicks on the canvas
+     *
+     * Event inspector: http://fabricjs.com/events
+     * Event list: http://fabricjs.com/docs/fabric.Canvas.html#fire
+     */
+    canvas.on('mouse:down', (options) => {
       handleCanvasMouseDown({
         options,
         canvas,
+        setActiveObject,
         setIsChangeViewBtnDisable,
+        tryOnOutfit,
+      })
+    })
+
+    /**
+     * listen to the selection created event on the canvas which is fired
+     * when the user selects an object on the canvas.
+     *
+     * Event inspector: http://fabricjs.com/events
+     * Event list: http://fabricjs.com/docs/fabric.Canvas.html#fire
+     */
+    canvas.on('selection:created', (options) => {
+      handleCanvasSelectionCreated({
+        options,
+        canvas,
+        setActiveObject,
+        setIsChangeViewBtnDisable,
+        tryOnOutfit,
       })
     })
 
@@ -51,13 +76,9 @@ const TryOn = () => {
       <OutfitDrawer canvas={fabricRef} />
 
       <div className='h-full flex'>
-        <Canvas
-          canvasRef={canvasRef}
-          activeTool={activeTool}
-          handleActiveTool={handleActiveTool}
-        />
+        <Canvas canvasRef={canvasRef} canvas={fabricRef} />
 
-        <ParameterSidebar />
+        <ParameterSidebar canvas={fabricRef} />
       </div>
     </div>
   )
