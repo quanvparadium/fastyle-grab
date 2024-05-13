@@ -28,7 +28,7 @@ const OutfitDrawer = ({ canvas }: OutfitDrawerProps) => {
       <div
         key={categoryID}
         className='w-[200px] h-[200px] rounded cursor-pointer'
-        onClick={() => handleRenderImage({canvas, clothes: item})}
+        onClick={() => handleRenderImage({ canvas, clothes: item })}
       >
         <img
           src={item?.view?.default}

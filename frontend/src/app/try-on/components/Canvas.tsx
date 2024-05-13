@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button'
 import { toolbar } from '@/constants/try-on'
-import React from 'react'
+import React, { useState } from 'react'
 import { IconContext } from 'react-icons'
 import {
   Tooltip,
@@ -11,15 +11,17 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 import useTryOnOutfitStore from '@/store/tryonStore'
+import { fabric } from 'fabric'
 
 interface CanvasProps {
   canvasRef: React.MutableRefObject<HTMLCanvasElement | null>
-  activeTool: string
-  handleActiveTool: any
+  canvas: React.MutableRefObject<fabric.Canvas | null>
 }
 
-const Canvas = ({ canvasRef, activeTool, handleActiveTool }: CanvasProps) => {
-  const { isChangeViewBtnDisable } = useTryOnOutfitStore((state) => state)
+const Canvas = ({ canvasRef, canvas }: CanvasProps) => {
+  const [activeTool, setActiveTool] = useState<string>('move')
+
+  const { activeObject } = useTryOnOutfitStore((state) => state)
 
   return (
     <div id='canvas' className='relative flex-1 w-full h-full'>
@@ -33,7 +35,6 @@ const Canvas = ({ canvasRef, activeTool, handleActiveTool }: CanvasProps) => {
                 <Button
                   key={item.id}
                   className={`w-10 h-10 p-0 ${activeTool === item.id ? 'bg-macaw/20' : 'bg-white'}`}
-                  onClick={() => handleActiveTool(item.id)}
                 >
                   <IconContext.Provider
                     value={{
@@ -50,7 +51,6 @@ const Canvas = ({ canvasRef, activeTool, handleActiveTool }: CanvasProps) => {
             </Tooltip>
           </TooltipProvider>
         ))}
-        <Button disabled={isChangeViewBtnDisable}>Change View</Button>
       </div>
     </div>
   )
