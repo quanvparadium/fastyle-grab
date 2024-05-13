@@ -3,12 +3,21 @@
 import Canvas from '@/app/try-on/components/Canvas'
 import OutfitDrawer from '@/app/try-on/components/OutfitDrawer'
 import ParameterSidebar from '@/app/try-on/components/ParameterSidebar'
-import { initializeFabric } from '@/utils/canvas'
-import React, { useEffect, useRef } from 'react'
+import useTryOnOutfitStore from '@/store/tryonStore'
+import { handleCanvasMouseDown, initializeFabric } from '@/utils/canvas'
+import React, { useEffect, useRef, useState } from 'react'
 
 const TryOn = () => {
+  const [activeTool, setActiveTool] = useState<string>('move')
+  const { setIsChangeViewBtnDisable } = useTryOnOutfitStore((state) => state)
+
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const fabricRef = useRef<fabric.Canvas | null>(null)
+
+  const handleActiveTool = (ele: string) => {
+    setActiveTool(ele)
+    console.log('ele', ele)
+  }
 
   useEffect(() => {
     // initialize the fabric canvas
@@ -17,7 +26,13 @@ const TryOn = () => {
       fabricRef,
     })
 
-    canvas.on('mouse:down', function (options) {})
+    canvas.on('mouse:down', function (options) {
+      handleCanvasMouseDown({
+        options,
+        canvas,
+        setIsChangeViewBtnDisable,
+      })
+    })
 
     return () => {
       /**
@@ -36,7 +51,11 @@ const TryOn = () => {
       <OutfitDrawer canvas={fabricRef} />
 
       <div className='h-full flex'>
-        <Canvas canvasRef={canvasRef} />
+        <Canvas
+          canvasRef={canvasRef}
+          activeTool={activeTool}
+          handleActiveTool={handleActiveTool}
+        />
 
         <ParameterSidebar />
       </div>

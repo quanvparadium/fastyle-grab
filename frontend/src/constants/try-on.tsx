@@ -1,4 +1,6 @@
+import { Toolbar } from '@/types/canvas'
 import { TryOnOutfit } from '@/types/product'
+import { LuMousePointer2, LuHand, LuCrop } from 'react-icons/lu'
 
 export const fakeData: TryOnOutfit[] = [
   {
@@ -157,5 +159,23 @@ export const fakeData: TryOnOutfit[] = [
         top: 'http://assets.myntassets.com/h_1440,q_95,w_1080/v1/images/style/properties/a00646cac5ca161e41287af96a27f902_images.jpg',
       },
     },
+  },
+]
+
+export const toolbar: Toolbar[] = [
+  {
+    id: 'move',
+    name: 'Move',
+    icon: <LuMousePointer2 size={24} />,
+  },
+  {
+    id: 'hand',
+    name: 'Hand tool',
+    icon: <LuHand size={24} />,
+  },
+  {
+    id: 'crop',
+    name: 'Crop',
+    icon: <LuCrop size={24} />,
   },
 ]

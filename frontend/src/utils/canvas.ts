@@ -24,11 +24,34 @@ export const initializeFabric = ({
   return canvas
 }
 
+export const handleCanvasMouseDown = ({
+  options,
+  canvas,
+  setIsChangeViewBtnDisable,
+}: CanvasMouseDown) => {
+  /**
+   * get target object i.e., the object that is clicked
+   * findtarget() returns the object that is clicked
+   *
+   * findTarget: http://fabricjs.com/docs/fabric.Canvas.html#findTarget
+   */
+  const target = canvas.findTarget(options.e, false)
+
+  setIsChangeViewBtnDisable(true)
+
+  if (target) {
+    if (target instanceof fabric.Group) {
+    } else {
+      setIsChangeViewBtnDisable(false)
+    }
+  }
+}
+
 export const handleRenderImage = ({ canvas, clothes }: RenderImage) => {
   fabric.Image.fromURL(clothes.view.default, (img) => {
-    img.scaleToWidth(200);
-    img.scaleToHeight(200);
+    img.scaleToWidth(200)
+    img.scaleToHeight(200)
 
-    canvas.current?.add(img);
-  });
+    canvas.current?.add(img)
+  })
 }
