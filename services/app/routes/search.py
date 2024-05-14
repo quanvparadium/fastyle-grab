@@ -1,8 +1,8 @@
 import os
 import requests
 from fastapi import APIRouter, HTTPException
-from controllers.search import metadata_search_controller
-from schemas.input import MetadataSearch
+from controllers.search import metadata_search_controller, text_search_controller
+from schemas.input import MetadataSearch, TextSearch
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -20,9 +20,9 @@ async def search(cloth_type: str, cloth_id: str):
         'response': result
     }
 
-# @searchRouter.post("/videos")
-# async def text_search(item: Search):
-#     result = await text_search_controller(item)
-#     return {
-#         "result": result
-#     }
+@searchRouter.post("/")
+async def text_search(item: TextSearch):
+    result = await text_search_controller(item)
+    return {
+        "result": result
+    }

@@ -22,7 +22,7 @@ class DatabaseService {
         this.client = new MongoClient(process.env.DB_MONGO_LINK, {
             serverApi: {
                 version: ServerApiVersion.v1,
-                strict: true,
+                strict: false,
                 deprecationErrors: true
             }
         })

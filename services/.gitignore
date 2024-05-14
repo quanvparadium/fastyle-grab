@@ -2,7 +2,8 @@ venv/
 Database/
 Database*.zip
 features/
-features*.zip
+features*
+infos*
 LAVIS/
 *.pyc
 __pycache__/

@@ -6,6 +6,7 @@ class MetadataSearch(BaseModel):
 
 class TextSearch(BaseModel):
     query: str
+    category: str
     topk: int
 
 class ImageSearch(BaseModel):
