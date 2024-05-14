@@ -18,6 +18,7 @@ const ListOutfit = ({ categoryID }: ListOutfitProps) => {
     data: clothes,
     fetchNextPage,
     hasNextPage,
+    isLoading,
   } = useGetClothes(categoryID)
 
   useEffect(() => {
@@ -26,8 +27,30 @@ const ListOutfit = ({ categoryID }: ListOutfitProps) => {
     }
   }, [inView, fetchNextPage, hasNextPage])
 
+  if (isLoading) {
+    return (
+      <ListOutfitLayout>
+        <div className='px-8 pt-6 grid grid-cols-4 gap-4 rounded-lg'>
+          {[0, 1, 2, 3, 4, 5, 6, 7].map((item) => (
+            <Skeleton key={item} className='w-full h-[150px]' />
+          ))}
+        </div>
+      </ListOutfitLayout>
+    )
+  }
+
+  if (!clothes) {
+    return (
+      <ListOutfitLayout>
+        <div className='h-full px-8 pt-6 flex justify-center items-center'>
+          <span>No data</span>
+        </div>
+      </ListOutfitLayout>
+    )
+  }
+
   return (
-    <div className='w-full h-full pb-2 overflow-auto flex flex-col gap-2'>
+    <ListOutfitLayout>
       <div className='px-8 pt-6 grid grid-cols-4 gap-4 rounded-lg'>
         {clothes?.pages?.map((page) =>
           page?.result?.map((item, index) => (
@@ -55,8 +78,16 @@ const ListOutfit = ({ categoryID }: ListOutfitProps) => {
             <Skeleton key={item} className='w-full h-[150px]' />
           ))}
       </div>
-    </div>
+    </ListOutfitLayout>
   )
 }
 
 export default ListOutfit
+
+const ListOutfitLayout = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <div className='w-full h-full pb-2 overflow-auto flex flex-col gap-2'>
+      {children}
+    </div>
+  )
+}
