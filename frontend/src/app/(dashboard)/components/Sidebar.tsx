@@ -11,7 +11,7 @@ const Sidebar = () => {
   const router = useRouter()
 
   return (
-    <div className='w-[230px] py-8 px-6 border-r-[2px] flex flex-col gap-12'>
+    <div className='fixed w-[230px] h-full py-8 px-6 border-r flex flex-col gap-12'>
       <Image src='/Logo.png' width={100} height={93} alt='Logo' />
       <div className='flex flex-col gap-4'>
         {sidebar.map((item) => {
