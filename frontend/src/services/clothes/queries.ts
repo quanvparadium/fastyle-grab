@@ -26,7 +26,7 @@ const fetchClothes = async ({
   return response.data
 }
 
-export const useGetClothes = (categoryId: CategoryID) => {
+export const useGetClothes = (categoryId: CategoryID, searchValue: string) => {
   return useInfiniteQuery<ResponseGetClothes>({
     queryKey: [QUERY_KEY.CLOTHES, categoryId],
     queryFn: ({ pageParam }) => {
