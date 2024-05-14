@@ -2,6 +2,7 @@
 
 import ListCategory from '@/app/(dashboard)/suggestion/components/ListCategory'
 import ListOutfit from '@/app/(dashboard)/suggestion/components/ListOutfit'
+import Search from '@/app/(dashboard)/suggestion/components/Search'
 import { CategoryID } from '@/types/product'
 import React, { useState } from 'react'
 
@@ -19,8 +20,11 @@ const SelectOutfitSection = () => {
         selectedCategoryID={selectedCategoryID}
         onSelectCategory={handleSelectCategory}
       />
+      <div className='flex-1 flex flex-col overflow-hidden'>
+        <Search />
 
-      <ListOutfit categoryID={selectedCategoryID} />
+        <ListOutfit categoryID={selectedCategoryID} />
+      </div>
     </div>
   )
 }

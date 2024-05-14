@@ -1,6 +1,7 @@
 import { Skeleton } from '@/components/ui/skeleton'
 import useSelectSuggestOutfit from '@/hooks/useSelectSuggestOutfit'
 import { useGetClothes } from '@/services/clothes/queries'
+import useSuggestOutfitStore from '@/store/suggestOutfitStore'
 import { CategoryID } from '@/types/product'
 import Image from 'next/image'
 import React, { useEffect } from 'react'
@@ -15,13 +16,14 @@ const SKELETON_LOADING_ARRAY: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 const ListOutfit = ({ categoryID }: ListOutfitProps) => {
   const { ref, inView } = useInView()
   const { handleSelectProduct, isSelectedProduct } = useSelectSuggestOutfit()
+  const { searchValue } = useSuggestOutfitStore((state) => state)
 
   const {
     data: clothes,
     fetchNextPage,
     hasNextPage,
     isLoading,
-  } = useGetClothes(categoryID)
+  } = useGetClothes(categoryID, searchValue)
 
   useEffect(() => {
     if (inView && hasNextPage) {
@@ -32,7 +34,7 @@ const ListOutfit = ({ categoryID }: ListOutfitProps) => {
   if (isLoading) {
     return (
       <ListOutfitLayout>
-        <div className='px-8 pt-6 grid grid-cols-5 gap-1 rounded-lg'>
+        <div className='px-8 grid grid-cols-5 gap-1 rounded-lg'>
           {SKELETON_LOADING_ARRAY.map((item) => (
             <Skeleton key={item} className='w-full h-[150px]' />
           ))}
@@ -44,7 +46,7 @@ const ListOutfit = ({ categoryID }: ListOutfitProps) => {
   if (!clothes) {
     return (
       <ListOutfitLayout>
-        <div className='h-full px-8 pt-6 flex justify-center items-center'>
+        <div className='h-full px-8 flex justify-center items-center'>
           <span>No data</span>
         </div>
       </ListOutfitLayout>
@@ -53,7 +55,7 @@ const ListOutfit = ({ categoryID }: ListOutfitProps) => {
 
   return (
     <ListOutfitLayout>
-      <div className='px-8 pt-6 grid grid-cols-5 gap-1 rounded-lg'>
+      <div className='px-8 grid grid-cols-5 gap-1 rounded-lg'>
         {clothes?.pages?.map((page) =>
           page?.result?.map((item, index) => (
             <div
