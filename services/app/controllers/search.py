@@ -1,9 +1,10 @@
 import os
+import sys
+import torch
+import requests
 from fastapi import HTTPException
 from schemas.input import MetadataSearch, TextSearch, ImageSearch
-import requests
 from requests.structures import CaseInsensitiveDict
-import sys
 from models.myfaiss import load_bin_file, load_json_path
 
 headers = CaseInsensitiveDict()
@@ -18,13 +19,14 @@ print("Has", os.listdir(lavis_dir))
 # Thêm đường dẫn tương đối của thư mục LAVIS vào sys.path
 sys.path.append(lavis_dir)
 from lavis.models import load_model_and_preprocess
+print(os.listdir('../features'))
 
 
 # LOAD MODEL
-__device = "cuda" if torch.cuda.is_available() else "cpu"
+_device = "cuda" if torch.cuda.is_available() else "cpu"
 model, vis_processors_blip, text_processors_blip = load_model_and_preprocess("blip_image_text_matching", 
                                                                             "base", 
-                                                                            device=__device, 
+                                                                            device=_device, 
                                                                             is_eval=True)
 
 async def metadata_search_controller(item: MetadataSearch):
@@ -34,4 +36,19 @@ async def metadata_search_controller(item: MetadataSearch):
     return response.json()
 
 async def text_search_controller(item: TextSearch):
-    txt = text_processor.text_search(item)
+    pass
+    txt = text_processors_blip["eval"](item.query)
+    text_features = model.encode_text(txt, _device).cpu().detach().numpy()
+    if not os.path.exists('../features/{}_blip_L2.bin'.format(item.category)):
+        raise Exception("Category feature not found")
+    faiss_model = load_bin_file('../features/{}_blip_L2.bin'.format(item.category))
+    print(faiss_model)
+    id2path = load_json_path('../infos/{}_id2path.json'.format(item.category))
+    scores, idx_images = faiss_model.search(text_features, k = item.topk)
+
+    idx_images = idx_images.flatten()
+    scores = scores.flatten()
+    total_img_path = [id2path[str(idx)] for idx in idx_images]
+    result = []
+    print(total_img_path)
+    return total_img_path
