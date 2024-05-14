@@ -1,3 +1,4 @@
+import { CATEGORY_MAP } from '@/constants/product'
 import useSelectSuggestOutfit from '@/hooks/useSelectSuggestOutfit'
 import { CategoryID } from '@/types/product'
 import { Trash2 } from 'lucide-react'
@@ -16,7 +17,7 @@ const PreviewChosen = () => {
               className='flex flex-col gap-2 border border-[#C5C6CC] p-2 rounded-lg'
             >
               <div className='flex justify-between items-center'>
-                <span>Haha</span>
+                <span>{CATEGORY_MAP[categoryID as CategoryID]}</span>
               </div>
               <div className='flex gap-4'>
                 {value.map((item) => (
