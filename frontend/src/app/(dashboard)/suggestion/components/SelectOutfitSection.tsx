@@ -14,7 +14,7 @@ const SelectOutfitSection = () => {
   }
 
   return (
-    <div className='w-[750px] h-full border-r-2 flex flex-col'>
+    <div className='w-[750px] h-full border-r flex flex-col'>
       <ListCategory
         selectedCategoryID={selectedCategoryID}
         onSelectCategory={handleSelectCategory}

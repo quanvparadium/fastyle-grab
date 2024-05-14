@@ -5,7 +5,7 @@ import SelectOutfitSection from '@/app/(dashboard)/suggestion/components/SelectO
 
 const Form = () => {
   return (
-    <div className='h-[550px] border-2 shadow-sm rounded-2xl flex'>
+    <div className='h-[550px] border rounded-[5px] flex'>
       <SelectOutfitSection />
 
       <PreviewSection />

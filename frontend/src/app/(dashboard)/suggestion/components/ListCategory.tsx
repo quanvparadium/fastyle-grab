@@ -19,18 +19,18 @@ const ListCategory = ({
   onSelectCategory,
 }: ListCategoryProps) => {
   return (
-    <div className='h-[64px] flex justify-between border-b-2 px-8'>
+    <div className='h-[64px] flex justify-between border-b px-8'>
       {categories.map((item) => (
         <TooltipProvider key={item.id} delayDuration={0}>
           <Tooltip>
             <TooltipTrigger className='w-full'>
               <div
-                className={`w-full h-full flex justify-center items-center cursor-pointer border-b-[3px] ${selectedCategoryID === item.id ? 'border-macaw' : 'border-transparent'}`}
+                className={`w-full h-full flex justify-center items-center cursor-pointer border-b ${selectedCategoryID === item.id ? 'border-macaw' : 'border-transparent'}`}
                 onClick={() => onSelectCategory(item.id)}
               >
                 <IconContext.Provider
                   value={{
-                    color: `${selectedCategoryID === item.id ? '#1cb0f6' : '#c0ced6'}`,
+                    color: `${selectedCategoryID === item.id ? '#1cb0f6' : '#DBDBDB'}`,
                   }}
                 >
                   {item.icon}
