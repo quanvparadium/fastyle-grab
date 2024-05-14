@@ -20,13 +20,16 @@ const ListSuggestOutfit = () => {
   return (
     <div className='grid grid-cols-3 gap-6'>
       {fakeData.map((outfit, index) => (
-        <div key={index}>
-          <div className='w-full grid grid-cols-2'>
+        <div
+          key={index}
+          className='flex flex-col gap-4 p-4 rounded-md shadow-custom'
+        >
+          <div className='w-full grid grid-cols-2 gap-2'>
             {Object.entries(outfit).map(([categoryID, outfit]) => (
               <div key={outfit._id}>
                 <img
                   src={outfit.view.default}
-                  className='w-full h-full object-cover rounded-lg'
+                  className='w-full h-full object-cover rounded-[3px]'
                 />
               </div>
             ))}

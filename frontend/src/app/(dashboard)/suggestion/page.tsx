@@ -5,7 +5,7 @@ import React from 'react'
 
 const Suggestion = () => {
   return (
-    <div className='w-full h-full pt-6 px-10'>
+    <div className='w-full pt-6 px-10'>
       <Header
         title='Fashion Suggestion'
         description='Discover your ideal outfit instantly with image or text-based search.'
