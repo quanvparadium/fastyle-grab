@@ -13,7 +13,7 @@ interface Params {
   offset?: number
 }
 
-const LIMIT: number = 16
+const LIMIT: number = 20
 
 const fetchClothes = async ({
   categoryId,
