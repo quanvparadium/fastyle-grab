@@ -6,6 +6,7 @@ import { defaultErrorHandler } from '~/middlewares/errors.middlewares'
 import dotenv from 'dotenv'
 import apiRouter from './routes/api.routes'
 import { createData } from './utils/initialdb'
+import clothesService from './services/clothes.services'
 dotenv.config()
 
 const app = express()
@@ -17,6 +18,8 @@ app.use(urlencoded({ extended: true }))
 app.use(json())
 app.use(cors())
 
+// console.log(clothesService.getClothID('topwear'))
+// clothesService.saveClothID()
 // Router
 // app.use('/', authRouter)
 app.use('/api', apiRouter)
