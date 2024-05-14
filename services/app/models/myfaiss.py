@@ -28,6 +28,8 @@ class MyFaiss:
         build_index = faiss.IndexFlatL2() if method == 'L2' else faiss.IndexFlatIP()
         data = load_json_path('../infos/clothIDs.json')
         image_id = load_json_path('../infos/image_id.json')
+        clothes_id2path = dict({})
+        print('===================================================================')
         print(len(data[clothes_category]))
         clothes = data[clothes_category]
         opened_bin_file = ''
@@ -38,11 +40,11 @@ class MyFaiss:
             try: 
                 index_cloth = image_id[check_file].index('{}.jpg'.format(cloth))
 
-                print("Index: ",cloth, index_cloth)
+                # print("Index: ",cloth, index_cloth)
                 if check_file != opened_bin_file:
-                    print(idx, cloth)
+                    # print(idx, cloth)
                     opened_bin_file = check_file
-                    print("Path file: ", os.path.join(feature_path, check_file))
+                    # print("Path file: ", os.path.join(feature_path, check_file))
                     feat_data_npy = np.load(os.path.join(feature_path, check_file))
                 
                 # for feat in feat_data_npy:
@@ -50,6 +52,7 @@ class MyFaiss:
                 if feat_data_npy is None:
                     print('FAULT')
                 # print("feat", feat_data_npy[index_cloth])
+                clothes_id2path[count] = '{}.jpg'.format(cloth)
                 count += 1
                 build_index.add(feat_data_npy[index_cloth])
             except:
@@ -57,7 +60,8 @@ class MyFaiss:
         # print("Total: ", count)
         print("CLOTHES has", len(clothes))
         faiss.write_index(build_index, os.path.join(feature_path, '{}_blip_{}.bin'.format(clothes_category, method)))
-        # with open(os.path.join())
+        with open(os.path.join('../infos', '{}_id2path.json'.format(clothes_category)), 'w') as f:
+            f.write(json.dumps(clothes_id2path))
         print('Saved ', os.path.join(feature_path, '{}_blip_{}.bin'.format(clothes_category, method)))
         print("Number of index: ", count)
 
