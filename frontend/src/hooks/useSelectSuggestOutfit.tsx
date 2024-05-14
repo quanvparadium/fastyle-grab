@@ -23,8 +23,8 @@ const useSelectSuggestOutfit = () => {
     if (isExceedLimit(categoryID)) {
       toast({
         variant: 'destructive',
-        description: `Limit ${LIMIT_SELECTION_PER_CATEGORY}`,
-        duration: 1500,
+        description: `Select up to ${LIMIT_SELECTION_PER_CATEGORY} images only. Deselect one to add another.`,
+        duration: 4000,
       })
 
       return
@@ -73,7 +73,7 @@ const useSelectSuggestOutfit = () => {
 
     isSelectedProduct,
     handleSelectProduct,
-    handleRemoveProduct
+    handleRemoveProduct,
   }
 }
 
