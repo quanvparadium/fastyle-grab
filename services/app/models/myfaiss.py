@@ -25,7 +25,7 @@ class MyFaiss:
 
     def write_bin_file(self, clothes_category, clothes_json_path: str, method='L2', feature_shape=256, feature_path = '../features'):
         count = 0
-        build_index = faiss.IndexFlatL2() if method == 'L2' else faiss.IndexFlatIP()
+        build_index = faiss.IndexFlatL2(feature_shape) if method == 'L2' else faiss.IndexFlatIP(feature_shape)
         data = load_json_path('../infos/clothIDs.json')
         image_id = load_json_path('../infos/image_id.json')
         clothes_id2path = dict({})
@@ -33,7 +33,6 @@ class MyFaiss:
         print(len(data[clothes_category]))
         clothes = data[clothes_category]
         opened_bin_file = ''
-        count = 0
         feat_data_npy = None
         for idx, cloth in enumerate(clothes):
             check_file = '{}.npy'.format((cloth - 1)//1000)
@@ -54,7 +53,8 @@ class MyFaiss:
                 # print("feat", feat_data_npy[index_cloth])
                 clothes_id2path[count] = '{}.jpg'.format(cloth)
                 count += 1
-                build_index.add(feat_data_npy[index_cloth])
+                feat = (feat_data_npy[index_cloth]).astype(np.float32)
+                build_index.add(feat)
             except:
                 continue
         # print("Total: ", count)
@@ -64,14 +64,6 @@ class MyFaiss:
             f.write(json.dumps(clothes_id2path))
         print('Saved ', os.path.join(feature_path, '{}_blip_{}.bin'.format(clothes_category, method)))
         print("Number of index: ", count)
-
-              
-
-            # print(cloth//1000, cloth)
-            # break
-
-        # clothes_json =
-
 
 
 if __name__ == "__main__":
