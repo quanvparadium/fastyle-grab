@@ -12,22 +12,21 @@ headers["Accept"] = "application/json"
 
 """Add LAVIS path"""
 current_dir = os.path.dirname(os.getcwd())
-print("Current directory: %s" % current_dir)
 # Xác định đường dẫn tới thư mục LAVIS
 lavis_dir = os.path.join(current_dir, 'LAVIS')
-print("Has", os.listdir(lavis_dir))
 # Thêm đường dẫn tương đối của thư mục LAVIS vào sys.path
 sys.path.append(lavis_dir)
 from lavis.models import load_model_and_preprocess
-print(os.listdir('../features'))
 
 
 # LOAD MODEL
+print("\033[92m>>> Loading AI model ...\033[0m")
 _device = "cuda" if torch.cuda.is_available() else "cpu"
 model, vis_processors_blip, text_processors_blip = load_model_and_preprocess("blip_image_text_matching", 
                                                                             "base", 
                                                                             device=_device, 
                                                                             is_eval=True)
+print("\033[92m>>> Load model successfully!\033[0m")
 
 async def metadata_search_controller(item: MetadataSearch):
     expressUrl = f"http://{os.getenv('HOST')}:{os.getenv('EXPRESS_PORT')}"
@@ -35,14 +34,13 @@ async def metadata_search_controller(item: MetadataSearch):
     response = requests.get(f'{expressUrl}/api/clothes/{item.cloth_type}/{item.cloth_id}', headers=headers)
     return response.json()
 
-async def text_search_controller(item: TextSearch):
+async def text_search_controller(item: TextSearch, extract_model = 'BLIP'):
     pass
     txt = text_processors_blip["eval"](item.query)
     text_features = model.encode_text(txt, _device).cpu().detach().numpy()
-    if not os.path.exists('../features/{}_blip_L2.bin'.format(item.category)):
+    if not os.path.exists('../features/{}/{}_blip_L2.bin'.format(extract_model, item.category)):
         raise Exception("Category feature not found")
-    faiss_model = load_bin_file('../features/{}_blip_L2.bin'.format(item.category))
-    print(faiss_model)
+    faiss_model = load_bin_file('../features/{}/{}_blip_L2.bin'.format(extract_model, item.category))
     id2path = load_json_path('../infos/{}_id2path.json'.format(item.category))
     scores, idx_images = faiss_model.search(text_features, k = item.topk)
 
