@@ -64,6 +64,12 @@ const useSelectSuggestOutfit = () => {
     setSelectedOutfit(cloneSelectedOutfit)
   }
 
+  const handleRemoveAllProducts = (categoryID: CategoryID) => {
+    const cloneSelectedOutfit = { ...selectedOutfit }
+    delete cloneSelectedOutfit[categoryID]
+    setSelectedOutfit(cloneSelectedOutfit)
+  }
+
   const isSelectedProduct = (categoryID: CategoryID, productID: string) => {
     return selectedOutfit[categoryID]?.some((item) => item._id === productID)
   }
@@ -74,6 +80,7 @@ const useSelectSuggestOutfit = () => {
     isSelectedProduct,
     handleSelectProduct,
     handleRemoveProduct,
+    handleRemoveAllProducts,
   }
 }
 

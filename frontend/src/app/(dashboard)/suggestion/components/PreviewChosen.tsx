@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button'
 import { CATEGORY_MAP } from '@/constants/product'
 import useSelectSuggestOutfit from '@/hooks/useSelectSuggestOutfit'
 import { CategoryID } from '@/types/product'
@@ -5,7 +6,8 @@ import { Trash2 } from 'lucide-react'
 import React from 'react'
 
 const PreviewChosen = () => {
-  const { selectedOutfit, handleRemoveProduct } = useSelectSuggestOutfit()
+  const { selectedOutfit, handleRemoveProduct, handleRemoveAllProducts } =
+    useSelectSuggestOutfit()
 
   return (
     <div className='flex flex-col gap-4 overflow-auto scrollbar-hidden'>
@@ -14,11 +16,21 @@ const PreviewChosen = () => {
           return (
             <div
               key={categoryID}
-              className='flex flex-col gap-2 border border-[#C5C6CC] p-2 rounded-lg'
+              className='flex flex-col gap-2 border p-2 rounded-lg'
             >
-              <div className='flex justify-between items-center'>
+              <div className='flex justify-between items-center pl-2'>
                 <span>{CATEGORY_MAP[categoryID as CategoryID]}</span>
+                <Button
+                  variant={'ghost'}
+                  className='p-0 w-8 h-8'
+                  onClick={() =>
+                    handleRemoveAllProducts(categoryID as CategoryID)
+                  }
+                >
+                  <Trash2 size={14} color='#CC0000' />
+                </Button>
               </div>
+
               <div className='flex gap-4'>
                 {value.map((item) => (
                   <div

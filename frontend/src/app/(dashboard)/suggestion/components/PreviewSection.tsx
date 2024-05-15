@@ -7,7 +7,7 @@ const PreviewSection = () => {
     <div className='flex-1 flex flex-col px-4 py-4'>
       <div className='flex-1 flex flex-col gap-9 overflow-hidden pb-4'>
         <div className='w-full flex items-center justify-center'>
-          <span className='text-[20px] font-medium'>Your Item</span>
+          <span className='text-[18px]'>Your Item</span>
         </div>
         <PreviewChosen />
       </div>
