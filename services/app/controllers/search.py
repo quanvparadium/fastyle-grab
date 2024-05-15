@@ -16,6 +16,7 @@ current_dir = os.path.dirname(os.getcwd())
 lavis_dir = os.path.join(current_dir, 'LAVIS')
 # Thêm đường dẫn tương đối của thư mục LAVIS vào sys.path
 sys.path.append(lavis_dir)
+print(lavis_dir)
 from lavis.models import load_model_and_preprocess
 
 

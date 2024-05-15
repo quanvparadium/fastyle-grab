@@ -34,6 +34,10 @@ print("\033[96m>>> Preparing enviroment ...\033[0m")
 from routes.default import defaultRouter as default_router
 app.include_router(default_router)
 
+from routes.apiRouter import apiRouter
+app.include_router(apiRouter)
+
+
 from routes.search import searchRouter as search_router
 app.include_router(search_router, prefix='/search')
 print("\033[96m>>> Prepare done!\033[0m")

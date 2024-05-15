@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { recommendController } from '~/controllers/recommend.controllers'
+import { recommendController, recommendRandomController } from '~/controllers/recommend.controllers'
 import { wrapAsync } from '~/utils/handler'
 
 const recommendRouter = Router()
@@ -16,6 +16,8 @@ const recommendRouter = Router()
  * }
  */
 
+recommendRouter.post('/random', wrapAsync(recommendRandomController))
 recommendRouter.post('/', wrapAsync(recommendController))
+
 
 export default recommendRouter
