@@ -1,5 +1,6 @@
 import {
   CanvasMouseDown,
+  CanvasMouseWheel,
   CanvasSelectionCreated,
   RenderImage,
 } from '@/types/canvas'
@@ -67,6 +68,34 @@ export const handleCanvasSelectionCreated = ({
   tryOnOutfit,
 }: CanvasSelectionCreated) => {
   if (!options?.selected) return
+}
+
+export const handleCanvasMouseWheel = ({
+  options,
+  canvas,
+}: CanvasMouseWheel) => {
+  const event = options.e as WheelEvent
+
+  // Nếu nhấn kèm phím ctrl thì zoom
+  if (event.ctrlKey) {
+    const delta = event?.deltaY
+    let zoom = canvas.getZoom()
+
+    // allow zooming to min 20% and max 150%
+    const minZoom = 0.2
+    const maxZoom = 1.5
+    const zoomStep = 0.001
+
+    // calculate zoom based on mouse scroll wheel with min and max zoom
+    zoom = Math.min(Math.max(minZoom, zoom - delta * zoomStep), maxZoom)
+
+    // set zoom to canvas
+    // zoomToPoint: http://fabricjs.com/docs/fabric.Canvas.html#zoomToPoint
+    canvas.zoomToPoint({ x: event.offsetX, y: event.offsetY }, zoom)
+
+    event.preventDefault()
+    event.stopPropagation()
+  }
 }
 
 export const handleRenderImage = ({ canvas, clothes }: RenderImage) => {

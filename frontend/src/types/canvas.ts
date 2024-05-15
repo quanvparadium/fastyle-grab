@@ -23,6 +23,11 @@ export type CanvasSelectionCreated = {
   setActiveObject: any
 }
 
+export type CanvasMouseWheel = {
+  options: fabric.IEvent
+  canvas: fabric.Canvas
+}
+
 export type RenderImage = {
   canvas: React.MutableRefObject<fabric.Canvas | null>
   clothes: Clothes

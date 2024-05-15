@@ -6,6 +6,7 @@ import ParameterSidebar from '@/app/try-on/components/ParameterSidebar'
 import useTryOnOutfitStore from '@/store/tryonStore'
 import {
   handleCanvasMouseDown,
+  handleCanvasMouseWheel,
   handleCanvasSelectionCreated,
   initializeFabric,
 } from '@/utils/canvas'
@@ -56,6 +57,20 @@ const TryOn = () => {
         setActiveObject,
         setIsChangeViewBtnDisable,
         tryOnOutfit,
+      })
+    })
+
+    /**
+     * listen to the mouse wheel event on the canvas which is fired when
+     * the user scrolls the mouse wheel on the canvas.
+     *
+     * Event inspector: http://fabricjs.com/events
+     * Event list: http://fabricjs.com/docs/fabric.Canvas.html#fire
+     */
+    canvas.on('mouse:wheel', (options) => {
+      handleCanvasMouseWheel({
+        options,
+        canvas,
       })
     })
 
