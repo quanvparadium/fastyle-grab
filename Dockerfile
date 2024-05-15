@@ -9,11 +9,11 @@ RUN apt-get update && apt-get install -y git && apt-get install -y libhdf5-dev
 RUN apt update \
     && apt install -y libmariadb-dev \
         gcc \
+        linux-headers-generic \
         python3-dev \
         libcogl-pango-dev \
         libcairo2-dev \
         libtool \
-        linux-headers-generic \
         musl-dev \
         libffi-dev \
         libssl-dev \
@@ -25,11 +25,11 @@ RUN git clone https://github.com/quanvparadium/LAVIS.git
 
 WORKDIR /code/services/LAVIS
 
-RUN apk add gcc musl-dev linux-headers python3-dev 
-RUN apk add libffi-dev
-
 RUN pip install --no-binary h5py h5py
 RUN pip install -e .
+
+WORKDIR /code/services/
+RUN python install.py
 
 WORKDIR /code/services/app
 

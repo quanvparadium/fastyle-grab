@@ -7,7 +7,7 @@ import faiss
 from collections import defaultdict
 
 DATABASE_PATH = '../../fashion-dataset'
-JSON_PATH = './features/image_id.json'
+JSON_PATH = '../infos/image_id.json'
 
 def load_bin_file(bin_file: str):
     return faiss.read_index(bin_file) 
@@ -27,7 +27,7 @@ class MyFaiss:
         count = 0
         build_index = faiss.IndexFlatL2(feature_shape) if method == 'L2' else faiss.IndexFlatIP(feature_shape)
         data = load_json_path('../infos/clothIDs.json')
-        image_id = load_json_path('../infos/image_id.json')
+        image_id = load_json_path(clothes_json_path)
         clothes_id2path = dict({})
         print('===================================================================')
         print(len(data[clothes_category]))

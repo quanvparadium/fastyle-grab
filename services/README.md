@@ -22,24 +22,29 @@
         │   │   └── ...
         │   ├── images.csv                  
         │   └── styles.csv 
-        ├── services                        # Python services folder
-        │   ├── LAVIS                       # Please clone the LAVIS repository first, then navigate to the 'app' directory to run the backend service.    
+        ├── services                          # Python services folder
+        │   ├── LAVIS                         # Please clone the LAVIS repository first, then navigate to the 'app' directory to run the backend service.    
         │   ├── process 
         │   ├── app 
-        │   │   ├── app.py                  # Run app.py to to start the backend service.
+        │   │   ├── app.py                    # Run app.py to to start the backend service.
         │   │   └── ...
-        │   ├── features                    # Extracted features folder
-        │   │   ├── BLIP                    # Binary file extracted by BLIP model
+        │   ├── features                      # Extracted features folder
+        │   │   ├── BLIP                      # Binary file extracted by BLIP model
         │   │   │   ├── topwear_blip_L2.bin   
         │   │   │   ├── headwear_blip_L2.bin   
         │   │   │   ├── bottomwear_blip_L2.bin   
         │   │   │   ├── footwear_blip_L2.bin   
         │   │   │   ├── dress_blip_L2.bin   
         │   │   │   └── others_blip_L2.bin   
-        │   │   ├── FashionCLIP             # Binary file extracted by FashionCLIP model
+        │   │   ├── BLIP_raw_features         # Raw features extracted by BLIP model
+        │   │   │   ├── 1.npy
+        │   │   │   ├── 2.npy   
+        │   │   │   ├── ...   
+        │   │   │   └── 59.npy   
+        │   │   ├── FashionCLIP               # Binary file extracted by FashionCLIP model
         │   │   │   └── Update later ... 
         │   │   └── ...   
-        │   ├── infos                       # Information folder
+        │   ├── infos                         # Information folder
         │   │   │   ├── clothIDs.json
         │   │   │   ├── image_id.json   
         │   │   │   ├── topwear_id2path.json   

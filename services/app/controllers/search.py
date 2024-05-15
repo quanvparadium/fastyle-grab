@@ -47,6 +47,5 @@ async def text_search_controller(item: TextSearch, extract_model = 'BLIP'):
     idx_images = idx_images.flatten()
     scores = scores.flatten()
     total_img_path = [id2path[str(idx)] for idx in idx_images]
-    result = []
     print(total_img_path)
     return total_img_path
