@@ -11,6 +11,7 @@ import {
   handleCanvasMouseDown,
   handleCanvasMouseUp,
   handleCanvasMouseWheel,
+  handleCanvasResize,
   handleCanvaseMouseMove,
   initializeFabric,
 } from '@/utils/canvas'
@@ -102,6 +103,19 @@ const TryOn = () => {
     })
 
     /**
+     * listen to the resize event on the window which is fired when the
+     * user resizes the window.
+     *
+     * We're using this to resize the canvas when the user resizes the
+     * window.
+     */
+    window.addEventListener('resize', () => {
+      handleCanvasResize({
+        canvas: fabricRef.current,
+      })
+    })
+
+    /**
      * listen to the key down event on the window which is fired when the
      * user presses a key on the keyboard.
      *
@@ -130,6 +144,12 @@ const TryOn = () => {
        * dispose: http://fabricjs.com/docs/fabric.Canvas.html#dispose
        */
       canvas.dispose()
+
+      window.removeEventListener('resize', () => {
+        handleCanvasResize({
+          canvas: null,
+        })
+      })
 
       window.removeEventListener('keydown', (e) =>
         handleCanvasKeyDown({
