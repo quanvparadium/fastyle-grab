@@ -16,35 +16,33 @@ const AboutUsSectionInfoCard = ({
   member,
   style,
 }: AboutUsSectionInfoCardProps) => {
-  const isDesktopOrLaptop = useMediaQuery({
-    query: '(min-width: 1224px)',
-  })
-
   return (
     <div
       className='flex justify-center'
       style={{ position: 'relative', ...style }}
     >
-      {isDesktopOrLaptop && (
-        <div style={{ position: 'relative', left: 100 }}>
-          <Image
-            src={leftBackground}
-            alt=''
-            style={{ minHeight: 400, minWidth: 400 }}
-          />
-        </div>
-      )}
+      <div
+        className='sm:hidden md:hidden lg:block'
+        style={{ position: 'relative', left: 100 }}
+      >
+        <Image
+          src={leftBackground}
+          alt=''
+          style={{ minHeight: 400, minWidth: 400 }}
+        />
+      </div>
+
       <div
         style={{
-          minWidth: isDesktopOrLaptop ? 652 : 600,
-          maxWidth: isDesktopOrLaptop ? 652 : 600,
+          minWidth: 652,
+          maxWidth: 652,
           height: 400,
           background: 'white',
           border: '1px solid #e7e8ef',
           boxShadow: 'rgba(99, 99, 99, 0.3) 0px 2px 8px 0px',
           borderRadius: 32,
           position: 'relative',
-          top: isDesktopOrLaptop ? 52 : 0,
+          top: 52,
           padding: 32,
           zIndex: 999,
         }}
@@ -77,15 +75,17 @@ const AboutUsSectionInfoCard = ({
           <p>{member.description}</p>
         </div>
       </div>
-      {isDesktopOrLaptop && (
-        <div style={{ position: 'relative', right: 100 }}>
-          <Image
-            src={rightBackground}
-            alt=''
-            style={{ minHeight: 400, minWidth: 400 }}
-          />
-        </div>
-      )}
+
+      <div
+        className='sm:hidden md:hidden lg:block'
+        style={{ position: 'relative', right: 100 }}
+      >
+        <Image
+          src={rightBackground}
+          alt=''
+          style={{ minHeight: 400, minWidth: 400 }}
+        />
+      </div>
     </div>
   )
 }

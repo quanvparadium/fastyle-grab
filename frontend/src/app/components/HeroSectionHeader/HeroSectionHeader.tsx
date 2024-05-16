@@ -2,21 +2,14 @@
 
 import { Button } from '@/components/ui/button'
 import './LinkButton.css'
-import { useMediaQuery } from 'react-responsive'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 
 const HeroSectionHeader = () => {
-  const isDesktopOrLaptop = useMediaQuery({
-    query: '(min-width: 1224px)',
-  })
   const router = useRouter()
 
   return (
-    <div
-      className='flex w-full justify-between'
-      style={{ padding: isDesktopOrLaptop ? 64 : 24 }}
-    >
+    <div className='flex w-full justify-between' style={{ padding: 24 }}>
       <div className='flex items-center'>
         <a href='#intro'>
           <Button className='link-button' variant='link'>
@@ -35,15 +28,14 @@ const HeroSectionHeader = () => {
         </a>
       </div>
 
-      {isDesktopOrLaptop && (
-        <Image
-          width={200}
-          height={93}
-          src='/Logo.png'
-          alt=''
-          style={{ position: 'relative', left: '-8%' }}
-        />
-      )}
+      <Image
+        className='sm:hidden md:hidden lg:block'
+        width={200}
+        height={93}
+        src='/Logo.png'
+        alt=''
+        style={{ position: 'relative', left: '-8%' }}
+      />
 
       <div className='flex justify-center items-center'>
         <Button

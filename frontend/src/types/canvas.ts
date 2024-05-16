@@ -1,26 +1,48 @@
 import { Clothes, TryOnOutfit } from '@/types/product'
 import React from 'react'
 
-export type Toolbar = {
-  id: string
-  name: string
-  icon: React.ReactNode
+export type Toolbar = 'move' | 'hand'
+
+export type Pointer = {
+  x: number
+  y: number
 }
 
 export type CanvasMouseDown = {
   options: fabric.IEvent
   canvas: fabric.Canvas
-  setIsChangeViewBtnDisable: any
   setActiveObject: any
   tryOnOutfit: TryOnOutfit | null
+  currentPointer: React.MutableRefObject<Pointer>
+  activeToolRef: React.MutableRefObject<Toolbar>
 }
 
-export type CanvasSelectionCreated = {
+export type CanvasMouseUp = {
+  options: fabric.IEvent
+  activeToolRef: React.MutableRefObject<Toolbar>
+}
+
+export type CanvasMouseMove = {
   options: fabric.IEvent
   canvas: fabric.Canvas
-  tryOnOutfit: TryOnOutfit | null
-  setIsChangeViewBtnDisable: any
-  setActiveObject: any
+  currentPointer: React.MutableRefObject<Pointer>
+  activeToolRef: React.MutableRefObject<Toolbar>
+}
+
+export type CanvasMouseWheel = {
+  options: fabric.IEvent
+  canvas: fabric.Canvas
+}
+
+export type CanvasKeyDown = {
+  e: KeyboardEvent
+  canvas: fabric.Canvas | any
+  setActiveTool: (type: Toolbar) => void
+}
+
+export type CanvasKeyUp = {
+  e: KeyboardEvent
+  canvas: fabric.Canvas
 }
 
 export type RenderImage = {
