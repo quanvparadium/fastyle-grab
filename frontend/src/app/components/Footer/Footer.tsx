@@ -2,24 +2,25 @@
 
 import { Facebook, InstagramIcon, TwitterIcon } from 'lucide-react'
 import Image from 'next/image'
-import { useMediaQuery } from 'react-responsive'
 
 const Footer = () => {
-  const isDesktopOrLaptop = useMediaQuery({
-    query: '(min-width: 1224px)',
-  })
-
   return (
-    <div style={{ height: 400, padding: '32px 72px 16px 72px' }}>
+    <div
+      className='sm:flex-col md:flex-col lg:flex-row'
+      style={{
+        height: 400,
+        padding: '32px 72px 16px 72px',
+        flexDirection: 'column',
+      }}
+    >
       <div
+        className='flex sm:flex-col md:flex-col lg:flex-row'
         style={{
           width: '100%',
           height: '100%',
           borderRadius: 36,
           background:
             'linear-gradient(rgba(216, 194, 250, 0.5), rgba(177, 180, 255, 0.5))',
-          display: 'flex',
-          flexDirection: isDesktopOrLaptop ? 'row' : 'column',
           padding: 32,
         }}
       >
@@ -34,30 +35,18 @@ const Footer = () => {
         <div style={{ width: 400 }} />
         <div>
           <p style={{ fontWeight: 600, fontSize: 16 }}>Products</p>
-          <ul
-            style={{
-              display: 'flex',
-              flexDirection: isDesktopOrLaptop ? 'column' : 'row',
-            }}
-          >
-            <li className={isDesktopOrLaptop ? 'mt-4' : 'mr-4'}>Clothes</li>
-            <li className={isDesktopOrLaptop ? 'mt-4' : 'mr-4'}>Accessories</li>
-            <li className={isDesktopOrLaptop ? 'mt-4' : 'mr-4'}>Watches</li>
+          <ul className='sm:flex md:flex lg:flex-col'>
+            <li>Clothes</li>
+            <li>Accessories</li>
+            <li>Watches</li>
           </ul>
         </div>
         <div style={{ width: 128 }} />
         <div>
           <p style={{ fontWeight: 600, fontSize: 16 }}>Features</p>
-          <ul
-            style={{
-              display: 'flex',
-              flexDirection: isDesktopOrLaptop ? 'column' : 'row',
-            }}
-          >
-            <li className={isDesktopOrLaptop ? 'mt-4' : 'mr-4'}>Search</li>
-            <li className={isDesktopOrLaptop ? 'mt-4' : 'mr-4'}>
-              Recommendation
-            </li>
+          <ul className='sm:flex md:flex lg:flex-col'>
+            <li>Search</li>
+            <li>Recommendation</li>
           </ul>
         </div>
         <div style={{ width: 200 }} />

@@ -2,16 +2,12 @@
 
 import { Button } from '@/components/ui/button'
 import { useRouter } from 'next/navigation'
-import { useMediaQuery } from 'react-responsive'
 
 const HeroSectionLeftSide = () => {
-  const isDesktopOrLaptop = useMediaQuery({
-    query: '(min-width: 1224px)',
-  })
   const router = useRouter()
 
   return (
-    <div style={{ width: isDesktopOrLaptop ? '40%' : '80%', padding: 32 }}>
+    <div className='sm:w-4/5 md:w-4/5 lg:w-2/5' style={{ padding: 32 }}>
       <div style={{ marginTop: 100 }}>
         <p style={{ fontSize: 48 }}>
           A convenient and quick way to get &nbsp;
