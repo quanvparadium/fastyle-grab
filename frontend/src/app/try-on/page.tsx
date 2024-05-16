@@ -4,20 +4,34 @@ import Canvas from '@/app/try-on/components/Canvas'
 import OutfitDrawer from '@/app/try-on/components/OutfitDrawer'
 import ParameterSidebar from '@/app/try-on/components/ParameterSidebar'
 import useTryOnOutfitStore from '@/store/tryonStore'
+import { Pointer, Toolbar } from '@/types/canvas'
 import {
+  handleCanvasKeyDown,
+  handleCanvasKeyUp,
   handleCanvasMouseDown,
+  handleCanvasMouseUp,
   handleCanvasMouseWheel,
-  handleCanvasSelectionCreated,
+  handleCanvaseMouseMove,
   initializeFabric,
 } from '@/utils/canvas'
 import React, { useEffect, useRef } from 'react'
 
 const TryOn = () => {
-  const { tryOnOutfit, setIsChangeViewBtnDisable, setActiveObject } =
-    useTryOnOutfitStore((state) => state)
+  const {
+    tryOnOutfit,
+    activeTool,
+
+    setActiveObject,
+    setActiveTool,
+  } = useTryOnOutfitStore((state) => state)
 
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const fabricRef = useRef<fabric.Canvas | null>(null)
+
+  const currentPointer = useRef<Pointer>({ x: 0, y: 0 })
+  const activeToolRef = useRef<Toolbar>(activeTool)
+
+  activeToolRef.current = activeTool
 
   useEffect(() => {
     // initialize the fabric canvas
@@ -38,25 +52,38 @@ const TryOn = () => {
         options,
         canvas,
         setActiveObject,
-        setIsChangeViewBtnDisable,
         tryOnOutfit,
+        currentPointer,
+        activeToolRef,
       })
     })
 
     /**
-     * listen to the selection created event on the canvas which is fired
-     * when the user selects an object on the canvas.
+     * listen to the mouse up event on the canvas
      *
      * Event inspector: http://fabricjs.com/events
      * Event list: http://fabricjs.com/docs/fabric.Canvas.html#fire
      */
-    canvas.on('selection:created', (options) => {
-      handleCanvasSelectionCreated({
+    canvas.on('mouse:up', (options) => {
+      handleCanvasMouseUp({
+        options,
+        activeToolRef,
+      })
+    })
+
+    /**
+     * listen to the mouse move event on the canvas which is fired when the
+     * user moves the mouse on the canvas
+     *
+     * Event inspector: http://fabricjs.com/events
+     * Event list: http://fabricjs.com/docs/fabric.Canvas.html#fire
+     */
+    canvas.on('mouse:move', (options) => {
+      handleCanvaseMouseMove({
         options,
         canvas,
-        setActiveObject,
-        setIsChangeViewBtnDisable,
-        tryOnOutfit,
+        currentPointer,
+        activeToolRef,
       })
     })
 
@@ -74,6 +101,26 @@ const TryOn = () => {
       })
     })
 
+    /**
+     * listen to the key down event on the window which is fired when the
+     * user presses a key on the keyboard.
+     *
+     */
+    window.addEventListener('keydown', (e) =>
+      handleCanvasKeyDown({
+        e,
+        canvas,
+        setActiveTool,
+      }),
+    )
+
+    window.addEventListener('keyup', (e) =>
+      handleCanvasKeyUp({
+        e,
+        canvas,
+      }),
+    )
+
     return () => {
       /**
        * dispose is a method provided by Fabric that allows you to dispose
@@ -83,8 +130,37 @@ const TryOn = () => {
        * dispose: http://fabricjs.com/docs/fabric.Canvas.html#dispose
        */
       canvas.dispose()
+
+      window.removeEventListener('keydown', (e) =>
+        handleCanvasKeyDown({
+          e,
+          canvas,
+          setActiveTool,
+        }),
+      )
+
+      window.removeEventListener('keyup', (e) =>
+        handleCanvasKeyUp({
+          e,
+          canvas,
+        }),
+      )
     }
   }, [canvasRef])
+
+  // handle change pointer shape
+  useEffect(() => {
+    if (fabricRef.current) {
+      switch (activeTool) {
+        case 'hand':
+          fabricRef.current.defaultCursor = 'grab'
+          break
+        case 'move':
+          fabricRef.current.defaultCursor = 'default'
+          break
+      }
+    }
+  }, [fabricRef.current, activeTool])
 
   return (
     <div className='w-full h-full relative'>

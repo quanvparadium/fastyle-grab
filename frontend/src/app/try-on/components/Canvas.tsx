@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button'
 import { toolbar } from '@/constants/try-on'
-import React, { useState } from 'react'
+import React from 'react'
 import { IconContext } from 'react-icons'
 import {
   Tooltip,
@@ -19,9 +19,7 @@ interface CanvasProps {
 }
 
 const Canvas = ({ canvasRef, canvas }: CanvasProps) => {
-  const [activeTool, setActiveTool] = useState<string>('move')
-
-  const { activeObject } = useTryOnOutfitStore((state) => state)
+  const { activeTool, setActiveTool } = useTryOnOutfitStore((state) => state)
 
   return (
     <div id='canvas' className='relative flex-1 w-full h-full'>
@@ -35,6 +33,7 @@ const Canvas = ({ canvasRef, canvas }: CanvasProps) => {
                 <Button
                   key={item.id}
                   className={`w-10 h-10 p-0 ${activeTool === item.id ? 'bg-macaw/20' : 'bg-white'}`}
+                  onClick={() => setActiveTool(item.id)}
                 >
                   <IconContext.Provider
                     value={{

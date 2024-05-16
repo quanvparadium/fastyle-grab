@@ -1,6 +1,6 @@
 import { Toolbar } from '@/types/canvas'
 import { TryOnOutfit } from '@/types/product'
-import { LuMousePointer2, LuHand, LuCrop } from 'react-icons/lu'
+import { LuMousePointer2, LuHand } from 'react-icons/lu'
 
 export const fakeData: TryOnOutfit[] = [
   {
@@ -162,7 +162,13 @@ export const fakeData: TryOnOutfit[] = [
   },
 ]
 
-export const toolbar: Toolbar[] = [
+export type ToolbarData = {
+  id: Toolbar
+  name: string
+  icon: React.ReactNode
+}
+
+export const toolbar: ToolbarData[] = [
   {
     id: 'move',
     name: 'Move',
@@ -172,10 +178,5 @@ export const toolbar: Toolbar[] = [
     id: 'hand',
     name: 'Hand tool',
     icon: <LuHand size={24} />,
-  },
-  {
-    id: 'crop',
-    name: 'Crop',
-    icon: <LuCrop size={24} />,
   },
 ]
