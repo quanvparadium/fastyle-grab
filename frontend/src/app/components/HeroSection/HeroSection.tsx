@@ -1,18 +1,10 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
-import Image from 'next/image'
-import { useRouter } from 'next/router'
 import HeroSectionHeader from '../HeroSectionHeader/HeroSectionHeader'
-import { useMediaQuery } from 'react-responsive'
 import HeroSectionLeftSide from '../HeroSectionLeftSide/HeroSectionLeftSide'
 import HeroSectionRightSide from '../HeroSectionRightSide/HeroSectionRightSide'
 
 const HeroSection = () => {
-  const isDesktopOrLaptop = useMediaQuery({
-    query: '(min-width: 1224px)',
-  })
-
   return (
     <div
       className='flex-col'
@@ -27,7 +19,8 @@ const HeroSection = () => {
 
       <div className='flex w-full'>
         <HeroSectionLeftSide />
-        {isDesktopOrLaptop && <HeroSectionRightSide />}
+
+        <HeroSectionRightSide />
       </div>
     </div>
   )
