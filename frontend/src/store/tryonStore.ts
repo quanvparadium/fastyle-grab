@@ -1,20 +1,21 @@
+import { Toolbar } from '@/types/canvas'
 import { Clothes, TryOnOutfit } from '@/types/product'
 import { create } from 'zustand'
 
 interface TryOnOutfitState {
   tryOnOutfit: TryOnOutfit | null
   activeObject: Clothes | null
-  isChangeViewBtnDisable: boolean
+  activeTool: Toolbar
 
   setTryOnOutfit: (newTryOnOutfit: TryOnOutfit) => void
   setActiveObject: (data: Clothes) => void
-  setIsChangeViewBtnDisable: (status: boolean) => void
+  setActiveTool: (type: Toolbar) => void
 }
 
 const useTryOnOutfitStore = create<TryOnOutfitState>()((set) => ({
   tryOnOutfit: null,
   activeObject: null,
-  isChangeViewBtnDisable: true,
+  activeTool: 'move',
 
   setTryOnOutfit: (newTryOnOutfit) => {
     return set({ tryOnOutfit: newTryOnOutfit })
@@ -22,8 +23,8 @@ const useTryOnOutfitStore = create<TryOnOutfitState>()((set) => ({
   setActiveObject: (data) => {
     return set({ activeObject: data })
   },
-  setIsChangeViewBtnDisable: (status) => {
-    return set({ isChangeViewBtnDisable: status })
+  setActiveTool: (type) => {
+    return set({ activeTool: type })
   },
 }))
 
