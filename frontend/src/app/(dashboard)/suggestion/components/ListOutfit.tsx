@@ -1,3 +1,4 @@
+import ItemDetailDialog from '@/app/(dashboard)/suggestion/components/ItemDetailDialog'
 import { Skeleton } from '@/components/ui/skeleton'
 import useSelectSuggestOutfit from '@/hooks/useSelectSuggestOutfit'
 import { useGetClothes } from '@/services/clothes/queries'
@@ -60,11 +61,13 @@ const ListOutfit = ({ categoryID }: ListOutfitProps) => {
           page?.result?.map((item, index) => (
             <div
               key={item._id}
-              className={`relative w-full h-[130px] cursor-pointer border shadow-sm bg-[#EFEFEF] ${isSelectedProduct(categoryID, item._id) ? 'border-macaw' : 'border-transparent'}`}
+              className={`relative w-full h-[130px] cursor-pointer border shadow-sm bg-[#EFEFEF] ${isSelectedProduct(categoryID, item._id) ? 'border-macaw' : 'border-transparent'} group`}
               onClick={() => handleSelectProduct(categoryID, item)}
               // Là ảnh cuối cùng của page thì thêm ref vào để trigger inf loading
               ref={page.result.length === index + 1 ? ref : null}
             >
+              <ItemDetailDialog clothes={item} />
+
               <Image
                 src={item.view.default}
                 alt=''
