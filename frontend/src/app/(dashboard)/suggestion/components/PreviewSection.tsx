@@ -12,7 +12,7 @@ const PreviewSection = () => {
         <PreviewChosen />
       </div>
       <div className='w-full flex justify-end'>
-        <Button className='w-[130px]' hasShadow>
+        <Button className='step-4 w-[130px]' hasShadow>
           Submit
         </Button>
       </div>

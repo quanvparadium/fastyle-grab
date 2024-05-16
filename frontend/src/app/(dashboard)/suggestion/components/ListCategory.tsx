@@ -19,7 +19,7 @@ const ListCategory = ({
   onSelectCategory,
 }: ListCategoryProps) => {
   return (
-    <div className='h-[64px] flex justify-between border-b px-8'>
+    <div className='step-1 h-[64px] flex justify-between border-b px-8'>
       {categories.map((item) => (
         <TooltipProvider key={item.id} delayDuration={0}>
           <Tooltip>

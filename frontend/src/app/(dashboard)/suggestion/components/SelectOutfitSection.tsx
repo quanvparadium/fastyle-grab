@@ -20,7 +20,7 @@ const SelectOutfitSection = () => {
         selectedCategoryID={selectedCategoryID}
         onSelectCategory={handleSelectCategory}
       />
-      <div className='flex-1 flex flex-col overflow-hidden'>
+      <div className='step-2 flex-1 flex flex-col overflow-hidden'>
         <Search />
 
         <ListOutfit categoryID={selectedCategoryID} />
