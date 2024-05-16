@@ -1,8 +1,9 @@
 import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
-import { Dialog, DialogContent } from '@radix-ui/react-dialog'
 import { useMemo, useState } from 'react'
-import Joyride, { Callback, Step, TooltipRenderProps } from 'react-joyride'
+import { Callback, Step, TooltipRenderProps } from 'react-joyride'
+import dynamic from 'next/dynamic'
+
+const JoyRideNoSSR = dynamic(() => import('react-joyride'), { ssr: false })
 
 const TourGuideButton = () => {
   const [guideRunning, setGuideRunning] = useState(false)
@@ -40,7 +41,7 @@ const TourGuideButton = () => {
         TOUR GUIDE
       </Button>
 
-      <Joyride
+      <JoyRideNoSSR
         locale={{
           back: 'previous step',
           last: 'last',
@@ -51,6 +52,7 @@ const TourGuideButton = () => {
         steps={steps}
         continuous
         disableScrolling
+        disableOverlayClose
         showProgress
         tooltipComponent={Tooltip}
       />
