@@ -2,7 +2,7 @@ import { Toolbar } from '@/types/canvas'
 import { Clothes, TryOnOutfit } from '@/types/product'
 import { create } from 'zustand'
 
-interface TryOnOutfitState {
+interface TryOnOutfitManuallyState {
   tryOnOutfit: TryOnOutfit | null
   activeObject: Clothes | null
   activeTool: Toolbar
@@ -12,7 +12,7 @@ interface TryOnOutfitState {
   setActiveTool: (type: Toolbar) => void
 }
 
-const useTryOnOutfitStore = create<TryOnOutfitState>()((set) => ({
+const useTryOnOutfitManuallyStore = create<TryOnOutfitManuallyState>()((set) => ({
   tryOnOutfit: null,
   activeObject: null,
   activeTool: 'move',
@@ -28,4 +28,4 @@ const useTryOnOutfitStore = create<TryOnOutfitState>()((set) => ({
   },
 }))
 
-export default useTryOnOutfitStore
+export default useTryOnOutfitManuallyStore

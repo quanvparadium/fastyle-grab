@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { toolbar } from '@/constants/try-on'
+import { toolbar } from '@/constants/try-on-manually'
 import React from 'react'
 import { IconContext } from 'react-icons'
 import {
@@ -10,7 +10,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
-import useTryOnOutfitStore from '@/store/tryonStore'
+import useTryOnOutfitStore from '@/store/tryOnManuallyStore'
 import { fabric } from 'fabric'
 
 interface CanvasProps {

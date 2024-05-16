@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import useTryOnOutfitStore from '@/store/tryonStore'
+import useTryOnOutfitStore from '@/store/tryOnManuallyStore'
 import React from 'react'
 import {
   Sheet,
