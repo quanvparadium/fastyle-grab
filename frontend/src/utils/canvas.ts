@@ -153,6 +153,23 @@ export const handleCanvasKeyDown = ({
 
 export const handleCanvasKeyUp = ({ e, canvas }: CanvasKeyUp) => {}
 
+// resize canvas dimensions on window resize
+export const handleCanvasResize = ({
+  canvas,
+}: {
+  canvas: fabric.Canvas | null
+}) => {
+  const canvasElement = document.getElementById('canvas')
+  if (!canvasElement) return
+
+  if (!canvas) return
+
+  canvas.setDimensions({
+    width: canvasElement.clientWidth,
+    height: canvasElement.clientHeight,
+  })
+}
+
 export const handleRenderImage = ({ canvas, clothes }: RenderImage) => {
   fabric.Image.fromURL(clothes.view.default, (img) => {
     img.scaleToWidth(200)
