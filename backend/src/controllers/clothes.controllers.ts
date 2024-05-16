@@ -53,7 +53,9 @@ export const getAllClothesController = async (req: Request, res: Response, next:
         // ===>  const result = await databaseService[type].find({ clothId: { $in: imgIds } }).toArray()
 
         const result = await databaseService[type].aggregate(aggregateQuery).toArray()
-        res.json(result)
+        res.json({
+            result: result
+        })
     } else {
         const result = await databaseService[type]
             .find()
