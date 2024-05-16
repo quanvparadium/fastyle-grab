@@ -1,9 +1,9 @@
 'use client'
 
-import Canvas from '@/app/try-on/components/Canvas'
-import OutfitDrawer from '@/app/try-on/components/OutfitDrawer'
-import ParameterSidebar from '@/app/try-on/components/ParameterSidebar'
-import useTryOnOutfitStore from '@/store/tryonStore'
+import Canvas from '@/app/(try-on)/try-on-manually/components/Canvas'
+import OutfitDrawer from '@/app/(try-on)/try-on-manually/components/OutfitDrawer'
+import ParameterSidebar from '@/app/(try-on)/try-on-manually/components/ParameterSidebar'
+import useTryOnOutfitStore from '@/store/tryOnManuallyStore'
 import { Pointer, Toolbar } from '@/types/canvas'
 import {
   handleCanvasKeyDown,

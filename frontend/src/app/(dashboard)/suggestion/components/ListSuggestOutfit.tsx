@@ -2,19 +2,23 @@
 
 import { Button } from '@/components/ui/button'
 import { ROUTE } from '@/constants/route'
-import { fakeData } from '@/constants/try-on'
-import useTryOnOutfitStore from '@/store/tryonStore'
+import { fakeData } from '@/constants/try-on-manually'
+import useTryOnOutfitManuallyStore from '@/store/tryOnManuallyStore'
 import { TryOnOutfit } from '@/types/product'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 
 const ListSuggestOutfit = () => {
-  const { setTryOnOutfit } = useTryOnOutfitStore((state) => state)
+  const { setTryOnOutfit } = useTryOnOutfitManuallyStore((state) => state)
   const router = useRouter()
 
-  const handleClickTryOn = (outfit: TryOnOutfit) => {
+  const handleClickTryOnManually = (outfit: TryOnOutfit) => {
     setTryOnOutfit(outfit)
-    router.push(ROUTE.TRY_ON)
+    router.push(ROUTE.TRY_ON_MANUALLY)
+  }
+
+  const handleClickTryOnAI = () => {
+    router.push(ROUTE.TRY_ON_AI)
   }
 
   return (
@@ -34,7 +38,13 @@ const ListSuggestOutfit = () => {
               </div>
             ))}
           </div>
-          <Button onClick={() => handleClickTryOn(outfit)}>Try on</Button>
+
+          <div className='grid grid-cols-2 gap-2'>
+            <Button onClick={() => handleClickTryOnManually(outfit)}>
+              Try on Manually
+            </Button>
+            <Button onClick={() => handleClickTryOnAI()}>Try on AI</Button>
+          </div>
         </div>
       ))}
     </div>
