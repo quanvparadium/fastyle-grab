@@ -2,7 +2,7 @@ import ItemDetailDialog from '@/app/(dashboard)/suggestion/components/ItemDetail
 import { Skeleton } from '@/components/ui/skeleton'
 import useSelectSuggestOutfit from '@/hooks/useSelectSuggestOutfit'
 import { useGetClothes } from '@/services/clothes/queries'
-import useSuggestOutfitStore from '@/store/suggestOutfitStore'
+import useRecommendOutfitStore from '@/store/recommendOutfitStore'
 import { CategoryID } from '@/types/product'
 import Image from 'next/image'
 import React, { useEffect } from 'react'
@@ -17,7 +17,7 @@ const SKELETON_LOADING_ARRAY: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 const ListOutfit = ({ categoryID }: ListOutfitProps) => {
   const { ref, inView } = useInView()
   const { handleSelectProduct, isSelectedProduct } = useSelectSuggestOutfit()
-  const { searchValue } = useSuggestOutfitStore((state) => state)
+  const { searchValue } = useRecommendOutfitStore((state) => state)
 
   const {
     data: clothes,

@@ -1,13 +1,14 @@
 import { useToast } from '@/components/ui/use-toast'
-import useSuggestOutfitStore from '@/store/suggestOutfitStore'
+import useRecommendOutfitStore from '@/store/recommendOutfitStore'
 import { CategoryID, Clothes } from '@/types/product'
+import { SelectedOutfitID } from '@/types/recommendOutfit'
 
 const LIMIT_SELECTION_PER_CATEGORY: number = 4
 
 const useSelectSuggestOutfit = () => {
   const { toast } = useToast()
 
-  const { selectedOutfit, setSelectedOutfit } = useSuggestOutfitStore(
+  const { selectedOutfit, setSelectedOutfit } = useRecommendOutfitStore(
     (state) => state,
   )
 
@@ -74,6 +75,25 @@ const useSelectSuggestOutfit = () => {
     return selectedOutfit[categoryID]?.some((item) => item._id === productID)
   }
 
+  // Chuyển selected outfit sang format request của api recommend
+  const handleConvertSelectedOutfitToID = () => {
+    const result: SelectedOutfitID = {}
+    const cloneSelectedOutfit = { ...selectedOutfit }
+
+    for (const categoryid in cloneSelectedOutfit) {
+      const categoryID = categoryid as CategoryID
+
+      if (cloneSelectedOutfit.hasOwnProperty(categoryID)) {
+        const clothesArray = cloneSelectedOutfit[categoryID]
+        if (clothesArray) {
+          result[categoryID] = clothesArray.map((clothes) => clothes._id)
+        }
+      }
+    }
+
+    return result
+  }
+
   return {
     selectedOutfit,
 
@@ -81,6 +101,7 @@ const useSelectSuggestOutfit = () => {
     handleSelectProduct,
     handleRemoveProduct,
     handleRemoveAllProducts,
+    handleConvertSelectedOutfitToID,
   }
 }
 
