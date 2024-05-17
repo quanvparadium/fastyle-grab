@@ -60,9 +60,16 @@ const useSelectSuggestOutfit = () => {
       (item) => item._id === productID,
     ) as number
 
-    cloneSelectedOutfit[categoryID]?.splice(productIndex, 1)
+    if (productIndex !== -1 && cloneSelectedOutfit[categoryID]) {
+      cloneSelectedOutfit[categoryID]?.splice(productIndex, 1)
 
-    setSelectedOutfit(cloneSelectedOutfit)
+      // Kiểm tra nếu mảng rỗng sau khi xóa phần tử thì xóa luôn key
+      if (cloneSelectedOutfit[categoryID]?.length === 0) {
+        delete cloneSelectedOutfit[categoryID]
+      }
+
+      setSelectedOutfit(cloneSelectedOutfit)
+    }
   }
 
   const handleRemoveAllProducts = (categoryID: CategoryID) => {
