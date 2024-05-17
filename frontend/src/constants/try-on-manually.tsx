@@ -92,29 +92,6 @@ export const fakeData: TryOnOutfit[] = [
     },
   },
   {
-    topwear: {
-      _id: '6636882d05fb6be628561867',
-      clothName: 'Nike Mean Team India Cricket Jersey',
-      clothCategory: 'Topwear',
-      price: 2495,
-      discountedPrice: 2495,
-      colour: 'Blue',
-
-      brandName: 'Nike',
-      brandLogoImage:
-        'http://assets.myntassets.com/v1/assets/banners/2015/6/26/1435317851398-23197-3chxv6.jpg',
-      view: {
-        default:
-          'http://assets.myntassets.com/h_1440,q_95,w_1080/v1/assets/images/1165/2018/2/28/11519814282010-Nike-Mean-Team-India-Cricket-Jersey-6241519814281812-1.jpg',
-        left: 'http://assets.myntassets.com/h_1440,q_95,w_1080/v1/assets/images/1165/2018/2/28/11519814281928-Nike-Mean-Team-India-Cricket-Jersey-6241519814281812-5.jpg',
-        right:
-          'http://assets.myntassets.com/h_1440,q_95,w_1080/v1/assets/images/1165/2018/2/28/11519814281949-Nike-Mean-Team-India-Cricket-Jersey-6241519814281812-4.jpg',
-        front:
-          'http://assets.myntassets.com/h_1440,q_95,w_1080/v1/assets/images/1165/2018/2/28/11519814281993-Nike-Mean-Team-India-Cricket-Jersey-6241519814281812-2.jpg',
-        back: 'http://assets.myntassets.com/h_1440,q_95,w_1080/v1/assets/images/1165/2018/2/28/11519814281968-Nike-Mean-Team-India-Cricket-Jersey-6241519814281812-3.jpg',
-        top: null,
-      },
-    },
     bottomwear: {
       _id: '6636882f05fb6be62856188c',
       clothName: 'Kalenji Mens Essential Training Track Pants',

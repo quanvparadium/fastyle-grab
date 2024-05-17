@@ -21,14 +21,14 @@ const SelectModel = () => {
           <List size={14} />
           <span className='text-[14px]'>Examples</span>
         </div>
-        <div className='grid grid-cols-6 gap-4'>
+        <div className='grid grid-cols-5 gap-4'>
           {modelData.map((item) => (
             <div
               key={item}
-              className={`h-[70px] rounded-lg cursor-pointer border ${modelUrl === item ? 'border-macaw' : 'border-transparent'}`}
+              className={`h-[70px] rounded-lg cursor-pointer border-2 ${modelUrl === item ? 'border-macaw' : 'border-transparent'}`}
               onClick={() => setModelUrl(item)}
             >
-              <img src={item} alt='' />
+              <img src={item} alt='Model' />
             </div>
           ))}
         </div>

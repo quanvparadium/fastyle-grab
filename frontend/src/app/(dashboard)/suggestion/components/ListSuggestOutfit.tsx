@@ -3,21 +3,26 @@
 import { Button } from '@/components/ui/button'
 import { ROUTE } from '@/constants/route'
 import { fakeData } from '@/constants/try-on-manually'
+import useTryOnOutfitAIStore from '@/store/tryOnAIStore'
 import useTryOnOutfitManuallyStore from '@/store/tryOnManuallyStore'
 import { TryOnOutfit } from '@/types/product'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 
 const ListSuggestOutfit = () => {
-  const { setTryOnOutfit } = useTryOnOutfitManuallyStore((state) => state)
   const router = useRouter()
+
+  const { setTryOnOutfit } = useTryOnOutfitManuallyStore((state) => state)
+  const { setClothesUrl, setModelUrl } = useTryOnOutfitAIStore((state) => state)
 
   const handleClickTryOnManually = (outfit: TryOnOutfit) => {
     setTryOnOutfit(outfit)
     router.push(ROUTE.TRY_ON_MANUALLY)
   }
 
-  const handleClickTryOnAI = () => {
+  const handleClickTryOnAI = (clothesUrl: string) => {
+    setClothesUrl(clothesUrl)
+    setModelUrl(null)
     router.push(ROUTE.TRY_ON_AI)
   }
 
@@ -43,7 +48,14 @@ const ListSuggestOutfit = () => {
             <Button onClick={() => handleClickTryOnManually(outfit)}>
               Try on Manually
             </Button>
-            <Button onClick={() => handleClickTryOnAI()}>Try on AI</Button>
+            <Button
+              onClick={() =>
+                handleClickTryOnAI(outfit?.topwear?.view.default as string)
+              }
+              disabled={!outfit.topwear}
+            >
+              Try on AI
+            </Button>
           </div>
         </div>
       ))}
