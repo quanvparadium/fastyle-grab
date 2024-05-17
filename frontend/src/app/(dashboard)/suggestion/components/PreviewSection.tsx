@@ -1,4 +1,5 @@
 import PreviewChosen from '@/app/(dashboard)/suggestion/components/PreviewChosen'
+import Spinner from '@/components/global/Spinner'
 import { Button } from '@/components/ui/button'
 import useSelectSuggestOutfit from '@/hooks/useSelectSuggestOutfit'
 import useCreateRecommendOutfit from '@/services/recommendOutfit/createRecommendOutfits'
@@ -29,9 +30,18 @@ const PreviewSection = () => {
           className='step-4 w-[130px]'
           hasShadow
           onClick={handleCreateOutfit}
-          disabled={Object.keys(selectedOutfit).length === 0}
+          disabled={
+            Object.keys(selectedOutfit).length === 0 ||
+            createRecommendOutfit.isPending
+          }
         >
-          Submit
+          {createRecommendOutfit.isPending ? (
+            <div>
+              <Spinner />
+            </div>
+          ) : (
+            'Submit'
+          )}
         </Button>
       </div>
     </div>
