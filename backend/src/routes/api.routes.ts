@@ -5,6 +5,8 @@ import { loginController } from '~/controllers/users.controllers'
 import clothesRouter from './clothes.routes'
 import staticRouter from './static.routes'
 import recommendRouter from './recommend.routes'
+import { buyLinkShop } from '~/utils/updatedb'
+import retrievalRouter from './retrieval.routes'
 const apiRouter = Router()
 
 /**
@@ -18,5 +20,15 @@ apiRouter.post('/login', wrapAsync(loginController))
 apiRouter.use('/clothes', clothesRouter)
 apiRouter.use('/static', staticRouter)
 apiRouter.use('/recommend', recommendRouter)
+apiRouter.use('/retrieval', retrievalRouter)
+
+apiRouter.route('/buylink').post(async (req, res) => {
+    const { shop } = req.body
+    const result = await buyLinkShop(shop)
+    return res.json({
+        message: 'OK',
+        result
+    })
+})
 
 export default apiRouter

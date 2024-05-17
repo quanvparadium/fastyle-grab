@@ -2,6 +2,7 @@ import { MongoClient, ServerApiVersion, Db, Collection } from 'mongodb'
 
 import dotenv from 'dotenv'
 import Clothes from '~/models/schemas/Clothes.schema'
+import ReferenceShop from '~/models/schemas/Reference.schema'
 dotenv.config()
 
 class DatabaseService {
@@ -64,6 +65,10 @@ class DatabaseService {
 
     get others(): Collection<Clothes> {
         return this.db.collection((process.env.DB_OTHERS_COLLECTION as string) || 'others')
+    }
+
+    get buylink(): Collection<ReferenceShop> {
+        return this.db.collection((process.env.DB_REFERENCE_SHOP as string) || 'buylink')
     }
 
     async close() {

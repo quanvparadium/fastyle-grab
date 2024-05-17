@@ -52,7 +52,7 @@ async def text_search_controller(item: TextSearch, extract_model = 'BLIP'):
 
 async def image_search_controller(item: ImageSearch, extract_model = 'BLIP'):
     from PIL import Image
-    raw_image = Image.open(item.imageUrl).convert('RGB')
+    raw_image = Image.open('../../fashion-dataset/images/{}'.format(item.imageUrl)).convert('RGB')
     img = vis_processors_blip['eval'](raw_image).unsqueeze(0).to(_device)
     image_feature = model.encode_image(img).detach().cpu().numpy()    
 
