@@ -2,10 +2,10 @@
 
 import React, { useEffect, useState } from 'react'
 import { Input } from '@/components/ui/input'
-import useSuggestOutfitStore from '@/store/suggestOutfitStore'
+import useRecommendOutfitStore from '@/store/recommendOutfitStore'
 
 const Search = () => {
-  const { setSearchValue } = useSuggestOutfitStore((state) => state)
+  const { setSearchValue } = useRecommendOutfitStore((state) => state)
   const [search, setSearch] = useState<string>('')
 
   // Debounce search value

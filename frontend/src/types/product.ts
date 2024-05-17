@@ -22,11 +22,3 @@ export type Clothes = {
   brandLogoImage: string
   view: ViewOption
 }
-
-export type SelectedOutfit = {
-  [key in CategoryID]?: Clothes[]
-}
-
-export type TryOnOutfit = {
-  [key in CategoryID]?: Clothes
-}
