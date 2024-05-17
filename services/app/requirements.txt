@@ -5,4 +5,4 @@ packaging
 faiss-cpu
 python-dotenv
 opencv-python
-rembg
+# rembg

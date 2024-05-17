@@ -10,4 +10,6 @@ class TextSearch(BaseModel):
     topk: int
 
 class ImageSearch(BaseModel):
-    pass
+    imageUrl: str
+    category: str
+    topk: int

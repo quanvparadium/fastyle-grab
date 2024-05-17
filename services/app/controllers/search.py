@@ -19,7 +19,6 @@ sys.path.append(lavis_dir)
 print(lavis_dir)
 from lavis.models import load_model_and_preprocess
 
-
 # LOAD MODEL
 print("\033[92m>>> Loading AI model ...\033[0m")
 _device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -48,5 +47,26 @@ async def text_search_controller(item: TextSearch, extract_model = 'BLIP'):
     idx_images = idx_images.flatten()
     scores = scores.flatten()
     total_img_path = [id2path[str(idx)] for idx in idx_images]
+    print(total_img_path)
+    return total_img_path
+
+async def image_search_controller(item: ImageSearch, extract_model = 'BLIP'):
+    from PIL import Image
+    raw_image = Image.open(item.imageUrl).convert('RGB')
+    img = vis_processors_blip['eval'](raw_image).unsqueeze(0).to(_device)
+    image_feature = model.encode_image(img).detach().cpu().numpy()    
+
+    if not os.path.exists('../features/{}/{}_{}_L2.bin'.format(extract_model, item.category, extract_model.lower())):
+        raise Exception("Category feature not found")
+    faiss_model = load_bin_file('../features/{}/{}_{}_L2.bin'.format(extract_model, item.category, extract_model.lower()))
+    id2path = load_json_path('../infos/{}_id2path.json'.format(item.category))
+    scores, idx_images = faiss_model.search(image_feature, k = item.topk)
+
+    # print("Score, index: ", faiss_model.search(image_feature, k = item.topk))
+    
+    # Search from original database
+    idx_images = idx_images.flatten()
+    scores = scores.flatten()
+    total_img_path = [(id2path[str(imageId)]) for idx, imageId in enumerate(idx_images)]
     print(total_img_path)
     return total_img_path
