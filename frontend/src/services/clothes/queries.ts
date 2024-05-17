@@ -11,6 +11,7 @@ interface Params {
   categoryId: CategoryID
   limit?: number
   offset?: number
+  search: string
 }
 
 const LIMIT: number = 20
@@ -19,18 +20,25 @@ const fetchClothes = async ({
   categoryId,
   limit = LIMIT,
   offset = 0,
+  search,
 }: Params) => {
-  const response = await axiosInstance.get(
+  const response = await axiosInstance.post(
     `/clothes/${categoryId}?limit=${limit}&offset=${offset}`,
+    { search },
   )
+
   return response.data
 }
 
 export const useGetClothes = (categoryId: CategoryID, searchValue: string) => {
   return useInfiniteQuery<ResponseGetClothes>({
-    queryKey: [QUERY_KEY.CLOTHES, categoryId],
+    queryKey: [QUERY_KEY.CLOTHES, categoryId, searchValue],
     queryFn: ({ pageParam }) => {
-      return fetchClothes({ categoryId, offset: pageParam as number })
+      return fetchClothes({
+        categoryId,
+        offset: pageParam as number,
+        search: searchValue,
+      })
     },
     initialPageParam: 0,
     getNextPageParam: (lastPage, allPages) => {

@@ -12,7 +12,7 @@ const Search = () => {
   useEffect(() => {
     const handler = setTimeout(() => {
       setSearchValue(search)
-    }, 2000)
+    }, 1500)
 
     return () => {
       clearTimeout(handler)
