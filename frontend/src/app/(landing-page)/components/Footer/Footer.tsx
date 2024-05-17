@@ -25,7 +25,9 @@ const Footer = () => {
         }}
       >
         <div style={{ maxWidth: 400, paddingLeft: 64 }}>
-          <Image width={120} height={60} src={'/Logo.png'} alt='' />
+          <div style={{ width: 120, height: 60 }}>
+            <Image width={120} height={60} src={'/Logo.png'} alt='' />
+          </div>
           <p style={{ opacity: 0.6 }}>&#9737;Grab Engineer bootcamp Project</p>
           <p style={{ opacity: 0.6 }}>
             &#9737;1060 Nguyen Van Linh Street, Tan Phong, District 7, Ho Chi

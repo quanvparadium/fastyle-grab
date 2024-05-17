@@ -1,9 +1,9 @@
 'use client'
 
-import MemberInfo from '@/app/interfaces/MemberInfo'
 import AboutUsSectionSlider from '../AboutUsSectionSlider/AboutUsSectionSlider'
 import { useState } from 'react'
 import AboutUsSectionInfoCard from '../AboutUsSectionInfoCard/AboutUsSectionInfoCard'
+import MemberInfo from '../../interfaces/MemberInfo'
 
 const AboutUsSection = () => {
   const members: MemberInfo[] = [

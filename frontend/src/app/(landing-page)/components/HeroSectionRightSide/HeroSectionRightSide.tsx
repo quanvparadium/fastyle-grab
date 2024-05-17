@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import HeroImage from '../../../assets/HeroImage.gif'
+import HeroImage from '../../../../assets/HeroImage.gif'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
@@ -16,14 +16,13 @@ const HeroSectionRightSide = () => {
         right: 0,
         position: 'relative',
         alignItems: 'center',
-        marginTop: 24,
       }}
     >
       <div
         style={{
           transform: 'rotate(-10deg)',
-          width: 500,
-          height: 500,
+          width: 460,
+          height: 460,
           background: 'linear-gradient(#CBB7EA, #6966DA)',
           position: 'absolute',
           borderRadius: 64,
@@ -33,16 +32,16 @@ const HeroSectionRightSide = () => {
       />
       <div
         style={{
-          width: 500,
-          height: 500,
+          width: 460,
+          height: 460,
           right: 120,
           position: 'absolute',
         }}
       >
         <div
           style={{
-            width: 500,
-            height: 500,
+            width: 460,
+            height: 460,
             background: 'linear-gradient(#B1B4FF, #6966DA)',
             borderRadius: 64,
             opacity: 0.7,
@@ -50,7 +49,7 @@ const HeroSectionRightSide = () => {
           }}
         />
         <Image
-          style={{ marginLeft: 16, height: 520, position: 'absolute' }}
+          style={{ marginLeft: 16, height: 500, position: 'absolute' }}
           src={HeroImage}
           alt={''}
         />
@@ -64,8 +63,8 @@ const HeroSectionRightSide = () => {
             paddingTop: 24,
             background: 'white',
             position: 'absolute',
-            left: 160,
-            top: 460,
+            left: 120,
+            top: 428,
           }}
         >
           <div className='flex justify-center'>

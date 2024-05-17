@@ -1,6 +1,5 @@
 'use client'
 
-import MemberInfo from '@/app/interfaces/MemberInfo'
 import { Button } from '@/components/ui/button'
 import 'swiper/css'
 import 'swiper/css/pagination'
@@ -11,6 +10,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react'
 import { useMediaQuery } from 'react-responsive'
+import MemberInfo from '../../interfaces/MemberInfo'
 
 interface AboutUsSectionSliderProps {
   members: MemberInfo[]
@@ -129,16 +129,17 @@ const AboutUsSectionSlider = ({
                     }}
                   />
                 </div>
-
-                <img
-                  width={36}
-                  height={36}
-                  src={member.avatar}
-                  alt=''
-                  style={{
-                    borderRadius: '50%',
-                  }}
-                />
+                <div style={{ width: 36, height: 36 }}>
+                  <img
+                    width={36}
+                    height={36}
+                    src={member.avatar}
+                    alt=''
+                    style={{
+                      borderRadius: '50%',
+                    }}
+                  />
+                </div>
               </div>
               <div>
                 <Skeleton

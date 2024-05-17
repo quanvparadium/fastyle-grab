@@ -12,7 +12,9 @@ const Sidebar = () => {
 
   return (
     <div className='fixed w-[230px] h-full py-8 px-6 border-r flex flex-col gap-12'>
-      <Image src='/Logo.png' width={100} height={93} alt='Logo' />
+      <div className='w-[100px] h-[93]'>
+        <Image src='/Logo.png' width={100} height={93} alt='Logo' />
+      </div>
       <div className='flex flex-col gap-4'>
         {sidebar.map((item) => {
           return (

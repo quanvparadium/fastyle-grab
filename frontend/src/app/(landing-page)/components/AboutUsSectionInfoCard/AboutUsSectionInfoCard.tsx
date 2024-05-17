@@ -1,11 +1,10 @@
 'use client'
 
-import { useMediaQuery } from 'react-responsive'
 import Image from 'next/image'
-import leftBackground from '../../../assets/leftAboutUsBackground.png'
-import rightBackground from '../../../assets/rightAboutUsBackground.png'
-import MemberInfo from '@/app/interfaces/MemberInfo'
+import leftBackground from '../../../../assets/leftAboutUsBackground.png'
+import rightBackground from '../../../../assets/rightAboutUsBackground.png'
 import { Skeleton } from '@/components/ui/skeleton'
+import MemberInfo from '../../interfaces/MemberInfo'
 
 interface AboutUsSectionInfoCardProps {
   member: MemberInfo
@@ -61,15 +60,17 @@ const AboutUsSectionInfoCard = ({
             <p style={{ fontSize: 28, fontWeight: 600 }}>{member.name}</p>
             <p style={{ opacity: 0.4 }}>{member.school}</p>
           </div>
-          <img
-            src={member.avatar}
-            alt=''
-            style={{
-              maxWidth: 84,
-              maxHeight: 84,
-              borderRadius: 100,
-            }}
-          />
+          <div style={{ maxWidth: 84, maxHeight: 84 }}>
+            <img
+              src={member.avatar}
+              alt=''
+              style={{
+                maxWidth: 84,
+                maxHeight: 84,
+                borderRadius: 100,
+              }}
+            />
+          </div>
         </div>
         <div style={{ marginTop: 12 }}>
           <p>{member.description}</p>

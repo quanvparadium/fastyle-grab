@@ -28,14 +28,16 @@ const HeroSectionHeader = () => {
         </a>
       </div>
 
-      <Image
-        className='sm:hidden md:hidden lg:block'
-        width={200}
-        height={93}
-        src='/Logo.png'
-        alt=''
-        style={{ position: 'relative', left: '-8%' }}
-      />
+      <div style={{ width: 200, height: 93 }}>
+        <Image
+          className='sm:hidden md:hidden lg:block'
+          width={200}
+          height={93}
+          src='/Logo.png'
+          alt=''
+          style={{ position: 'relative', left: '-8%' }}
+        />
+      </div>
 
       <div className='flex justify-center items-center'>
         <Button

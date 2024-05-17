@@ -23,17 +23,13 @@ const FeaturesSectionItem = ({
   contentStyle,
   style,
 }: FeaturesSectionItemProps) => {
-  const isDesktopOrLaptop = useMediaQuery({
-    query: '(min-width: 1224px)',
-  })
-
-  const isReverse = variant === 'reverse' && isDesktopOrLaptop
+  const isReverse = variant === 'reverse'
 
   return (
     <div
-      className={isDesktopOrLaptop ? 'flex' : 'flex-col'}
       style={{
-        flexDirection: isReverse ? 'row-reverse' : 'initial',
+        display: 'flex',
+        flexDirection: isReverse ? 'row-reverse' : 'row',
         padding: '16px 128px',
         ...style,
       }}
@@ -44,7 +40,7 @@ const FeaturesSectionItem = ({
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          alignItems: isDesktopOrLaptop ? 'start' : 'center',
+          alignItems: 'start',
           padding: '64px 32px',
         }}
       >
