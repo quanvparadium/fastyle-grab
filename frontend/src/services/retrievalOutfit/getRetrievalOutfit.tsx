@@ -15,7 +15,7 @@ type Params = {
 
 const fetchRetrievalOutfit = async ({ categoryID, clothesID }: Params) => {
   const response = await axiosInstance.get(
-    `/retrieval/topwear/6636886305fb6be628561d75`,
+    `/retrieval/${categoryID}/${clothesID}`,
   )
 
   return response.data
