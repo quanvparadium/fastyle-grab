@@ -3,16 +3,16 @@
 import Header from '@/app/(dashboard)/components/Header'
 import SelectModel from '@/app/(try-on)/try-on-ai/components/SelectModel'
 import { Button } from '@/components/ui/button'
-import useTryOnAI from '@/hooks/useTryOnAI'
+import useCreateTryOnOutfitAI from '@/services/tryOnAI/createTryOnOutfitAI'
 import useTryOnOutfitAIStore from '@/store/tryOnAIStore'
 import { Equal, Plus } from 'lucide-react'
 import React from 'react'
 
 const TryOnAI = () => {
-  const { clothesUrl, modelUrl, resultUrl } = useTryOnOutfitAIStore(
-    (state) => state,
-  )
-  const { createFashionMutation } = useTryOnAI()
+  const { isLoadingResult, clothesUrl, modelUrl, resultUrl } =
+    useTryOnOutfitAIStore((state) => state)
+
+  const createTryOnOutfitAI = useCreateTryOnOutfitAI()
 
   return (
     <div className='pt-6 px-[120px]'>
@@ -51,10 +51,10 @@ const TryOnAI = () => {
         </div>
 
         <Button
-          onClick={() => createFashionMutation.mutate()}
-          disabled={!modelUrl || !clothesUrl}
+          onClick={() => createTryOnOutfitAI.mutate()}
+          disabled={!modelUrl || !clothesUrl || isLoadingResult}
         >
-          Run
+          {isLoadingResult ? 'Loading....' : 'Run'}
         </Button>
       </div>
     </div>

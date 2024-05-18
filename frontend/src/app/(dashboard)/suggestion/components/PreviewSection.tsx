@@ -36,9 +36,7 @@ const PreviewSection = () => {
           }
         >
           {createRecommendOutfit.isPending ? (
-            <div>
-              <Spinner />
-            </div>
+            'Loading...'
           ) : (
             'Submit'
           )}
