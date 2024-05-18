@@ -1,7 +1,7 @@
 import ItemDetailDialog from '@/app/(dashboard)/suggestion/components/ItemDetailDialog'
 import { Skeleton } from '@/components/ui/skeleton'
 import useSelectSuggestOutfit from '@/hooks/useSelectSuggestOutfit'
-import { useGetClothes } from '@/services/clothes/queries'
+import { useGetClothes } from '@/services/clothes/useGetClothes'
 import useRecommendOutfitStore from '@/store/recommendOutfitStore'
 import { CategoryID } from '@/types/product'
 import Image from 'next/image'
