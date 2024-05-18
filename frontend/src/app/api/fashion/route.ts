@@ -11,7 +11,7 @@ export async function POST(req: Request) {
     // Dữ liệu phản hồi
     const responseData = {
       status: 'processing',
-      fetch_result: 'https://stablediffusionapi.com/api/v3/fetch/97890645',
+      fetch_result: 'http://localhost:3000/api/fetch/123',
     }
 
     // Return the prediction data as a response

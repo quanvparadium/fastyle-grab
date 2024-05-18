@@ -12,7 +12,9 @@ const ListSuggestOutfit = () => {
   const router = useRouter()
 
   const { setTryOnOutfit } = useTryOnOutfitManuallyStore((state) => state)
-  const { setClothesUrl, setModelUrl } = useTryOnOutfitAIStore((state) => state)
+  const { setClothesUrl, setModelUrl, setResultUrl } = useTryOnOutfitAIStore(
+    (state) => state,
+  )
   const { recommendOutfit } = useRecommendOutfitStore((state) => state)
 
   // const handleClickTryOnManually = (outfit: TryOnOutfit) => {
@@ -20,11 +22,12 @@ const ListSuggestOutfit = () => {
   //   router.push(ROUTE.TRY_ON_MANUALLY)
   // }
 
-  // const handleClickTryOnAI = (clothesUrl: string) => {
-  //   setClothesUrl(clothesUrl)
-  //   setModelUrl(null)
-  //   router.push(ROUTE.TRY_ON_AI)
-  // }
+  const handleClickTryOnAI = (clothesUrl: string) => {
+    setClothesUrl(clothesUrl)
+    setModelUrl(null)
+    setResultUrl(null)
+    router.push(ROUTE.TRY_ON_AI)
+  }
 
   return (
     <div className='grid grid-cols-3 gap-6'>
@@ -44,19 +47,19 @@ const ListSuggestOutfit = () => {
             ))}
           </div>
 
-          {/* <div className='grid grid-cols-2 gap-2'>
-            <Button onClick={() => handleClickTryOnManually(outfit)}>
+          <div className='grid grid-cols-2 gap-2'>
+            {/* <Button onClick={() => handleClickTryOnManually(outfit)}>
               Try on Manually
-            </Button>
+            </Button> */}
             <Button
               onClick={() =>
-                handleClickTryOnAI(outfit?.topwear?.view.default as string)
+                handleClickTryOnAI(outfit?.topwear?.original.default as string)
               }
-              disabled={!outfit.topwear}
+              disabled={!outfit?.topwear}
             >
               Try on AI
             </Button>
-          </div> */}
+          </div>
         </div>
       ))}
     </div>
