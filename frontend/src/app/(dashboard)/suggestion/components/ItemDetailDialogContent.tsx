@@ -21,7 +21,7 @@ const ItemDetailDialogContent = ({
 
   return (
     <DialogContent
-      className='flex'
+      className='flex h-[600px]'
       onClick={(e) => {
         e.stopPropagation()
       }}
@@ -43,14 +43,14 @@ const ItemDetailDialogContent = ({
           })}
         </div>
 
-        <div className='w-[400px] h-[530px] rounded overflow-hidden shadow'>
+        <div className='w-[400px] rounded overflow-hidden shadow'>
           <img src={currentImage} alt='' />
         </div>
       </div>
 
       <div className='w-[600px] flex flex-col gap-4'>
         <span className='text-[20px] font-medium'>Shop It</span>
-        <div className='grid grid-cols-4 gap-4'>
+        <div className='grid grid-cols-4 gap-4 overflow-auto'>
           {retrievalClothes?.result?.map((item) => (
             <div key={item?._id} className='flex flex-col cursor-pointer '>
               <div className={`w-full h-[138px] rounded-sm overflow-hidden`}>
