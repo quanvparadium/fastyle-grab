@@ -3,7 +3,7 @@
 import Canvas from '@/app/(try-on)/try-on-manually/components/Canvas'
 import OutfitDrawer from '@/app/(try-on)/try-on-manually/components/OutfitDrawer'
 import ParameterSidebar from '@/app/(try-on)/try-on-manually/components/ParameterSidebar'
-import useTryOnOutfitStore from '@/store/tryOnManuallyStore'
+import useTryOnOutfitManuallyStore from '@/store/tryOnManuallyStore'
 import { Pointer, Toolbar } from '@/types/canvas'
 import {
   handleCanvasKeyDown,
@@ -19,12 +19,11 @@ import React, { useEffect, useRef } from 'react'
 
 const TryOn = () => {
   const {
-    tryOnOutfit,
     activeTool,
 
     setActiveObject,
     setActiveTool,
-  } = useTryOnOutfitStore((state) => state)
+  } = useTryOnOutfitManuallyStore((state) => state)
 
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const fabricRef = useRef<fabric.Canvas | null>(null)
@@ -53,7 +52,6 @@ const TryOn = () => {
         options,
         canvas,
         setActiveObject,
-        tryOnOutfit,
         currentPointer,
         activeToolRef,
       })
@@ -147,7 +145,7 @@ const TryOn = () => {
 
       window.removeEventListener('resize', () => {
         handleCanvasResize({
-          canvas: null,
+          canvas: fabricRef.current,
         })
       })
 

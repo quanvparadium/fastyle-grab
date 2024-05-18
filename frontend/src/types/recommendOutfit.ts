@@ -9,7 +9,7 @@ type OriginalView = {
   top: string | null
 }
 
-type OutfitCategoryView = {
+export type OutfitCategoryView = {
   original: OriginalView
 }
 
