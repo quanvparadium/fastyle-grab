@@ -1,15 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Dialog, DialogTrigger } from '@/components/ui/dialog'
-import { Clothes } from '@/types/product'
+import { CategoryID, Clothes } from '@/types/product'
 import { ArrowUpRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import ItemDetailDialogContent from '@/app/(dashboard)/suggestion/components/ItemDetailDialogContent'
 
 interface ItemDetailDialogProps {
   clothes: Clothes
+  categoryID: CategoryID
 }
 
-const ItemDetailDialog = ({ clothes }: ItemDetailDialogProps) => {
+const ItemDetailDialog = ({ clothes, categoryID }: ItemDetailDialogProps) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false)
 
   return (
@@ -26,7 +27,9 @@ const ItemDetailDialog = ({ clothes }: ItemDetailDialogProps) => {
         </Button>
       </DialogTrigger>
 
-      {isOpen && <ItemDetailDialogContent clothes={clothes} />}
+      {isOpen && (
+        <ItemDetailDialogContent categoryID={categoryID} clothes={clothes} />
+      )}
     </Dialog>
   )
 }

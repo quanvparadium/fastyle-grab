@@ -1,13 +1,23 @@
 import { DialogContent } from '@/components/ui/dialog'
-import { Clothes } from '@/types/product'
+import useGetRetrievalOutfit from '@/services/retrievalOutfit/getRetrievalOutfit'
+import { CategoryID, Clothes } from '@/types/product'
 import React, { useState } from 'react'
 
 interface ItemDetailDialogContentProps {
   clothes: Clothes
+  categoryID: CategoryID
 }
 
-const ItemDetailDialogContent = ({ clothes }: ItemDetailDialogContentProps) => {
+const ItemDetailDialogContent = ({
+  clothes,
+  categoryID,
+}: ItemDetailDialogContentProps) => {
   const [currentImage, setCurrentImage] = useState<string>(clothes.view.default)
+
+  const { data: retrievalClothes } = useGetRetrievalOutfit(
+    categoryID,
+    clothes._id,
+  )
 
   return (
     <DialogContent
@@ -41,17 +51,17 @@ const ItemDetailDialogContent = ({ clothes }: ItemDetailDialogContentProps) => {
       <div className='w-[600px] flex flex-col gap-4'>
         <span className='text-[20px] font-medium'>Shop It</span>
         <div className='grid grid-cols-4 gap-4'>
-          {[0, 1, 2, 3, 4, 5, 6].map((item) => (
-            <div key={item} className='flex flex-col cursor-pointer '>
+          {retrievalClothes?.result?.map((item) => (
+            <div key={item?._id} className='flex flex-col cursor-pointer '>
               <div className={`w-full h-[138px] rounded-sm overflow-hidden`}>
                 <img
-                  src={clothes.view.default}
+                  src={item?.view?.default}
                   className='w-full h-full object-cover'
                 />
               </div>
               <div className='flex flex-col'>
-                <span>Shopee</span>
-                <span className='text-[14px]'>$5.03</span>
+                <span>{item?.shop}</span>
+                <span className='text-[14px]'>{item?.price}</span>
               </div>
             </div>
           ))}
