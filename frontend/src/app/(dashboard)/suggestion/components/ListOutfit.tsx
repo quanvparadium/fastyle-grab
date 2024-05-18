@@ -66,7 +66,7 @@ const ListOutfit = ({ categoryID }: ListOutfitProps) => {
               // Là ảnh cuối cùng của page thì thêm ref vào để trigger inf loading
               ref={page.result.length === index + 1 ? ref : null}
             >
-              <ItemDetailDialog clothes={item} />
+              <ItemDetailDialog categoryID={categoryID} clothes={item} />
 
               <Image
                 src={item.view.default}

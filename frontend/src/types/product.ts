@@ -22,3 +22,13 @@ export type Clothes = {
   brandLogoImage: string
   view: ViewOption
 }
+
+export type RetrievalOutfit = {
+  _id: string
+  shop: string
+  price: number
+  discountedPrice: number
+  colour: string
+  view: ViewOption
+  referenceLink: string
+}
