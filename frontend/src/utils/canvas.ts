@@ -7,8 +7,7 @@ import {
   CanvasMouseWheel,
   RenderImage,
 } from '@/types/canvas'
-import { TryOnOutfit } from '@/types/product'
-import { findClothesInTryOnById } from '@/utils/clothes'
+import { OutfitCategoryView } from '@/types/recommendOutfit'
 import { fabric } from 'fabric'
 
 // initialize fabric canvas
@@ -38,7 +37,6 @@ export const handleCanvasMouseDown = ({
   options,
   canvas,
   setActiveObject,
-  tryOnOutfit,
   currentPointer,
   activeToolRef,
 }: CanvasMouseDown) => {
@@ -62,13 +60,9 @@ export const handleCanvasMouseDown = ({
     // click vào image
     if (target instanceof fabric.Image) {
       // @ts-ignore
-      const objectId = target.get('objectId')
-      const clothes = findClothesInTryOnById(
-        tryOnOutfit as TryOnOutfit,
-        objectId,
-      )
+      const view: OutfitCategoryView = target.get('view')
 
-      setActiveObject(clothes)
+      setActiveObject(view)
     }
   } else {
     setActiveObject(null)
@@ -165,17 +159,17 @@ export const handleCanvasResize = ({
   if (!canvas) return
 
   canvas.setDimensions({
-    width: canvasElement.clientWidth,
-    height: canvasElement.clientHeight,
+    width: canvasElement?.clientWidth,
+    height: canvasElement?.clientHeight,
   })
 }
 
-export const handleRenderImage = ({ canvas, clothes }: RenderImage) => {
-  fabric.Image.fromURL(clothes.view.default, (img) => {
+export const handleRenderImage = ({ canvas, view }: RenderImage) => {
+  fabric.Image.fromURL(view.original.default, (img) => {
     img.scaleToWidth(200)
     img.scaleToHeight(200)
     // @ts-ignore
-    img.objectId = clothes._id
+    img.view = view
     canvas.current?.add(img)
   })
 }

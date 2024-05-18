@@ -13,11 +13,15 @@ const ParameterSidebar = ({ canvas }: ParameterSidebarProps) => {
   const renderViewOption = () => {
     if (!activeObject) return
 
-    return Object.entries(activeObject?.view).map(([option, value]) => (
-      <Button disabled={value === null} onClick={() => handleChangeView(value)}>
-        {option}
-      </Button>
-    ))
+    return Object.entries(activeObject.original).map(([option, value]) => {
+      if (value) {
+        return (
+          <Button key={value} onClick={() => handleChangeView(value)}>
+            {option}
+          </Button>
+        )
+      }
+    })
   }
 
   const handleChangeView = (urlImage: string | null) => {

@@ -5,6 +5,7 @@ import { ROUTE } from '@/constants/route'
 import useRecommendOutfitStore from '@/store/recommendOutfitStore'
 import useTryOnOutfitAIStore from '@/store/tryOnAIStore'
 import useTryOnOutfitManuallyStore from '@/store/tryOnManuallyStore'
+import { RecommendOutfit } from '@/types/recommendOutfit'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 
@@ -17,10 +18,10 @@ const ListSuggestOutfit = () => {
   )
   const { recommendOutfit } = useRecommendOutfitStore((state) => state)
 
-  // const handleClickTryOnManually = (outfit: TryOnOutfit) => {
-  //   setTryOnOutfit(outfit)
-  //   router.push(ROUTE.TRY_ON_MANUALLY)
-  // }
+  const handleClickTryOnManually = (outfit: RecommendOutfit) => {
+    setTryOnOutfit(outfit)
+    router.push(ROUTE.TRY_ON_MANUALLY)
+  }
 
   const handleClickTryOnAI = (clothesUrl: string) => {
     setClothesUrl(clothesUrl)
@@ -48,9 +49,9 @@ const ListSuggestOutfit = () => {
           </div>
 
           <div className='grid grid-cols-2 gap-2'>
-            {/* <Button onClick={() => handleClickTryOnManually(outfit)}>
+            <Button onClick={() => handleClickTryOnManually(outfit)}>
               Try on Manually
-            </Button> */}
+            </Button>
             <Button
               onClick={() =>
                 handleClickTryOnAI(outfit?.topwear?.original.default as string)

@@ -29,9 +29,8 @@ const Canvas = ({ canvasRef, canvas }: CanvasProps) => {
         {toolbar.map((item) => (
           <TooltipProvider key={item.id} delayDuration={0}>
             <Tooltip>
-              <TooltipTrigger>
+              <TooltipTrigger asChild>
                 <Button
-                  key={item.id}
                   className={`w-10 h-10 p-0 ${activeTool === item.id ? 'bg-macaw/20' : 'bg-white'}`}
                   onClick={() => setActiveTool(item.id)}
                 >

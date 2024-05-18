@@ -1,4 +1,4 @@
-import { Clothes, TryOnOutfit } from '@/types/product'
+import { OutfitCategoryView } from '@/types/recommendOutfit'
 import React from 'react'
 
 export type Toolbar = 'move' | 'hand'
@@ -12,7 +12,6 @@ export type CanvasMouseDown = {
   options: fabric.IEvent
   canvas: fabric.Canvas
   setActiveObject: any
-  tryOnOutfit: TryOnOutfit | null
   currentPointer: React.MutableRefObject<Pointer>
   activeToolRef: React.MutableRefObject<Toolbar>
 }
@@ -47,5 +46,5 @@ export type CanvasKeyUp = {
 
 export type RenderImage = {
   canvas: React.MutableRefObject<fabric.Canvas | null>
-  clothes: Clothes
+  view: OutfitCategoryView
 }
