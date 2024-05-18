@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 from schemas.recommend_schema import RecommendedInput
 from utils.utils import load_json_path, outfit_recommend
+from controllers.recommendedControllers import recommended_controller
 import numpy as np
 
 recommendedRouter = APIRouter(prefix="/recommended")
@@ -47,4 +48,11 @@ async def recommend(input: RecommendedInput):
     return { 
         "message": "Outfit is recommended successfully" ,
         "outfit": top_3_outfit
+    }
+
+@recommendedRouter.post('/test')
+async def recommend(input: RecommendedInput):
+    result = await recommended_controller(input=input)
+    return {
+        result
     }

@@ -8,3 +8,4 @@ LAVIS/
 *.pyc
 __pycache__/
 .env
+crawl*

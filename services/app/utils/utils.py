@@ -17,7 +17,7 @@ def mean_cosine_similarity(outfit):
             assert cosine_similarity(outfit[i], outfit[j]) == cosine_similarity(outfit[j], outfit[i]), "Fault cosine similarity"
     return np.mean(cosine_metrics)
 
-def outfit_recommend(features, combinations, order):
+def outfit_recommend(features, combinations, order, topk=10):
     scores = []
     for id, combine in enumerate(combinations):
         outfit = []
@@ -26,8 +26,9 @@ def outfit_recommend(features, combinations, order):
         score = mean_cosine_similarity(outfit=outfit)
         scores.append(score)
         # print("Score outfit: ", score, id)
-    top_3_score = np.argsort(scores)[-3:][::-1]
-    print("Top 3 score index: ", top_3_score)
-    print("Top 3 combination index: ", np.array(combinations)[top_3_score])
-    return np.array(combinations)[top_3_score]
+    top_k_score = np.argsort(scores)[-topk:][::-1]
+    print(f"Top {topk} score index: ", top_k_score)
+    print(np.sort(scores)[-topk:][::-1])
+    print(f"Top {topk} combination index: ", np.array(combinations)[top_k_score])
+    return np.array(combinations)[top_k_score]
     # return (combinations, order)
