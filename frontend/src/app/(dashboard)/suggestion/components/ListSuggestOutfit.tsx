@@ -31,7 +31,7 @@ const ListSuggestOutfit = () => {
   }
 
   return (
-    <div className='grid grid-cols-3 gap-6'>
+    <div className='grid grid-cols-5 gap-6'>
       {recommendOutfit.map((outfit, index) => (
         <div
           key={`recommendOutfit-${index}`}
@@ -48,7 +48,7 @@ const ListSuggestOutfit = () => {
             ))}
           </div>
 
-          <div className='grid grid-cols-2 gap-2'>
+          <div className='flex flex-col gap-2'>
             <Button onClick={() => handleClickTryOnManually(outfit)}>
               Try on Manually
             </Button>
