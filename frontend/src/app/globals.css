@@ -88,7 +88,7 @@ img {
 
 ::-webkit-scrollbar-thumb {
   border-radius: 6px;
-  background-color: #7c3aed;
+  background-color: #DDDDDD;
 }
 
 .scrollbar-hidden::-webkit-scrollbar {
