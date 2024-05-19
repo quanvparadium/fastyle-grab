@@ -14,7 +14,6 @@ import {
   handleCanvasMouseWheel,
   handleCanvasObjectMoving,
   handleCanvasObjectScaling,
-  handleCanvasResize,
   initializeFabric,
 } from '@/utils/canvas'
 import React, { useEffect, useRef } from 'react'
@@ -123,19 +122,6 @@ const TryOn = () => {
     })
 
     /**
-     * listen to the resize event on the window which is fired when the
-     * user resizes the window.
-     *
-     * We're using this to resize the canvas when the user resizes the
-     * window.
-     */
-    window.addEventListener('resize', () => {
-      handleCanvasResize({
-        canvas: fabricRef.current,
-      })
-    })
-
-    /**
      * listen to the key down event on the window which is fired when the
      * user presses a key on the keyboard.
      *
@@ -164,12 +150,6 @@ const TryOn = () => {
        * dispose: http://fabricjs.com/docs/fabric.Canvas.html#dispose
        */
       canvas.dispose()
-
-      window.removeEventListener('resize', () => {
-        handleCanvasResize({
-          canvas: fabricRef.current,
-        })
-      })
 
       window.removeEventListener('keydown', (e) =>
         handleCanvasKeyDown({
@@ -206,7 +186,7 @@ const TryOn = () => {
     <div className='w-full h-full relative'>
       <OutfitDrawer canvas={fabricRef} />
 
-      <div className='h-full flex'>
+      <div className='w-full h-full flex'>
         <Canvas canvasRef={canvasRef} canvas={fabricRef} />
 
         <ParameterSidebar canvas={fabricRef} />
