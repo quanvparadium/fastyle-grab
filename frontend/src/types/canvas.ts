@@ -48,12 +48,16 @@ export type CanvasObjectScaling = {
 
 export type CanvasKeyDown = {
   e: KeyboardEvent
-  canvas: fabric.Canvas | any
+  canvas: fabric.Canvas
   setActiveTool: (type: Toolbar) => void
 }
 
 export type CanvasKeyUp = {
   e: KeyboardEvent
+  canvas: fabric.Canvas
+}
+
+export type CanvasDeleteObject = {
   canvas: fabric.Canvas
 }
 
