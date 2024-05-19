@@ -1,7 +1,6 @@
+import SuggestShopList from '@/app/(dashboard)/suggestion/components/SuggestShopList'
 import { DialogContent } from '@/components/ui/dialog'
-import useGetRetrievalOutfit from '@/services/retrievalOutfit/getRetrievalOutfit'
 import { CategoryID, Clothes } from '@/types/product'
-import Link from 'next/link'
 import React, { useState } from 'react'
 
 interface ItemDetailDialogContentProps {
@@ -14,11 +13,6 @@ const ItemDetailDialogContent = ({
   categoryID,
 }: ItemDetailDialogContentProps) => {
   const [currentImage, setCurrentImage] = useState<string>(clothes.view.default)
-
-  const { data: retrievalClothes } = useGetRetrievalOutfit(
-    categoryID,
-    clothes._id,
-  )
 
   return (
     <DialogContent
@@ -51,24 +45,7 @@ const ItemDetailDialogContent = ({
 
       <div className='w-[600px] flex flex-col gap-4'>
         <span className='text-[20px] font-medium'>Shop It</span>
-        <div className='grid grid-cols-4 gap-4 overflow-auto'>
-          {retrievalClothes?.result?.map((item) => (
-            <Link key={item?._id} href={item?.referenceLink} target='_blank'>
-              <div className='flex flex-col cursor-pointer '>
-                <div className={`w-full h-[138px] rounded-sm overflow-hidden`}>
-                  <img
-                    src={item?.view?.default}
-                    className='w-full h-full object-cover'
-                  />
-                </div>
-                <div className='flex flex-col'>
-                  <span>{item?.shop}</span>
-                  <span className='text-[14px]'>{item?.price}</span>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
+        <SuggestShopList categoryID={categoryID} clothes={clothes} />
       </div>
     </DialogContent>
   )
