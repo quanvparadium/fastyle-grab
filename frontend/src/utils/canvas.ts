@@ -1,4 +1,5 @@
 import {
+  CanvasDeleteObject,
   CanvasKeyDown,
   CanvasKeyUp,
   CanvasMouseDown,
@@ -204,13 +205,18 @@ export const handleCanvasKeyDown = ({
   canvas,
   setActiveTool,
 }: CanvasKeyDown) => {
-  if (e.code === 'KeyH') {
-    setActiveTool('hand')
-    return
-  }
-  if (e.code === 'KeyM') {
-    setActiveTool('move')
-    return
+  switch (e.code) {
+    case 'KeyH':
+      setActiveTool('hand')
+      break
+    case 'KeyH':
+      setActiveTool('move')
+      break
+    case 'Delete':
+      handleCanvasDeleteObject({ canvas })
+      break
+    default:
+      break
   }
 }
 
@@ -241,4 +247,15 @@ export const handleRenderImage = ({ canvas, view }: RenderImage) => {
     img.view = view
     canvas.current?.add(img)
   })
+}
+
+const handleCanvasDeleteObject = ({ canvas }: CanvasDeleteObject) => {
+  const activeObjects = canvas.getActiveObjects() // Lấy các đối tượng đang được chọn
+  if (activeObjects.length) {
+    activeObjects.forEach((object) => {
+      canvas.remove(object) // Xóa từng đối tượng
+    })
+    canvas.discardActiveObject() // Bỏ chọn các đối tượng sau khi xóa
+    canvas.requestRenderAll() // Cập nhật lại canvas
+  }
 }
