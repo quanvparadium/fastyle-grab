@@ -11,7 +11,7 @@ const Suggestion = () => {
       <div className='flex justify-between items-center'>
         <Header
           title='Fashion Suggestion'
-          description='Discover your ideal outfit instantly with image or text-based search.'
+          description='Pick your style, I will perfect your look.'
           icon={'Lightbulb'}
         />
         <TourGuideButton />
