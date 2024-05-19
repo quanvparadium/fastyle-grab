@@ -25,18 +25,18 @@ const Canvas = ({ canvasRef, canvas }: CanvasProps) => {
     <div id='canvas' className='relative flex-1 w-full h-full'>
       <canvas ref={canvasRef} />
 
-      <div className='absolute bottom-10 left-1/2 -translate-x-1/2 py-1 px-2 flex gap-1 rounded-md shadow-md'>
+      <div className='absolute bg-white bottom-10 left-1/2 -translate-x-1/2 py-1 px-2 flex gap-1 rounded-md shadow-md'>
         {toolbar.map((item) => (
           <TooltipProvider key={item.id} delayDuration={0}>
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button
-                  className={`w-10 h-10 p-0 ${activeTool === item.id ? 'bg-macaw/20' : 'bg-white'}`}
+                  className={`w-10 h-10 p-0 ${activeTool === item.id ? 'bg-primary' : 'bg-white'}`}
                   onClick={() => setActiveTool(item.id)}
                 >
                   <IconContext.Provider
                     value={{
-                      color: `${activeTool === item.id ? '#1cb0f6' : '#000'}`,
+                      color: `${activeTool === item.id ? '#fff' : '#000'}`,
                     }}
                   >
                     {item.icon}

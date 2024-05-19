@@ -18,7 +18,7 @@ const ParameterSidebar = ({ canvas }: ParameterSidebarProps) => {
       if (value) {
         return (
           <Button key={value} onClick={() => handleChangeView(value)}>
-            {option}
+            <text className='capitalize'>{option}</text>
           </Button>
         )
       }
@@ -48,7 +48,7 @@ const ParameterSidebar = ({ canvas }: ParameterSidebarProps) => {
       <AttributeSection />
 
       <div className='flex flex-col gap-2'>
-        <span>View Option</span>
+        <span className='font-semibold'>View Option</span>
         <div className='grid grid-cols-3 gap-2'>{renderViewOption()}</div>
       </div>
     </div>

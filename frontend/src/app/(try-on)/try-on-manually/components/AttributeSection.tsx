@@ -20,7 +20,7 @@ const AttributeSection = () => {
 
   return (
     <div className='flex flex-col gap-2'>
-      <span>Attributes</span>
+      <span className='font-semibold'>Attributes</span>
       <div className='grid grid-cols-2 gap-4'>
         {attributeOptions.map((item) => (
           <div
