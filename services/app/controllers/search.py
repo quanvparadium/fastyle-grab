@@ -98,4 +98,4 @@ async def image_search_controller(item: ImageSearch, extract_model = 'BLIP'):
     total_img_path = [(id2path[str(imageId)]) for idx, imageId in enumerate(idx_images)]
     print(total_img_path)
     print(scores)
-    return total_img_path
+    return [*total_img_path, *total_yame_img_path, *total_yody_img_path]

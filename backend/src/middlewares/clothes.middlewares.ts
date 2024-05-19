@@ -10,7 +10,16 @@ export const clothesValidator = validate(
             type: {
                 custom: {
                     options: async (value) => {
-                        const typeCloth = ['topwear', 'headwear', 'bottomwear', 'footwear', 'dress', 'others']
+                        const typeCloth = [
+                            'topwear',
+                            'headwear',
+                            'bottomwear',
+                            'footwear',
+                            'dress',
+                            'others',
+                            'yame',
+                            'yody'
+                        ]
                         if (!typeCloth.includes(value)) {
                             throw new ErrorWithStatus({
                                 message: CLOTHES_MESSAGES.NOT_EXIST_CATEGORY,

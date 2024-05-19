@@ -5,7 +5,7 @@ import { loginController } from '~/controllers/users.controllers'
 import clothesRouter from './clothes.routes'
 import staticRouter from './static.routes'
 import recommendRouter from './recommend.routes'
-import { buyLinkShop } from '~/utils/updatedb'
+import { buyLinkShop, buyLinkCrawl } from '~/utils/updatedb'
 import retrievalRouter from './retrieval.routes'
 const apiRouter = Router()
 
@@ -24,7 +24,8 @@ apiRouter.use('/retrieval', retrievalRouter)
 
 apiRouter.route('/buylink').post(async (req, res) => {
     const { shop } = req.body
-    const result = await buyLinkShop(shop)
+    // const result = await buyLinkShop(shop)
+    const result = await buyLinkCrawl(shop)
     return res.json({
         message: 'OK',
         result

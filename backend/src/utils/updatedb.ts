@@ -5,6 +5,10 @@ import databaseService from '~/services/database.services'
 import dotenv from 'dotenv'
 import { getName, random } from './utils'
 dotenv.config()
+function convertToVietnamese(text) {
+    // Sử dụng TextDecoder để giải mã chuỗi
+    return new TextDecoder('utf-8').decode(new Uint8Array(text.split('').map((char) => char.charCodeAt(0))))
+}
 
 export async function buyLinkShop(shopName: string = 'Myntra') {
     const stylesPath = path.join(process.env.DATAPATH, 'styles')
@@ -43,11 +47,27 @@ export async function buyLinkShop(shopName: string = 'Myntra') {
                 })
             }
         }
+        const clothCategory = data['data'].subCategory?.typeName
+        let clothType = ''
+        if (clothCategory === 'Topwear') {
+            clothType = 'topwear'
+        } else if (clothCategory === 'Headwear') {
+            clothType = 'headwear'
+        } else if (clothCategory === 'Bottomwear') {
+            clothType = 'bottomwear'
+        } else if (clothCategory === 'Dress') {
+            clothType = 'dress'
+        } else if (['Shoes', 'Sandal', 'Flip Flops'].includes(clothCategory)) {
+            clothType = 'footwear'
+        } else if (['Bags', 'Gloves', 'Watches', 'Jewellery'].includes(clothCategory)) {
+            clothType = 'others'
+        }
+        if (clothType === '') continue
         const payload = {
             shop: shopName,
             clothId: data['data']['id'],
             clothName: data['data']['productDisplayName'],
-            clothCategory: (data['data'].subCategory?.typeName as string).toLowerCase(),
+            clothCategory: clothType,
             price: data['data']['price'],
             colour: data.data.baseColour,
             view: {
@@ -69,7 +89,8 @@ export async function buyLinkShop(shopName: string = 'Myntra') {
          * If you don't have buylink collection, let run below code
          * insertedReference.push(payload)
          */
-        break
+        // insertedReference.push(payload)
+        // break
     }
 
     try {
@@ -85,4 +106,71 @@ export async function buyLinkShop(shopName: string = 'Myntra') {
             insertedCount: 0
         }
     }
+}
+
+export async function buyLinkCrawl(shopName: string = 'Yody') {
+    const imagesPath = path.join(process.env.CRAWLPATH, 'crawl', shopName.toLowerCase())
+    const stylesPath = path.join(
+        process.env.CRAWLPATH,
+        'infos',
+        shopName.toLowerCase(),
+        `${shopName.toLowerCase()}.json`
+    )
+    const insertedReference = []
+    const files = fs.readFileSync(stylesPath, 'utf-8')
+    const images = fs.readdirSync(imagesPath).sort(getName)
+    const data = JSON.parse(files).data
+    if (data == null) {
+        return
+    }
+    console.log(images)
+    const keyView = ['front', 'back', 'left', 'right', 'top']
+    for (const [idx, garment] of data.entries()) {
+        if (idx === 1873 || idx === 3150) continue
+        console.log('================================')
+        console.log(`Index ${idx}/${data.length}`)
+        const viewOption: object = {}
+        for (const [idx, key] of keyView.entries()) {
+            if (idx < (garment['view'] as string[]).length) {
+                break
+            }
+            viewOption[key] = garment['view'][idx]
+        }
+        const payload = {
+            shop: shopName,
+            clothId: idx,
+            clothName: garment['clothName'],
+            clothCategory: garment?.category || '',
+            price: garment['price'],
+            colour: garment['colors'] ? convertToVietnamese(garment['colors'][0]?.name || '') : garment['color'] || '',
+            view: {
+                default: `http://${process.env.DB_HOST}:${process.env.BACKEND_PORT}/api/static/images/${shopName.toLowerCase()}/${idx}`,
+                ...viewOption
+            },
+            colorOption: [],
+            referenceLink: garment['url'],
+            review: {
+                count: random(1000, idx),
+                avg: random(1000, idx) / (random(1000, idx) + random(100, idx))
+            }
+        }
+        /**
+         * If you want add data into Mongodb, let run below code
+         * insertedReference.push(payload)
+         */
+    }
+    try {
+        const result = await databaseService.buylink.insertMany(insertedReference)
+        const { acknowledged, insertedCount } = result
+        return {
+            acknowledged,
+            insertedCount
+        }
+    } catch (error) {
+        return {
+            acknowledged: false,
+            insertedCount: 0
+        }
+    }
+    // console.log(JSON.parse(files).data)
 }

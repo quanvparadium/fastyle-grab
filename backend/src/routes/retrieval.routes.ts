@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import { retrievalController } from '~/controllers/recommend.controllers'
+import { clothesValidator } from '~/middlewares/clothes.middlewares'
 import { wrapAsync } from '~/utils/handler'
 
 const retrievalRouter = Router()
@@ -10,6 +11,6 @@ const retrievalRouter = Router()
  * Method: GET
  */
 
-retrievalRouter.get('/:type/:cloth_id', wrapAsync(retrievalController))
+retrievalRouter.get('/:type/:cloth_id', clothesValidator, wrapAsync(retrievalController))
 
 export default retrievalRouter

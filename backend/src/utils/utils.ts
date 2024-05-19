@@ -9,3 +9,7 @@ export function random(range: number, seed: number) {
     const x = Math.sin(seed + 1) * range
     return Math.floor((x - Math.floor(x)) * range)
 }
+
+export function capitalize(input: string) {
+    return input.charAt(0).toUpperCase() + input.slice(1)
+}

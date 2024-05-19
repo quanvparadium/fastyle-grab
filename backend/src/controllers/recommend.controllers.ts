@@ -7,6 +7,7 @@ import databaseService from '~/services/database.services'
 import { Collection, ObjectId } from 'mongodb'
 import Clothes from '~/models/schemas/Clothes.schema'
 import { axiosPython } from '~/constants/axios'
+import { capitalize } from '~/utils/utils'
 dotenv.config()
 
 export const recommendRandomController = async (
@@ -86,11 +87,14 @@ export const retrievalController = async (
         category: type,
         topk: 20
     }
+    console.log(payload)
     const retrieval = await axiosPython.post('/api/retrieval', {
         ...payload
     })
+    console.log(retrieval)
     const result: string[] = retrieval.data?.result || []
     const imageIds = []
+    console.log(result)
     const infos = result.map((image: string, idx) => {
         const [shop, imageId] = image.split('_').slice(0, 2)
         imageId
@@ -98,19 +102,19 @@ export const retrievalController = async (
             : imageIds.push(parseInt(shop.split('.')[0] as string))
         return imageId
             ? {
-                  shop,
-                  imageId,
-                  rank: idx + 1
+                  shop: capitalize(shop as string),
+                  clothId: parseInt(imageId.split('.')[0] as string)
+                  //   rank: idx + 1
               }
             : {
                   shop: 'Myntra',
-                  imageId: shop,
-                  rank: idx + 1
+                  clothId: parseInt(shop.split('.')[0] as string)
+                  //   rank: idx + 1
               }
     })
-
-    const metadata = await databaseService.buylink.find({ clothId: { $in: imageIds }, clothCategory: type }).toArray()
-    console.log('Metadata: ', metadata.slice(0, 10))
+    console.log(infos)
+    const metadata = await databaseService.buylink.find({ $or: infos }).toArray()
+    // console.log('Metadata: ', metadata.slice(0, 10))
     return res.status(HTTPSTATUS.ACCEPTED).json({
         message: 'Return outfit successfully',
         result: metadata
