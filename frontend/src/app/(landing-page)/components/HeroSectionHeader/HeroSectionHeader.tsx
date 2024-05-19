@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import './LinkButton.css'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
+import { ROUTE } from '@/constants/route'
 
 const HeroSectionHeader = () => {
   const router = useRouter()
@@ -50,7 +51,7 @@ const HeroSectionHeader = () => {
             borderRadius: 32,
             fontSize: 17,
           }}
-          onClick={() => router.push('/retrival')}
+          onClick={() => router.push(ROUTE.SUGGESTION)}
           size='lg'
         >
           Dashboard
