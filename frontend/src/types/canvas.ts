@@ -12,6 +12,7 @@ export type CanvasMouseDown = {
   options: fabric.IEvent
   canvas: fabric.Canvas
   setActiveObject: any
+  setActiveObjectAttribute: any
   currentPointer: React.MutableRefObject<Pointer>
   activeToolRef: React.MutableRefObject<Toolbar>
 }
@@ -33,6 +34,18 @@ export type CanvasMouseWheel = {
   canvas: fabric.Canvas
 }
 
+export type CanvasObjectMoving = {
+  options: fabric.IEvent
+  canvas: fabric.Canvas
+  setActiveObjectAttribute: any
+}
+
+export type CanvasObjectScaling = {
+  options: fabric.IEvent
+  canvas: fabric.Canvas
+  setActiveObjectAttribute: any
+}
+
 export type CanvasKeyDown = {
   e: KeyboardEvent
   canvas: fabric.Canvas | any
@@ -47,4 +60,11 @@ export type CanvasKeyUp = {
 export type RenderImage = {
   canvas: React.MutableRefObject<fabric.Canvas | null>
   view: OutfitCategoryView
+}
+
+export type Attribute = {
+  x: number
+  y: number
+  width: number
+  height: number
 }

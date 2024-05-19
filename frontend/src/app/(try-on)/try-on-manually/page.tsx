@@ -9,10 +9,12 @@ import {
   handleCanvasKeyDown,
   handleCanvasKeyUp,
   handleCanvasMouseDown,
+  handleCanvasMouseMove,
   handleCanvasMouseUp,
   handleCanvasMouseWheel,
+  handleCanvasObjectMoving,
+  handleCanvasObjectScaling,
   handleCanvasResize,
-  handleCanvaseMouseMove,
   initializeFabric,
 } from '@/utils/canvas'
 import React, { useEffect, useRef } from 'react'
@@ -23,6 +25,7 @@ const TryOn = () => {
 
     setActiveObject,
     setActiveTool,
+    setActiveObjectAttribute,
   } = useTryOnOutfitManuallyStore((state) => state)
 
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -54,6 +57,7 @@ const TryOn = () => {
         setActiveObject,
         currentPointer,
         activeToolRef,
+        setActiveObjectAttribute,
       })
     })
 
@@ -78,11 +82,29 @@ const TryOn = () => {
      * Event list: http://fabricjs.com/docs/fabric.Canvas.html#fire
      */
     canvas.on('mouse:move', (options) => {
-      handleCanvaseMouseMove({
+      handleCanvasMouseMove({
         options,
         canvas,
         currentPointer,
         activeToolRef,
+      })
+    })
+
+    // Event listener for object moving
+    canvas.on('object:moving', (options) => {
+      handleCanvasObjectMoving({
+        options,
+        canvas,
+        setActiveObjectAttribute,
+      })
+    })
+
+    // Event listener for objec scaling
+    canvas.on('object:scaling', (options) => {
+      handleCanvasObjectScaling({
+        options,
+        canvas,
+        setActiveObjectAttribute,
       })
     })
 

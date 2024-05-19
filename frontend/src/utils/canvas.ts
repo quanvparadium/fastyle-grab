@@ -5,6 +5,8 @@ import {
   CanvasMouseMove,
   CanvasMouseUp,
   CanvasMouseWheel,
+  CanvasObjectMoving,
+  CanvasObjectScaling,
   RenderImage,
 } from '@/types/canvas'
 import { OutfitCategoryView } from '@/types/recommendOutfit'
@@ -39,6 +41,7 @@ export const handleCanvasMouseDown = ({
   setActiveObject,
   currentPointer,
   activeToolRef,
+  setActiveObjectAttribute,
 }: CanvasMouseDown) => {
   const target = canvas.findTarget(options.e, false)
 
@@ -63,6 +66,20 @@ export const handleCanvasMouseDown = ({
       const view: OutfitCategoryView = target.get('view')
 
       setActiveObject(view)
+
+      // Lấy các thuộc tính của đối tượng
+      const x = target.left ?? 0
+      const y = target.top ?? 0
+      const width = (target.width ?? 0) * (target.scaleX ?? 1)
+      const height = (target.height ?? 0) * (target.scaleY ?? 1)
+
+      // Cập nhật các thuộc tính của đối tượng đang hoạt động
+      setActiveObjectAttribute({
+        x,
+        y,
+        width,
+        height,
+      })
     }
   } else {
     setActiveObject(null)
@@ -74,7 +91,7 @@ export const handleCanvasMouseUp = ({
   activeToolRef,
 }: CanvasMouseUp) => {}
 
-export const handleCanvaseMouseMove = ({
+export const handleCanvasMouseMove = ({
   options,
   canvas,
   currentPointer,
@@ -127,6 +144,58 @@ export const handleCanvasMouseWheel = ({
 
     event.preventDefault()
     event.stopPropagation()
+  }
+}
+
+export const handleCanvasObjectMoving = ({
+  options,
+  canvas,
+  setActiveObjectAttribute,
+}: CanvasObjectMoving) => {
+  const activeObject = canvas.getActiveObject()
+
+  // Kiểm tra xem có một đối tượng được chọn và không phải là một nhóm
+  if (activeObject && !activeObject.isType('group')) {
+    // Thực hiện hành động khi chỉ có một đối tượng duy nhất được chọn và không phải là một nhóm
+
+    const x = activeObject.left ?? 0
+    const y = activeObject.top ?? 0
+    const width = (activeObject.width ?? 0) * (activeObject.scaleX ?? 1)
+    const height = (activeObject.height ?? 0) * (activeObject.scaleY ?? 1)
+
+    // Cập nhật các thuộc tính của đối tượng đang hoạt động
+    setActiveObjectAttribute({
+      x,
+      y,
+      width,
+      height,
+    })
+  }
+}
+
+export const handleCanvasObjectScaling = ({
+  options,
+  canvas,
+  setActiveObjectAttribute,
+}: CanvasObjectScaling) => {
+  const activeObject = canvas.getActiveObject()
+
+  // Kiểm tra xem có một đối tượng được chọn và không phải là một nhóm
+  if (activeObject && !activeObject.isType('group')) {
+    // Thực hiện hành động khi chỉ có một đối tượng duy nhất được chọn và không phải là một nhóm
+
+    const x = activeObject.left ?? 0
+    const y = activeObject.top ?? 0
+    const width = (activeObject.width ?? 0) * (activeObject.scaleX ?? 1)
+    const height = (activeObject.height ?? 0) * (activeObject.scaleY ?? 1)
+
+    // Cập nhật các thuộc tính của đối tượng đang hoạt động
+    setActiveObjectAttribute({
+      x,
+      y,
+      width,
+      height,
+    })
   }
 }
 

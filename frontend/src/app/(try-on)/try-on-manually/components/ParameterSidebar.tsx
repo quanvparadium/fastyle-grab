@@ -1,14 +1,15 @@
 import { Button } from '@/components/ui/button'
-import useTryOnOutfitStore from '@/store/tryOnManuallyStore'
 import React from 'react'
 import { fabric } from 'fabric'
+import useTryOnOutfitManuallyStore from '@/store/tryOnManuallyStore'
+import AttributeSection from '@/app/(try-on)/try-on-manually/components/AttributeSection'
 
 interface ParameterSidebarProps {
   canvas: React.MutableRefObject<fabric.Canvas | null>
 }
 
 const ParameterSidebar = ({ canvas }: ParameterSidebarProps) => {
-  const { activeObject } = useTryOnOutfitStore((state) => state)
+  const { activeObject } = useTryOnOutfitManuallyStore((state) => state)
 
   const renderViewOption = () => {
     if (!activeObject) return
@@ -43,8 +44,10 @@ const ParameterSidebar = ({ canvas }: ParameterSidebarProps) => {
   }
 
   return (
-    <div className='w-[300px] h-full border px-4 py-2'>
-      <div className='flex flex-col gap-3'>
+    <div className='w-[300px] h-full border px-4 py-2 flex flex-col gap-4'>
+      <AttributeSection />
+
+      <div className='flex flex-col gap-2'>
         <span>View Option</span>
         <div className='grid grid-cols-3 gap-2'>{renderViewOption()}</div>
       </div>
