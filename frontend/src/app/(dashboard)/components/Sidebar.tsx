@@ -22,7 +22,7 @@ const Sidebar = () => {
               className={cn(
                 'relative p-4 rounded-xl border-2 flex cursor-pointer items-center outline-none',
                 pathname === item.href
-                  ? 'bg-iguana border-blue-jay'
+                  ? 'border-primary'
                   : 'border-transparent',
               )}
               key={item.label}
@@ -32,7 +32,7 @@ const Sidebar = () => {
                 className={cn(
                   'flex items-center gap-4 text-[16px]',
                   pathname === item.href
-                    ? 'text-macaw font-medium'
+                    ? 'text-primary font-medium'
                     : 'text-wolf',
                 )}
               >

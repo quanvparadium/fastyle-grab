@@ -29,7 +29,6 @@ const PreviewSection = () => {
       <div className='w-full flex justify-end'>
         <Button
           className='step-4 w-[130px]'
-          hasShadow
           onClick={handleCreateOutfit}
           disabled={
             Object.keys(selectedOutfit).length === 0 ||

@@ -25,12 +25,12 @@ const ListCategory = ({
           <Tooltip>
             <TooltipTrigger className='w-full'>
               <div
-                className={`w-full h-full flex justify-center items-center cursor-pointer border-b ${selectedCategoryID === item.id ? 'border-macaw' : 'border-transparent'}`}
+                className={`w-full h-full flex justify-center items-center cursor-pointer border-b-2 ${selectedCategoryID === item.id ? 'border-primary' : 'border-transparent'}`}
                 onClick={() => onSelectCategory(item.id)}
               >
                 <IconContext.Provider
                   value={{
-                    color: `${selectedCategoryID === item.id ? '#1cb0f6' : '#DBDBDB'}`,
+                    color: `${selectedCategoryID === item.id ? '#00b14f' : '#DBDBDB'}`,
                   }}
                 >
                   {item.icon}

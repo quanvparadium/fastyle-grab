@@ -61,7 +61,7 @@ const ListOutfit = ({ categoryID }: ListOutfitProps) => {
           page?.result?.map((item, index) => (
             <div
               key={item._id}
-              className={`relative w-full h-[130px] cursor-pointer border shadow-sm bg-[#EFEFEF] ${isSelectedProduct(categoryID, item._id) ? 'border-macaw' : 'border-transparent'} group`}
+              className={`relative w-full h-[130px] cursor-pointer border-2 shadow-sm bg-[#EFEFEF] ${isSelectedProduct(categoryID, item._id) ? 'border-primary' : 'border-transparent'} group`}
               onClick={() => handleSelectProduct(categoryID, item)}
               // Là ảnh cuối cùng của page thì thêm ref vào để trigger inf loading
               ref={page.result.length === index + 1 ? ref : null}
