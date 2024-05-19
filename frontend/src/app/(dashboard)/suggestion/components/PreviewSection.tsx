@@ -18,10 +18,11 @@ const PreviewSection = () => {
 
   return (
     <div className='flex-1 flex flex-col px-4 py-4'>
-      <div className='flex-1 flex flex-col gap-9 overflow-hidden pb-4'>
+      <div className='flex-1 flex flex-col gap-4 overflow-hidden pb-4'>
         <div className='w-full flex items-center justify-center'>
-          <span className='text-[18px]'>Your Item</span>
+          <span className='text-[18px] font-medium'>YOUR ITEM</span>
         </div>
+
         <PreviewChosen />
       </div>
 
@@ -35,11 +36,7 @@ const PreviewSection = () => {
             createRecommendOutfit.isPending
           }
         >
-          {createRecommendOutfit.isPending ? (
-            'Loading...'
-          ) : (
-            'Submit'
-          )}
+          {createRecommendOutfit.isPending ? 'Loading...' : 'Submit'}
         </Button>
       </div>
     </div>

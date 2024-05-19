@@ -14,12 +14,11 @@ const PreviewChosen = () => {
       {Object.entries(selectedOutfit).map(([categoryID, value]) => {
         if (value.length) {
           return (
-            <div
-              key={categoryID}
-              className='flex flex-col gap-2 border p-2 rounded-lg'
-            >
-              <div className='flex justify-between items-center pl-2'>
-                <span>{CATEGORY_MAP[categoryID as CategoryID]}</span>
+            <div key={categoryID} className='flex flex-col border rounded-lg'>
+              <div className='flex justify-between items-center py-2 px-3 border-b'>
+                <span className='text-[14px] font-medium'>
+                  {CATEGORY_MAP[categoryID as CategoryID]}
+                </span>
                 <Button
                   variant={'ghost'}
                   className='p-0 w-8 h-8'
@@ -31,11 +30,11 @@ const PreviewChosen = () => {
                 </Button>
               </div>
 
-              <div className='flex gap-4'>
+              <div className='p-2 flex items-center gap-2'>
                 {value.map((item) => (
                   <div
                     key={item._id}
-                    className='relative w-[60px] h-[60px] rounded-lg cursor-pointer group'
+                    className='relative w-[60px] h-[60px] bg-[#EFEFEF] rounded-lg cursor-pointer group'
                   >
                     <img
                       src={item.view.default}
