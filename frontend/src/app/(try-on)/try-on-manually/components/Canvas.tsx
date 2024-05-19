@@ -22,7 +22,7 @@ const Canvas = ({ canvasRef, canvas }: CanvasProps) => {
   const { activeTool, setActiveTool } = useTryOnOutfitStore((state) => state)
 
   return (
-    <div id='canvas' className='relative flex-1 w-full h-full'>
+    <div id='canvas' className='relative flex-1 h-full'>
       <canvas ref={canvasRef} />
 
       <div className='absolute bg-white bottom-10 left-1/2 -translate-x-1/2 py-1 px-2 flex gap-1 rounded-md shadow-md'>
