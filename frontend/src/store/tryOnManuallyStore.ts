@@ -1,4 +1,4 @@
-import { Toolbar } from '@/types/canvas'
+import { Attribute, Toolbar } from '@/types/canvas'
 import { OutfitCategoryView, RecommendOutfit } from '@/types/recommendOutfit'
 import { create } from 'zustand'
 
@@ -6,10 +6,12 @@ interface TryOnOutfitManuallyState {
   tryOnOutfit: RecommendOutfit | null
   activeObject: OutfitCategoryView | null
   activeTool: Toolbar
+  activeObjectAttribute: Attribute | null
 
   setTryOnOutfit: (newTryOnOutfit: RecommendOutfit) => void
   setActiveObject: (data: OutfitCategoryView | null) => void
   setActiveTool: (type: Toolbar) => void
+  setActiveObjectAttribute: (data: Attribute | null) => void
 }
 
 const useTryOnOutfitManuallyStore = create<TryOnOutfitManuallyState>()(
@@ -17,6 +19,7 @@ const useTryOnOutfitManuallyStore = create<TryOnOutfitManuallyState>()(
     tryOnOutfit: null,
     activeObject: null,
     activeTool: 'move',
+    activeObjectAttribute: null,
 
     setTryOnOutfit: (newTryOnOutfit) => {
       return set({ tryOnOutfit: newTryOnOutfit })
@@ -26,6 +29,20 @@ const useTryOnOutfitManuallyStore = create<TryOnOutfitManuallyState>()(
     },
     setActiveTool: (type) => {
       return set({ activeTool: type })
+    },
+    setActiveObjectAttribute: (data) => {
+      // round data
+      let tmp: Attribute | null = null
+
+      if (data) {
+        tmp = { ...data }
+        for (const key in tmp) {
+          const KEY = key as keyof Attribute
+          tmp[KEY] = Math.floor(tmp[KEY] ?? 0)
+        }
+      }
+
+      return set({ activeObjectAttribute: tmp })
     },
   }),
 )
