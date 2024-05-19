@@ -16,12 +16,19 @@ const TourGuideButton = () => {
       },
       {
         target: '.step-1',
-        content: 'abc cakasdcn asdkcnaksjcdnkj ákcn jnacsjcsn s',
+        content: 'Pick the category you would like to explore.',
         placement: 'bottom',
       },
-      { target: '.step-2', content: 'abc', placement: 'right' },
-      { target: '.step-3', content: 'abc', placement: 'left' },
-      { target: '.step-4', content: 'abc', placement: 'top' },
+      {
+        target: '.step-2',
+        content: 'Pick the garments that appeal to you.',
+        placement: 'right',
+      },
+      {
+        target: '.step-3',
+        content: 'Press the submit button.',
+        placement: 'top',
+      },
     ],
     [],
   )

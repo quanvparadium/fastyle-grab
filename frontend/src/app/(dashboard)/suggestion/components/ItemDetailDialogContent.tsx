@@ -44,7 +44,8 @@ const ItemDetailDialogContent = ({
       </div>
 
       <div className='w-[600px] flex flex-col gap-4'>
-        <span className='text-[20px] font-medium'>Shop It</span>
+        <span className='text-[18px] font-medium'>SHOP IT</span>
+
         <SuggestShopList categoryID={categoryID} clothes={clothes} />
       </div>
     </DialogContent>

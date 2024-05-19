@@ -28,7 +28,7 @@ const PreviewSection = () => {
 
       <div className='w-full flex justify-end'>
         <Button
-          className='step-4 w-[130px]'
+          className='step-3 w-[130px]'
           onClick={handleCreateOutfit}
           disabled={
             Object.keys(selectedOutfit).length === 0 ||
