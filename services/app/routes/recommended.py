@@ -6,7 +6,7 @@ import numpy as np
 
 recommendedRouter = APIRouter(prefix="/recommended")
 
-@recommendedRouter.post('/')
+@recommendedRouter.post('/test')
 async def recommend(input: RecommendedInput):
 
     dictionary = dict()
@@ -50,9 +50,11 @@ async def recommend(input: RecommendedInput):
         "outfit": top_3_outfit
     }
 
-@recommendedRouter.post('/test')
+@recommendedRouter.post('/')
 async def recommend(input: RecommendedInput):
     result = await recommended_controller(input=input)
+    print("Python result: ", result)
     return {
-        result
+        "message": "Outfit is recommended successfully" ,
+        "outfit" : result
     }

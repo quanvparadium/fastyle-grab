@@ -43,11 +43,7 @@ export const recommendController = async (
         const infos = await databaseService[key].find({ _id: { $in: objectIds } }).toArray()
         queryPython[key] = infos.map((info: Clothes) => info.clothId)
     }
-    // console.log(typeof (queryPython as any).topwear)
-    // console.log((queryPython as any).topwear)
-    // for (const value of (queryPython as any).topwear) {
-    //     console.log('Value: ', typeof value)
-    // }
+
     const outfits = await axiosPython.post('/api/recommended', JSON.parse(JSON.stringify(queryPython)))
     const data = outfits?.data
     const result: object[] = []
@@ -59,8 +55,9 @@ export const recommendController = async (
             })
             // console.log(garment)
             const imageUrl: object = {}
-            imageUrl['original'] = garment.view
-            viewOutfit[key] = imageUrl
+            // imageUrl['original'] = garment.view
+            // viewOutfit[key] = imageUrl
+            viewOutfit[key] = garment
         }
         result.push(viewOutfit)
     }
