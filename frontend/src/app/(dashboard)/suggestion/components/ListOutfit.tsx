@@ -56,25 +56,27 @@ const ListOutfit = ({ categoryID }: ListOutfitProps) => {
 
   return (
     <ListOutfitLayout>
-      <div className='px-8 grid grid-cols-5 gap-1 rounded-lg'>
+      <div className='px-8 grid grid-cols-5 gap-0.5'>
         {clothes?.pages?.map((page) =>
           page?.result?.map((item, index) => (
             <div
               key={item._id}
-              className={`relative w-full h-[130px] cursor-pointer border-2 shadow-sm bg-[#EFEFEF] ${isSelectedProduct(categoryID, item._id) ? 'border-primary' : 'border-transparent'} group`}
+              className={`relative w-full h-[135px] cursor-pointer border-2 ${isSelectedProduct(categoryID, item._id) ? 'border-primary' : 'border-transparent'} group`}
               onClick={() => handleSelectProduct(categoryID, item)}
               // Là ảnh cuối cùng của page thì thêm ref vào để trigger inf loading
               ref={page.result.length === index + 1 ? ref : null}
             >
               <ItemDetailDialog categoryID={categoryID} clothes={item} />
 
-              <Image
-                src={item.view.default}
-                alt=''
-                fill
-                className='object-cover'
-                sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-              />
+              <div className='w-full h-full bg-[#EFEFEF] '>
+                <Image
+                  src={item.view.default}
+                  alt=''
+                  fill
+                  className='object-cover'
+                  sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                />
+              </div>
             </div>
           )),
         )}
@@ -82,7 +84,7 @@ const ListOutfit = ({ categoryID }: ListOutfitProps) => {
         {/* Loading */}
         {hasNextPage &&
           SKELETON_LOADING_ARRAY.map((item) => (
-            <Skeleton key={item} className='w-full h-[150px]' />
+            <Skeleton key={item} className='w-full h-[135px]' />
           ))}
       </div>
     </ListOutfitLayout>
@@ -92,9 +94,5 @@ const ListOutfit = ({ categoryID }: ListOutfitProps) => {
 export default ListOutfit
 
 const ListOutfitLayout = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <div className='w-full h-full pb-2 overflow-auto flex flex-col gap-2'>
-      {children}
-    </div>
-  )
+  return <div className='w-full h-full pb-2 overflow-auto'>{children}</div>
 }
