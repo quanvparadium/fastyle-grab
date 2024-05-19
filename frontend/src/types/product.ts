@@ -31,4 +31,5 @@ export type RetrievalOutfit = {
   colour: string
   view: ViewOption
   referenceLink: string
+  clothName:string;
 }
