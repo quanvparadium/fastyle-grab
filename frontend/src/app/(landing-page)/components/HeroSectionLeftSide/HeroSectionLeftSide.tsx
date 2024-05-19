@@ -1,6 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
+import { ROUTE } from '@/constants/route'
 import { useRouter } from 'next/navigation'
 
 const HeroSectionLeftSide = () => {
@@ -25,7 +26,7 @@ const HeroSectionLeftSide = () => {
             fontSize: 20,
             padding: '24px 48px',
           }}
-          onClick={() => router.push('/retrival')}
+          onClick={() => router.push(ROUTE.SUGGESTION)}
         >
           More Features
         </Button>
