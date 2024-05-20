@@ -3,7 +3,7 @@ import useRecommendOutfitStore from '@/store/recommendOutfitStore'
 import { CategoryID, Clothes } from '@/types/product'
 import { SelectedOutfitID } from '@/types/recommendOutfit'
 
-const LIMIT_SELECTION_PER_CATEGORY: number = 5
+const LIMIT_SELECTION_PER_CATEGORY: number = 4
 
 const useSelectSuggestOutfit = () => {
   const { toast } = useToast()
