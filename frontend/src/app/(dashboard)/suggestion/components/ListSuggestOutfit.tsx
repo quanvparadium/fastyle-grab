@@ -33,6 +33,9 @@ const ListSuggestOutfit = () => {
   }
 
   return (
+    <div className='flex flex-col gap-4'>
+      <span className='text-[20px] font-semibold'>Fashion Suggestion</span>
+    
     <div className='grid grid-cols-5 gap-6 pb-4'>
       {recommendOutfit.map((outfit, index) => (
         <div
@@ -78,6 +81,7 @@ const ListSuggestOutfit = () => {
           </div>
         </div>
       ))}
+    </div>
     </div>
   )
 }
