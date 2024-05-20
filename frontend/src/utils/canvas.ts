@@ -1,3 +1,4 @@
+import { positionDefault } from '@/constants/try-on-manually'
 import {
   CanvasDeleteObject,
   CanvasKeyDown,
@@ -11,6 +12,7 @@ import {
   RenderImage,
 } from '@/types/canvas'
 import { Clothes } from '@/types/product'
+import { convertClothCategoryToCategoryID } from '@/utils/product'
 import { fabric } from 'fabric'
 
 // initialize fabric canvas
@@ -228,6 +230,13 @@ export const handleRenderImage = ({ canvas, clothes }: RenderImage) => {
     img.scaleToHeight(200)
     // @ts-ignore
     img.clothes = clothes
+    // Đặt vị trí cho hình ảnh
+    const categoryID = convertClothCategoryToCategoryID(clothes?.clothCategory)
+    img.set({
+      top: positionDefault[categoryID].top,
+      left: positionDefault[categoryID].left,
+    })
+
     canvas.current?.add(img)
   })
 }
