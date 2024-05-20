@@ -27,7 +27,7 @@ const OutfitDrawer = ({ canvas }: OutfitDrawerProps) => {
     return Object.entries(tryOnOutfit).map(([categoryID, clothes]) => (
       <div
         key={categoryID}
-        className='w-[200px] h-[200px] rounded cursor-pointer'
+        className='w-[200px] h-[200px] rounded cursor-pointer border-2 border-transparent hover:border-primary focus:outline-none transform active:scale-95 transition-transform duration-75'
         onClick={() => handleRenderImage({ canvas, clothes })}
       >
         <img
