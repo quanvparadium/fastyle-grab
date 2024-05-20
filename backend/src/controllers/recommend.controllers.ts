@@ -122,7 +122,7 @@ export const retrievalController = async (
         }
         return {
             ...garment,
-            price: newPrice
+            price: Math.round(newPrice * 100) / 100
         }
     })
     return res.status(HTTPSTATUS.ACCEPTED).json({
