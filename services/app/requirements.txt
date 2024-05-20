@@ -1,0 +1,8 @@
+scikit-learn
+fastapi
+uvicorn
+packaging
+faiss-cpu
+python-dotenv
+opencv-python
+# rembg
