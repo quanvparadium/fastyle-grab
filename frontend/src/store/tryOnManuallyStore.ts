@@ -1,15 +1,16 @@
 import { Attribute, Toolbar } from '@/types/canvas'
-import { OutfitCategoryView, RecommendOutfit } from '@/types/recommendOutfit'
+import { Clothes } from '@/types/product'
+import { RecommendOutfit } from '@/types/recommendOutfit'
 import { create } from 'zustand'
 
 interface TryOnOutfitManuallyState {
   tryOnOutfit: RecommendOutfit | null
-  activeObject: OutfitCategoryView | null
+  activeObject: Clothes | null
   activeTool: Toolbar
   activeObjectAttribute: Attribute | null
 
   setTryOnOutfit: (newTryOnOutfit: RecommendOutfit) => void
-  setActiveObject: (data: OutfitCategoryView | null) => void
+  setActiveObject: (data: Clothes | null) => void
   setActiveTool: (type: Toolbar) => void
   setActiveObjectAttribute: (data: Attribute | null) => void
 }

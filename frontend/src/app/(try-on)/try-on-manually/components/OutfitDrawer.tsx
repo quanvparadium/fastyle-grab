@@ -24,14 +24,14 @@ const OutfitDrawer = ({ canvas }: OutfitDrawerProps) => {
   const renderOutfit = () => {
     if (!tryOnOutfit) return <p>No data</p>
 
-    return Object.entries(tryOnOutfit).map(([categoryID, value]) => (
+    return Object.entries(tryOnOutfit).map(([categoryID, clothes]) => (
       <div
         key={categoryID}
         className='w-[200px] h-[200px] rounded cursor-pointer'
-        onClick={() => handleRenderImage({ canvas, view: value })}
+        onClick={() => handleRenderImage({ canvas, clothes })}
       >
         <img
-          src={value.original.default}
+          src={clothes?.view?.default}
           className='w-full h-full object-cover rounded'
         />
       </div>
