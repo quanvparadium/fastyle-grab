@@ -2,3 +2,5 @@
 .env
 venv/
 fashion-dataset/
+temp/
+testcase*
