@@ -1,0 +1,13 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 4001:4001
+    volumes:
+      - ./services/features:/code/services/features
+      - ./services/infos:/code/services/infos
+      - ./services/LAVIS:/code/services/LAVIS
+      - ./fashion-dataset:/code/fashion-dataset
