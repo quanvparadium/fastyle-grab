@@ -1,4 +1,4 @@
-import { OutfitCategoryView } from '@/types/recommendOutfit'
+import { Clothes } from '@/types/product'
 import React from 'react'
 
 export type Toolbar = 'move' | 'hand'
@@ -63,7 +63,7 @@ export type CanvasDeleteObject = {
 
 export type RenderImage = {
   canvas: React.MutableRefObject<fabric.Canvas | null>
-  view: OutfitCategoryView
+  clothes: Clothes
 }
 
 export type Attribute = {

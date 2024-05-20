@@ -14,7 +14,7 @@ export type OutfitCategoryView = {
 }
 
 export type RecommendOutfit = {
-  [key in CategoryID]?: OutfitCategoryView
+  [key in CategoryID]?: Clothes
 }
 
 export type SelectedOutfit = {

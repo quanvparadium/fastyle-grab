@@ -38,10 +38,10 @@ const ListSuggestOutfit = () => {
           className='flex flex-col gap-4 p-4 rounded-md shadow-custom'
         >
           <div className='w-full grid grid-cols-2 gap-2'>
-            {Object.entries(outfit).map(([categoryID, value]) => (
-              <div key={value.original.default}>
+            {Object.entries(outfit).map(([categoryID, clothes]) => (
+              <div key={`${categoryID}-${clothes?._id}`}>
                 <img
-                  src={value.original.default}
+                  src={clothes?.view?.default}
                   className='w-full h-full object-cover rounded-[3px]'
                 />
               </div>
@@ -54,7 +54,7 @@ const ListSuggestOutfit = () => {
             </Button>
             <Button
               onClick={() =>
-                handleClickTryOnAI(outfit?.topwear?.original.default as string)
+                handleClickTryOnAI(outfit?.topwear?.view?.default as string)
               }
               disabled={!outfit?.topwear}
             >

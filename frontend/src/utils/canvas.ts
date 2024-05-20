@@ -10,7 +10,7 @@ import {
   CanvasObjectScaling,
   RenderImage,
 } from '@/types/canvas'
-import { OutfitCategoryView } from '@/types/recommendOutfit'
+import { Clothes } from '@/types/product'
 import { fabric } from 'fabric'
 
 // initialize fabric canvas
@@ -64,9 +64,9 @@ export const handleCanvasMouseDown = ({
     // click vào image
     if (target instanceof fabric.Image) {
       // @ts-ignore
-      const view: OutfitCategoryView = target.get('view')
+      const clothes: Clothes = target.get('clothes')
 
-      setActiveObject(view)
+      setActiveObject(clothes)
 
       // Lấy các thuộc tính của đối tượng
       const x = target.left ?? 0
@@ -222,12 +222,12 @@ export const handleCanvasKeyDown = ({
 
 export const handleCanvasKeyUp = ({ e, canvas }: CanvasKeyUp) => {}
 
-export const handleRenderImage = ({ canvas, view }: RenderImage) => {
-  fabric.Image.fromURL(view.original.default, (img) => {
+export const handleRenderImage = ({ canvas, clothes }: RenderImage) => {
+  fabric.Image.fromURL(clothes?.view?.default, (img) => {
     img.scaleToWidth(200)
     img.scaleToHeight(200)
     // @ts-ignore
-    img.view = view
+    img.clothes = clothes
     canvas.current?.add(img)
   })
 }

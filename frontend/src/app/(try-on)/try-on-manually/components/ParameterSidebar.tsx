@@ -14,7 +14,7 @@ const ParameterSidebar = ({ canvas }: ParameterSidebarProps) => {
   const renderViewOption = () => {
     if (!activeObject) return
 
-    return Object.entries(activeObject.original).map(([option, value]) => {
+    return Object.entries(activeObject.view).map(([option, value]) => {
       if (value) {
         return (
           <Button key={value} onClick={() => handleChangeView(value)}>
