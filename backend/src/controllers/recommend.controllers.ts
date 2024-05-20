@@ -112,8 +112,21 @@ export const retrievalController = async (
     console.log(infos)
     const metadata = await databaseService.buylink.find({ $or: infos }).toArray()
     // console.log('Metadata: ', metadata.slice(0, 10))
+
+    const data_output = metadata.map((garment, idx) => {
+        let newPrice = null
+        try {
+            newPrice = garment.shop === 'Myntra' ? garment.price * 0.012 : garment.price / 25000
+        } catch (error) {
+            newPrice = garment.price
+        }
+        return {
+            ...garment,
+            price: newPrice
+        }
+    })
     return res.status(HTTPSTATUS.ACCEPTED).json({
         message: 'Return outfit successfully',
-        result: metadata
+        result: data_output
     })
 }

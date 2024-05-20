@@ -46,8 +46,9 @@ export default class ReferenceShop {
     referenceLink: string
     review: Review
 
-    constructor(ref: ReferenceShop) {
+    constructor(ref: ReferenceShopType) {
         this._id = ref._id || new ObjectId()
+        this.shop = ref.shop
         this.clothId = ref.clothId
         this.clothName = ref.clothName
         this.clothCategory = ref.clothCategory
