@@ -26,6 +26,11 @@ const TourGuideButton = () => {
       },
       {
         target: '.step-3',
+        content: 'Your choices will be here',
+        placement: 'left',
+      },
+      {
+        target: '.step-4',
         content: 'Press the submit button.',
         placement: 'top',
       },

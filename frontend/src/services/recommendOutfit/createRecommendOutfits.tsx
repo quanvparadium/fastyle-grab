@@ -1,3 +1,4 @@
+import { useToast } from '@/components/ui/use-toast'
 import axiosInstance from '@/lib/axios'
 import useRecommendOutfitStore from '@/store/recommendOutfitStore'
 import { RecommendOutfit, SelectedOutfitID } from '@/types/recommendOutfit'
@@ -20,6 +21,7 @@ const createRecommendOutfits = async (body: SelectedOutfitID) => {
 
 const useCreateRecommendOutfit = () => {
   const { setRecommendOutfit } = useRecommendOutfitStore((state) => state)
+  const { toast } = useToast()
 
   return useMutation({
     mutationFn: (body: SelectedOutfitID) => createRecommendOutfits(body),
@@ -27,7 +29,11 @@ const useCreateRecommendOutfit = () => {
       setRecommendOutfit(data.outfit)
     },
     onError: (error) => {
-      console.error('Error in fetchFashion:', error)
+      toast({
+        variant: 'destructive',
+        description: `Something went wrong: ${error}`,
+        duration: 4000,
+      })
     },
   })
 }

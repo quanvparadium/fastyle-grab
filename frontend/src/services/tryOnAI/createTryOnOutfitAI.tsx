@@ -1,3 +1,4 @@
+import { useToast } from '@/components/ui/use-toast'
 import { API_KEY, FASHION_ENDPOINT, fashionParams } from '@/constants/try-on-ai'
 import useTryOnOutfitAIStore from '@/store/tryOnAIStore'
 import { useMutation } from '@tanstack/react-query'
@@ -56,6 +57,7 @@ const fetchWithRetry = async (
 const useCreateTryOnOutfitAI = () => {
   const { setIsLoadingResult, modelUrl, clothesUrl, setResultUrl } =
     useTryOnOutfitAIStore((state) => state)
+  const { toast } = useToast()
 
   return useMutation({
     mutationFn: () =>
@@ -78,7 +80,11 @@ const useCreateTryOnOutfitAI = () => {
       }
     },
     onError: (error) => {
-      console.error('Error in fetchFashion:', error)
+      toast({
+        variant: 'destructive',
+        description: `Something went wrong: ${error}`,
+        duration: 4000,
+      })
     },
     onSettled: () => {
       setIsLoadingResult(false)
