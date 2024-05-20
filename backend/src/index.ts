@@ -6,10 +6,7 @@ import { defaultErrorHandler } from '~/middlewares/errors.middlewares'
 import dotenv from 'dotenv'
 import apiRouter from './routes/api.routes'
 import { createData } from './utils/initialdb'
-<<<<<<< HEAD
-=======
 import clothesService from './services/clothes.services'
->>>>>>> backend
 dotenv.config()
 
 const app = express()

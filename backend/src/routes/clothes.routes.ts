@@ -13,11 +13,6 @@ const clothesRouter = Router()
 
 clothesRouter.get('/:type/:id', clothesValidator, wrapAsync(getClothesController))
 
-<<<<<<< HEAD
-clothesRouter.get('/:type', clothesValidator, wrapAsync(getAllClothesController))
-
-=======
 clothesRouter.post('/:type', clothesValidator, wrapAsync(getAllClothesController))
->>>>>>> backend
 
 export default clothesRouter
