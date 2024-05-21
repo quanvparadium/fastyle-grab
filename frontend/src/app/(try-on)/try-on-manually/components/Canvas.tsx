@@ -25,7 +25,7 @@ const Canvas = ({ canvasRef, canvas }: CanvasProps) => {
     <div id='canvas' className='relative flex-1 h-full'>
       <canvas ref={canvasRef} />
 
-      <div className='absolute bg-white bottom-10 left-1/2 -translate-x-1/2 py-1 px-2 flex gap-1 rounded-md shadow-md'>
+      {/* <div className='absolute bg-white bottom-10 left-1/2 -translate-x-1/2 py-1 px-2 flex gap-1 rounded-md shadow-md'>
         {toolbar.map((item) => (
           <TooltipProvider key={item.id} delayDuration={0}>
             <Tooltip>
@@ -49,7 +49,7 @@ const Canvas = ({ canvasRef, canvas }: CanvasProps) => {
             </Tooltip>
           </TooltipProvider>
         ))}
-      </div>
+      </div> */}
     </div>
   )
 }

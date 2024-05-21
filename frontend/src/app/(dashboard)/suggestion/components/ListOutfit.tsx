@@ -9,6 +9,7 @@ import { CategoryID } from '@/types/product'
 import Image from 'next/image'
 import React, { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 
 interface ListOutfitProps {
@@ -73,13 +74,20 @@ const ListOutfit = ({ categoryID }: ListOutfitProps) => {
                 <ItemDetailDialog categoryID={categoryID} clothes={item} />
 
                 <div className='w-full h-full bg-[#EFEFEF] '>
-                  <Image
+                  <LazyLoadImage
+                    width={'100%'}
+                    height={'100%'}
+                    effect='blur'
+                    src={item.view.default}
+                  />
+
+                  {/* <Image
                     src={item.view.default}
                     alt=''
                     fill
                     className='object-cover'
                     sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-                  />
+                  /> */}
                 </div>
               </div>
             )),
