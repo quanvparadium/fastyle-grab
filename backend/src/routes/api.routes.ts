@@ -7,6 +7,7 @@ import staticRouter from './static.routes'
 import recommendRouter from './recommend.routes'
 import { buyLinkShop, buyLinkCrawl } from '~/utils/updatedb'
 import retrievalRouter from './retrieval.routes'
+import tryonRouter from './tryon.routes'
 const apiRouter = Router()
 
 /**
@@ -21,6 +22,7 @@ apiRouter.use('/clothes', clothesRouter)
 apiRouter.use('/static', staticRouter)
 apiRouter.use('/recommend', recommendRouter)
 apiRouter.use('/retrieval', retrievalRouter)
+apiRouter.use('/try-on', tryonRouter)
 
 apiRouter.route('/buylink').post(async (req, res) => {
     const { shop } = req.body
