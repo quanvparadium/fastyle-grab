@@ -72,7 +72,10 @@ const SuggestShopList = ({ categoryID, clothes }: SuggestShopListProps) => {
                 <Button
                   className='w-full p-0 border-primary text-primary hover:text-primary'
                   variant='outline'
-                  onClick={() => openInNewTab(item?.referenceLink)}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    openInNewTab(item?.referenceLink)
+                  }}
                 >
                   Buy now
                 </Button>
