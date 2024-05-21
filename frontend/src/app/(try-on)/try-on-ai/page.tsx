@@ -3,19 +3,29 @@
 import Header from '@/app/(dashboard)/components/Header'
 import SelectModel from '@/app/(try-on)/try-on-ai/components/SelectModel'
 import { Button } from '@/components/ui/button'
+import { ROUTE } from '@/constants/route'
 import useCreateTryOnOutfitAI from '@/services/tryOnAI/createTryOnOutfitAI'
 import useTryOnOutfitAIStore from '@/store/tryOnAIStore'
-import { Equal, Plus } from 'lucide-react'
+import { Equal, MoveLeft, Plus } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import React from 'react'
 
 const TryOnAI = () => {
   const { isLoadingResult, clothesUrl, modelUrl, resultUrl } =
     useTryOnOutfitAIStore((state) => state)
+  const router = useRouter()
 
   const createTryOnOutfitAI = useCreateTryOnOutfitAI()
 
   return (
     <div className='pt-6 px-[120px]'>
+      <Button
+        className='absolute left-4 text-black hover:text-opacity-50'
+        variant={'link'}
+        onClick={() => router.push(ROUTE.SUGGESTION)}
+      >
+        <MoveLeft />
+      </Button>
       <Header
         title='Fashion AI'
         description='Pick a model and outfit to discover if it suits you.'

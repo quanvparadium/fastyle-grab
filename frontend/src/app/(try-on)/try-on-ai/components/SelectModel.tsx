@@ -4,6 +4,7 @@ import { modelData } from '@/constants/try-on-ai'
 import useTryOnOutfitAIStore from '@/store/tryOnAIStore'
 import { List } from 'lucide-react'
 import React from 'react'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 const SelectModel = () => {
   const { modelUrl, setModelUrl } = useTryOnOutfitAIStore((state) => state)
@@ -25,10 +26,16 @@ const SelectModel = () => {
           {modelData.map((item) => (
             <div
               key={item}
-              className={`h-[70px] rounded-lg cursor-pointer border-2 ${modelUrl === item ? 'border-macaw' : 'border-transparent'}`}
+              className={`h-[70px] rounded-lg cursor-pointer border-2 ${modelUrl === item ? 'border-macaw' : 'border-transparent'} overflow-hidden`}
               onClick={() => setModelUrl(item)}
             >
-              <img src={item} alt='Model' />
+              <LazyLoadImage
+                src={item}
+                width={'100%'}
+                height={'100%'}
+                effect='blur'
+                alt='Model'
+              />
             </div>
           ))}
         </div>

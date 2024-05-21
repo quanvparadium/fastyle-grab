@@ -17,11 +17,11 @@ const HeroSectionHeader = () => {
             Introduction
           </Button>
         </a>
-        <a href='#features'>
+        {/* <a href='#features'>
           <Button className='link-button' variant='link'>
             Features
           </Button>
-        </a>
+        </a> */}
         <a href='#about'>
           <Button className='link-button' variant='link'>
             About us

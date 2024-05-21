@@ -9,7 +9,6 @@ import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react'
-import { useMediaQuery } from 'react-responsive'
 import MemberInfo from '../../interfaces/MemberInfo'
 
 interface AboutUsSectionSliderProps {
@@ -26,10 +25,6 @@ const AboutUsSectionSlider = ({
   const swiperRef = useRef<SwiperRef>(null)
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isPreventClick, setIsPreventClick] = useState(false)
-
-  const isDesktopOrLaptop = useMediaQuery({
-    query: '(min-width: 1224px)',
-  })
 
   useEffect(() => {
     setIsPreventClick(true)
@@ -48,8 +43,8 @@ const AboutUsSectionSlider = ({
     <div
       className='w-full flex justify-center items-center'
       style={{
-        paddingLeft: isDesktopOrLaptop ? '25%' : '16%',
-        paddingRight: isDesktopOrLaptop ? '25%' : '16%',
+        paddingLeft: '25%',
+        paddingRight: '25%',
         ...style,
       }}
     >
@@ -78,7 +73,7 @@ const AboutUsSectionSlider = ({
       <Swiper
         ref={swiperRef}
         autoHeight={true}
-        slidesPerView={isDesktopOrLaptop ? 3 : 1}
+        slidesPerView={3}
         spaceBetween={16}
         centeredSlides={true}
         slidesPerGroup={1}

@@ -17,7 +17,7 @@ const PreviewSection = () => {
   }
 
   return (
-    <div className='flex-1 flex flex-col px-4 py-4'>
+    <div className='step-3 flex-1 flex flex-col px-4 py-4'>
       <div className='flex-1 flex flex-col gap-4 overflow-hidden pb-4'>
         <div className='w-full flex items-center justify-center'>
           <span className='text-[18px] font-medium'>YOUR ITEM</span>
@@ -28,7 +28,7 @@ const PreviewSection = () => {
 
       <div className='w-full flex justify-end'>
         <Button
-          className='step-3 w-[130px]'
+          className='step-4 w-[130px]'
           onClick={handleCreateOutfit}
           disabled={
             Object.keys(selectedOutfit).length === 0 ||
