@@ -3,8 +3,13 @@
 import React, { useEffect, useState } from 'react'
 import { Input } from '@/components/ui/input'
 import useRecommendOutfitStore from '@/store/recommendOutfitStore'
+import { CategoryID } from '@/types/product'
 
-const Search = () => {
+interface SearchProps {
+  selectedCategoryID: CategoryID
+}
+
+const Search = ({ selectedCategoryID }: SearchProps) => {
   const { setSearchValue } = useRecommendOutfitStore((state) => state)
   const [search, setSearch] = useState<string>('')
 
@@ -12,12 +17,17 @@ const Search = () => {
   useEffect(() => {
     const handler = setTimeout(() => {
       setSearchValue(search)
-    }, 1500)
+    }, 1000)
 
     return () => {
       clearTimeout(handler)
     }
   }, [search])
+
+  useEffect(() => {
+    setSearchValue('')
+    setSearch('')
+  }, [selectedCategoryID])
 
   return (
     <div className='px-8 py-4'>

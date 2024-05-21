@@ -22,7 +22,7 @@ const SelectOutfitSection = () => {
       />
 
       <div className='step-2 flex-1 flex flex-col overflow-hidden'>
-        <Search />
+        <Search selectedCategoryID={selectedCategoryID} />
 
         <ListOutfit categoryID={selectedCategoryID} />
       </div>
