@@ -6,7 +6,6 @@ import useSelectSuggestOutfit from '@/hooks/useSelectSuggestOutfit'
 import { CategoryID } from '@/types/product'
 import { Trash2 } from 'lucide-react'
 import PerfectScrollbar from 'react-perfect-scrollbar'
-import 'react-perfect-scrollbar/dist/css/styles.css'
 import React from 'react'
 
 const PreviewChosen = () => {

@@ -1,6 +1,9 @@
+import { useToast } from '@/components/ui/use-toast'
 import { NextResponse } from 'next/server'
 
 export async function POST(req: Request) {
+  const { toast } = useToast()
+
   try {
     // Parse the request body as JSON
     const bodyData = await req.json()
@@ -21,7 +24,11 @@ export async function POST(req: Request) {
     return NextResponse.json(responseData, { status: 200 })
   } catch (error) {
     // Handle unexpected errors gracefully
-    console.error('Error processing the request:', error)
+    toast({
+      variant: 'destructive',
+      description: `Something went wrong!`,
+      duration: 4000,
+    })
     return NextResponse.json(
       { detail: 'Internal server error' },
       { status: 500 },

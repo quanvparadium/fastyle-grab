@@ -75,14 +75,18 @@ const useCreateTryOnOutfitAI = () => {
           console.log('result', response)
           setResultUrl(response?.output[0])
         } catch (error) {
-          console.error('Error in fetchResult:', error)
+          toast({
+            variant: 'destructive',
+            description: `Something went wrong!`,
+            duration: 4000,
+          })
         }
       }
     },
     onError: (error) => {
       toast({
         variant: 'destructive',
-        description: `Something went wrong: ${error}`,
+        description: `Something went wrong!`,
         duration: 4000,
       })
     },

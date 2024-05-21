@@ -31,7 +31,7 @@ const useCreateRecommendOutfit = () => {
     onError: (error) => {
       toast({
         variant: 'destructive',
-        description: `Something went wrong: ${error}`,
+        description: `Something went wrong!`,
         duration: 4000,
       })
     },

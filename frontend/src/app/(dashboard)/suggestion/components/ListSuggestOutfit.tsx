@@ -35,7 +35,13 @@ const ListSuggestOutfit = () => {
   }
 
   useEffect(() => {
-    suggestOutfitRef.current?.scrollIntoView()
+    const timeout = setTimeout(() => {
+      suggestOutfitRef.current?.scrollIntoView()
+    }, 10)
+
+    return () => {
+      clearTimeout(timeout)
+    }
   }, [recommendOutfit])
 
   if (!recommendOutfit.length) {
