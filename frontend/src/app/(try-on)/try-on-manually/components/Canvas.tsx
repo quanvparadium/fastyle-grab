@@ -28,7 +28,7 @@ const Canvas = ({ canvasRef, canvas }: CanvasProps) => {
   return (
     <div id='canvas' className='relative flex-1 h-full'>
       <Button
-        className='absolute left-4 top-4 text-black hover:text-opacity-50'
+        className='absolute left-4 top-4 text-black hover:text-opacity-50 z-50'
         variant={'link'}
         onClick={() => router.push(ROUTE.SUGGESTION)}
       >

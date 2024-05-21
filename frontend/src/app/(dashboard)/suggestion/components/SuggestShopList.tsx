@@ -5,6 +5,7 @@ import { CategoryID, Clothes } from '@/types/product'
 import { TrimTextByLength } from '@/utils/string'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import React from 'react'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 interface SuggestShopListProps {
   clothes: Clothes
@@ -51,8 +52,9 @@ const SuggestShopList = ({ categoryID, clothes }: SuggestShopListProps) => {
             onClick={() => openInNewTab(item?.referenceLink)}
           >
             <div className={`w-full h-[250px] rounded-md overflow-hidden`}>
-              <img
+              <LazyLoadImage
                 src={item?.view?.default}
+                effect='blur'
                 className='w-full h-full object-contain'
               />
             </div>
