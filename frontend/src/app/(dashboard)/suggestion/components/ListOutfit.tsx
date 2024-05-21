@@ -66,14 +66,14 @@ const ListOutfit = ({ categoryID }: ListOutfitProps) => {
             page?.result?.map((item, index) => (
               <div
                 key={item._id}
-                className={`relative w-full h-[135px] cursor-pointer border-2 ${isSelectedProduct(categoryID, item._id) ? 'border-primary' : 'border-transparent'} group`}
+                className={`relative w-full h-[135px] cursor-pointer border-2 ${isSelectedProduct(categoryID, item._id) ? 'border-primary' : 'border-transparent'} hover:shadow-md group`}
                 onClick={() => handleSelectProduct(categoryID, item)}
                 // Là ảnh cuối cùng của page thì thêm ref vào để trigger inf loading
                 ref={page.result.length === index + 1 ? ref : null}
               >
                 <ItemDetailDialog categoryID={categoryID} clothes={item} />
 
-                <div className='w-full h-full bg-[#EFEFEF] '>
+                <div className='w-full h-full bg-[#EFEFEF]'>
                   <LazyLoadImage
                     width={'100%'}
                     height={'100%'}
