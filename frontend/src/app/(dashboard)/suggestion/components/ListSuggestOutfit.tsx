@@ -80,12 +80,12 @@ const ListSuggestOutfit = () => {
             </div>
 
             <div className='flex flex-col gap-2'>
-              {outfit?.topwear && (
+              {outfit?.bottomwear && (
                 <Button
                   onClick={() =>
-                    handleClickTryOnAI(outfit?.topwear?.view?.default as string)
+                    handleClickTryOnAI(outfit?.bottomwear?.view?.default as string)
                   }
-                  disabled={!outfit?.topwear}
+                  disabled={!outfit?.bottomwear}
                   variant='outline'
                 >
                   Try on AI
