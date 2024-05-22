@@ -2,6 +2,7 @@
 
 import Header from '@/app/(dashboard)/components/Header'
 import SelectModel from '@/app/(try-on)/try-on-ai/components/SelectModel'
+import Spinner from '@/components/global/Spinner'
 import { Button } from '@/components/ui/button'
 import { ROUTE } from '@/constants/route'
 import useCreateTryOnOutfitAI from '@/services/tryOnAI/createTryOnOutfitAI'
@@ -64,7 +65,14 @@ const TryOnAI = () => {
           onClick={() => createTryOnOutfitAI.mutate()}
           disabled={!modelUrl || !clothesUrl || isLoadingResult}
         >
-          {isLoadingResult ? 'Loading....' : 'Run'}
+          {isLoadingResult ? (
+            <div className='flex gap-2 items-center'>
+              <Spinner />
+              <span>Loading</span>
+            </div>
+          ) : (
+            'Run'
+          )}
         </Button>
       </div>
     </div>
