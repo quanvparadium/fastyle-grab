@@ -38,7 +38,9 @@ const ParameterSidebar = ({ canvas }: ParameterSidebarProps) => {
   if (!activeObject) {
     return (
       <div className='w-[300px] h-full border px-4 py-2 flex items-center justify-center'>
-        <span>No data</span>
+        <span className='text-center'>
+          Please select an object to view detail
+        </span>
       </div>
     )
   }
