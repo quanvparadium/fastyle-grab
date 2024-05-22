@@ -17,11 +17,6 @@ const HeroSectionHeader = () => {
             Introduction
           </Button>
         </a>
-        {/* <a href='#features'>
-          <Button className='link-button' variant='link'>
-            Features
-          </Button>
-        </a> */}
         <a href='#about'>
           <Button className='link-button' variant='link'>
             About us
@@ -54,7 +49,7 @@ const HeroSectionHeader = () => {
           onClick={() => router.push(ROUTE.SUGGESTION)}
           size='lg'
         >
-          Dashboard
+          Try it
         </Button>
       </div>
     </div>
