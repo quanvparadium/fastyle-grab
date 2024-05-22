@@ -24,10 +24,10 @@ export const toolbar: ToolbarData[] = [
 export const positionDefault: {
   [key in CategoryID]: { top: number; left: number }
 } = {
-  headwear: { top: 0, left: 420 },
-  topwear: { top: 180, left: 420 },
-  bottomwear: { top: 360, left: 420 },
-  footwear: { top: 540, left: 420 },
-  dress: { top: 180, left: 420 },
-  others: { top: 300, left: 620 },
+  headwear: { top: 0, left: 450 },
+  topwear: { top: 180, left: 450 },
+  bottomwear: { top: 360, left: 450 },
+  footwear: { top: 540, left: 450 },
+  dress: { top: 180, left: 450 },
+  others: { top: 300, left: 650 },
 }
