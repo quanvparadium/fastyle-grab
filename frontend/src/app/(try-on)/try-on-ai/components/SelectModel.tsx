@@ -10,7 +10,7 @@ const SelectModel = () => {
   const { modelUrl, setModelUrl } = useTryOnOutfitAIStore((state) => state)
 
   return (
-    <div className='flex-1 flex flex-col gap-6'>
+    <div className='flex-1 flex flex-col gap-3'>
       <div className='relative h-[400px] border rounded'>
         <div className='absolute border-b border-r top-0 left-0 px-4 bg-white rounded'>
           <span className='text-[12px]'>Model</span>

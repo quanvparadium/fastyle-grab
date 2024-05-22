@@ -30,8 +30,13 @@ const fetchTryOn = async ({
 }
 
 const useCreateTryOnOutfitAI = () => {
-  const { setIsLoadingResult, modelUrl, clothesUrl, setResultUrl } =
-    useTryOnOutfitAIStore((state) => state)
+  const {
+    setIsLoadingResult,
+    modelUrl,
+    clothesUrl,
+    setResultUrl,
+    setProgressPercent,
+  } = useTryOnOutfitAIStore((state) => state)
   const { toast } = useToast()
 
   return useMutation({
@@ -45,6 +50,7 @@ const useCreateTryOnOutfitAI = () => {
     },
     onSuccess: async (data) => {
       setResultUrl(data?.image_url)
+      setProgressPercent(100)
     },
     onError: (error) => {
       toast({
@@ -55,6 +61,7 @@ const useCreateTryOnOutfitAI = () => {
     },
     onSettled: () => {
       setIsLoadingResult(false)
+      setProgressPercent(0)
     },
   })
 }
