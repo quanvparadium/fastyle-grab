@@ -35,7 +35,14 @@ const PreviewSection = () => {
             createRecommendOutfit.isPending
           }
         >
-          {createRecommendOutfit.isPending ? 'Loading...' : 'Submit'}
+          {createRecommendOutfit.isPending ? (
+            <div className='flex gap-2 items-center'>
+              <Spinner />
+              <span>Loading</span>
+            </div>
+          ) : (
+            'Submit'
+          )}
         </Button>
       </div>
     </div>
