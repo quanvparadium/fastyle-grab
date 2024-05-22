@@ -211,7 +211,7 @@ export const handleCanvasKeyDown = ({
     case 'KeyH':
       setActiveTool('hand')
       break
-    case 'KeyH':
+    case 'KeyM':
       setActiveTool('move')
       break
     case 'Delete':
