@@ -16,7 +16,7 @@ import React from 'react'
 const TryOnAI = () => {
   const { isLoadingResult, clothesUrl, resultUrl, modelUrl } =
     useTryOnOutfitAIStore((state) => state)
-  const { progressPercent } = useProgress(isLoadingResult, 45000, 90)
+  const { progressPercent } = useProgress(isLoadingResult, 42000, 96)
   const router = useRouter()
 
   const createTryOnOutfitAI = useCreateTryOnOutfitAI()
