@@ -2,18 +2,21 @@
 
 import Header from '@/app/(dashboard)/components/Header'
 import SelectModel from '@/app/(try-on)/try-on-ai/components/SelectModel'
-import Spinner from '@/components/global/Spinner'
 import { Button } from '@/components/ui/button'
+import { Progress } from '@/components/ui/progress'
 import { ROUTE } from '@/constants/route'
+import useProgress from '@/hooks/useProgress'
 import useCreateTryOnOutfitAI from '@/services/tryOnAI/createTryOnOutfitAI'
 import useTryOnOutfitAIStore from '@/store/tryOnAIStore'
+import { roundDecimalNumber } from '@/utils/number'
 import { Equal, MoveLeft, Plus } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 
 const TryOnAI = () => {
-  const { isLoadingResult, clothesUrl, modelUrl, resultUrl } =
+  const { isLoadingResult, clothesUrl, resultUrl, modelUrl } =
     useTryOnOutfitAIStore((state) => state)
+  const { progressPercent } = useProgress(isLoadingResult, 45000, 90)
   const router = useRouter()
 
   const createTryOnOutfitAI = useCreateTryOnOutfitAI()
@@ -33,7 +36,7 @@ const TryOnAI = () => {
         icon={'Shirt'}
       />
 
-      <div className='flex flex-col gap-3'>
+      <div className='flex flex-col gap-1'>
         <div className='flex items-start gap-10'>
           <SelectModel />
 
@@ -61,19 +64,22 @@ const TryOnAI = () => {
           </div>
         </div>
 
-        <Button
-          onClick={() => createTryOnOutfitAI.mutate()}
-          disabled={!modelUrl || !clothesUrl || isLoadingResult}
-        >
-          {isLoadingResult ? (
-            <div className='flex gap-2 items-center'>
-              <Spinner />
-              <span>Loading</span>
-            </div>
-          ) : (
-            'Run'
-          )}
-        </Button>
+        {isLoadingResult ? (
+          <div className='w-full h-10'>
+            <span>Loading {roundDecimalNumber(progressPercent, 2)}%</span>
+            <Progress
+              value={progressPercent}
+              className='w-full h-full rounded-md'
+            />
+          </div>
+        ) : (
+          <Button
+            onClick={() => createTryOnOutfitAI.mutate()}
+            disabled={!modelUrl || !clothesUrl || isLoadingResult}
+          >
+            Run
+          </Button>
+        )}
       </div>
     </div>
   )
