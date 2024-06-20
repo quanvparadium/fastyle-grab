@@ -27,7 +27,9 @@
 ## Installation
 ---
 
-<span style="color:red; font-weight: bold; font-size: 120%;">Note: </span><span style="color:blue; font-weight: bold; font-size: 120%;">Please read this [README](services/README.md) file carefully before performing the following steps.</span>
+#### [Python services]((services/README.md)) - Please read this [README](services/README.md) file carefully before performing the following steps.
+
+#### [GenAI services]((backend/README.md)) - Please read this [README](backend/README.md) file carefully before performing the following steps.
 
 
 ## Architecture
