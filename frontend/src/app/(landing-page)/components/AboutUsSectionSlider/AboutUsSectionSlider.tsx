@@ -9,7 +9,10 @@ import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react'
+<<<<<<< HEAD
+=======
 import { useMediaQuery } from 'react-responsive'
+>>>>>>> main
 import MemberInfo from '../../interfaces/MemberInfo'
 
 interface AboutUsSectionSliderProps {
@@ -27,10 +30,13 @@ const AboutUsSectionSlider = ({
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isPreventClick, setIsPreventClick] = useState(false)
 
+<<<<<<< HEAD
+=======
   const isDesktopOrLaptop = useMediaQuery({
     query: '(min-width: 1224px)',
   })
 
+>>>>>>> main
   useEffect(() => {
     setIsPreventClick(true)
     const timerId = setTimeout(() => {
@@ -48,8 +54,13 @@ const AboutUsSectionSlider = ({
     <div
       className='w-full flex justify-center items-center'
       style={{
+<<<<<<< HEAD
+        paddingLeft: '25%',
+        paddingRight: '25%',
+=======
         paddingLeft: isDesktopOrLaptop ? '25%' : '16%',
         paddingRight: isDesktopOrLaptop ? '25%' : '16%',
+>>>>>>> main
         ...style,
       }}
     >
@@ -78,7 +89,11 @@ const AboutUsSectionSlider = ({
       <Swiper
         ref={swiperRef}
         autoHeight={true}
+<<<<<<< HEAD
+        slidesPerView={3}
+=======
         slidesPerView={isDesktopOrLaptop ? 3 : 1}
+>>>>>>> main
         spaceBetween={16}
         centeredSlides={true}
         slidesPerGroup={1}

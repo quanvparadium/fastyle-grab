@@ -1,7 +1,7 @@
 import React from 'react'
 import { Dialog, DialogTrigger } from '@/components/ui/dialog'
 import { CategoryID, Clothes } from '@/types/product'
-import { ArrowUpRight } from 'lucide-react'
+import { Store } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import ItemDetailDialogContent from '@/app/(dashboard)/suggestion/components/ItemDetailDialogContent'
 
@@ -20,10 +20,10 @@ const ItemDetailDialog = ({ clothes, categoryID }: ItemDetailDialogProps) => {
         onClick={(e) => {
           e.stopPropagation()
         }}
-        className='absolute right-0 z-20 hidden group-hover:flex'
+        className='absolute top-1 right-1 z-20 hidden group-hover:flex'
       >
-        <Button className='p-0 w-8 h-8' variant={'ghost'}>
-          <ArrowUpRight size={16} />
+        <Button className='p-0 w-6 h-6 rounded-full bg-primary'>
+          <Store size={16} color='#fff' />
         </Button>
       </DialogTrigger>
 

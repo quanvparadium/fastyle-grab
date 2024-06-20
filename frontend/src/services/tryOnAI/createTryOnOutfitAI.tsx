@@ -1,3 +1,17 @@
+<<<<<<< HEAD
+import { useToast } from '@/components/ui/use-toast'
+import axiosInstance from '@/lib/axios'
+import useTryOnOutfitAIStore from '@/store/tryOnAIStore'
+import { useMutation } from '@tanstack/react-query'
+import { AxiosResponse } from 'axios'
+
+type FashionResponse = {
+  message: string
+  image_url: string
+}
+
+const fetchTryOn = async ({
+=======
 import { API_KEY, FASHION_ENDPOINT, fashionParams } from '@/constants/try-on-ai'
 import useTryOnOutfitAIStore from '@/store/tryOnAIStore'
 import { useMutation } from '@tanstack/react-query'
@@ -9,18 +23,28 @@ type FashionResponse = {
 }
 
 const fetchFashion = async ({
+>>>>>>> main
   clothesUrl,
   modelUrl,
 }: {
   clothesUrl: string
   modelUrl: string
 }) => {
+<<<<<<< HEAD
+  const response: AxiosResponse<FashionResponse> = await axiosInstance.post(
+    '/try-on',
+    {
+      clothUrl: clothesUrl,
+      base_url: modelUrl,
+      clothId: Math.floor(Math.random() * (5000 - 1 + 1)) + 1,
+=======
   const response: AxiosResponse<FashionResponse> = await axios.post(
     FASHION_ENDPOINT,
     {
       ...fashionParams,
       cloth_image: clothesUrl,
       init_image: modelUrl,
+>>>>>>> main
     },
   )
 
@@ -28,6 +52,21 @@ const fetchFashion = async ({
   return response.data
 }
 
+<<<<<<< HEAD
+const useCreateTryOnOutfitAI = () => {
+  const {
+    setIsLoadingResult,
+    modelUrl,
+    clothesUrl,
+    setResultUrl,
+    setProgressPercent,
+  } = useTryOnOutfitAIStore((state) => state)
+  const { toast } = useToast()
+
+  return useMutation({
+    mutationFn: () =>
+      fetchTryOn({
+=======
 const fetchResult = async (fetchUrl: string) => {
   const response = await axios.post(fetchUrl, {
     key: API_KEY,
@@ -60,6 +99,7 @@ const useCreateTryOnOutfitAI = () => {
   return useMutation({
     mutationFn: () =>
       fetchFashion({
+>>>>>>> main
         clothesUrl: clothesUrl as string,
         modelUrl: modelUrl as string,
       }),
@@ -67,6 +107,21 @@ const useCreateTryOnOutfitAI = () => {
       setIsLoadingResult(true)
     },
     onSuccess: async (data) => {
+<<<<<<< HEAD
+      setResultUrl(data?.image_url)
+      setProgressPercent(100)
+    },
+    onError: (error) => {
+      toast({
+        variant: 'destructive',
+        description: `Something went wrong!`,
+        duration: 4000,
+      })
+    },
+    onSettled: () => {
+      setIsLoadingResult(false)
+      setProgressPercent(0)
+=======
       if (data && data.fetch_result) {
         try {
           const response = await fetchWithRetry(data.fetch_result)
@@ -82,6 +137,7 @@ const useCreateTryOnOutfitAI = () => {
     },
     onSettled: () => {
       setIsLoadingResult(false)
+>>>>>>> main
     },
   })
 }

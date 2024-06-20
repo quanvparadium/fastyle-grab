@@ -31,6 +31,21 @@ const useSelectSuggestOutfit = () => {
       return
     }
 
+<<<<<<< HEAD
+    if (selectedOutfit.hasOwnProperty(categoryID)) {
+      const newSelectedOutfit = {
+        ...selectedOutfit,
+      }
+      newSelectedOutfit[categoryID]?.push(clothes)
+      setSelectedOutfit(newSelectedOutfit)
+    } else {
+      const newSelectedOutfit = {
+        [categoryID]: [clothes],
+        ...selectedOutfit,
+      }
+      setSelectedOutfit(newSelectedOutfit)
+    }
+=======
     const cloneSelectedOutfit = { ...selectedOutfit }
 
     if (cloneSelectedOutfit.hasOwnProperty(categoryID)) {
@@ -40,6 +55,7 @@ const useSelectSuggestOutfit = () => {
     }
 
     setSelectedOutfit(cloneSelectedOutfit)
+>>>>>>> main
   }
 
   const isExceedLimit = (categoryID: CategoryID) => {
