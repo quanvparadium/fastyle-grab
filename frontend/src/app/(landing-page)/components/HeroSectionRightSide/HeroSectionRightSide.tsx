@@ -3,8 +3,15 @@
 import { Button } from '@/components/ui/button'
 import HeroImage from '../../../../assets/HeroImage.gif'
 import Image from 'next/image'
+<<<<<<< HEAD
 
 const HeroSectionRightSide = () => {
+=======
+import { useRouter } from 'next/navigation'
+
+const HeroSectionRightSide = () => {
+  const router = useRouter()
+>>>>>>> main
 
   return (
     <div
@@ -77,6 +84,10 @@ const HeroSectionRightSide = () => {
                 left: 16,
                 padding: 0,
               }}
+<<<<<<< HEAD
+=======
+              onClick={() => router.push('/retrival')}
+>>>>>>> main
             >
               <img
                 src={
@@ -97,6 +108,10 @@ const HeroSectionRightSide = () => {
                 left: 0,
                 padding: 0,
               }}
+<<<<<<< HEAD
+=======
+              onClick={() => router.push('/retrival')}
+>>>>>>> main
             >
               <img
                 src={
@@ -117,6 +132,10 @@ const HeroSectionRightSide = () => {
                 left: -16,
                 padding: 0,
               }}
+<<<<<<< HEAD
+=======
+              onClick={() => router.push('/retrival')}
+>>>>>>> main
             >
               <img
                 src={
@@ -140,6 +159,10 @@ const HeroSectionRightSide = () => {
                 fontWeight: 600,
                 fontSize: 16,
               }}
+<<<<<<< HEAD
+=======
+              onClick={() => router.push('/retrival')}
+>>>>>>> main
             >
               +50
             </Button>

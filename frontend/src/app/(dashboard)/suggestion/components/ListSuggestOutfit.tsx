@@ -9,11 +9,17 @@ import useTryOnOutfitManuallyStore from '@/store/tryOnManuallyStore'
 import { CategoryID } from '@/types/product'
 import { RecommendOutfit } from '@/types/recommendOutfit'
 import { useRouter } from 'next/navigation'
+<<<<<<< HEAD
 import React, { useEffect, useRef } from 'react'
 
 const ListSuggestOutfit = () => {
   const suggestOutfitRef = useRef<HTMLDivElement>(null)
 
+=======
+import React from 'react'
+
+const ListSuggestOutfit = () => {
+>>>>>>> main
   const router = useRouter()
 
   const { setTryOnOutfit } = useTryOnOutfitManuallyStore((state) => state)
@@ -34,6 +40,7 @@ const ListSuggestOutfit = () => {
     router.push(ROUTE.TRY_ON_AI)
   }
 
+<<<<<<< HEAD
   useEffect(() => {
     const timeout = setTimeout(() => {
       suggestOutfitRef.current?.scrollIntoView()
@@ -98,6 +105,58 @@ const ListSuggestOutfit = () => {
           </div>
         ))}
       </div>
+=======
+  return (
+    <div className='flex flex-col gap-4'>
+      <span className='text-[20px] font-semibold'>Fashion Suggestion</span>
+    
+    <div className='grid grid-cols-5 gap-6 pb-4'>
+      {recommendOutfit.map((outfit, index) => (
+        <div
+          key={`recommendOutfit-${index}`}
+          className='flex flex-col gap-4 p-4 rounded-md border'
+        >
+          <div className='flex-1'>
+            <div className='w-full grid grid-cols-2 gap-2'>
+              {Object.entries(outfit).map(([categoryID, clothes]) => (
+                <div
+                  key={`${categoryID}-${clothes?._id}`}
+                  className='relative group'
+                >
+                  <ItemDetailDialog
+                    categoryID={categoryID as CategoryID}
+                    clothes={clothes}
+                  />
+
+                  <img
+                    src={clothes?.view?.default}
+                    className='w-full h-full object-cover rounded-[3px]'
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className='flex flex-col gap-2'>
+            {outfit?.topwear && (
+              <Button
+                onClick={() =>
+                  handleClickTryOnAI(outfit?.topwear?.view?.default as string)
+                }
+                disabled={!outfit?.topwear}
+                variant='outline'
+              >
+                Try on AI
+              </Button>
+            )}
+            <Button onClick={() => handleClickTryOnManually(outfit)}>
+              Try on Manually
+            </Button>
+          </div>
+        </div>
+      ))}
+    </div>
+>>>>>>> main
     </div>
   )
 }

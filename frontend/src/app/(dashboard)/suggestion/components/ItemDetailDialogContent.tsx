@@ -2,7 +2,10 @@ import SuggestShopList from '@/app/(dashboard)/suggestion/components/SuggestShop
 import { DialogContent } from '@/components/ui/dialog'
 import { CategoryID, Clothes } from '@/types/product'
 import React, { useState } from 'react'
+<<<<<<< HEAD
 import { LazyLoadImage } from 'react-lazy-load-image-component'
+=======
+>>>>>>> main
 
 interface ItemDetailDialogContentProps {
   clothes: Clothes
@@ -29,10 +32,17 @@ const ItemDetailDialogContent = ({
               return (
                 <div
                   key={viewOption}
+<<<<<<< HEAD
                   className={`w-full h-[56px] rounded-sm overflow-hidden cursor-pointer shadow-md ${currentImage === imgUrl ? 'opacity-100' : 'opacity-50'}`}
                   onClick={() => setCurrentImage(imgUrl)}
                 >
                   <LazyLoadImage effect='blur' src={imgUrl} />
+=======
+                  className={`w-full rounded-sm overflow-hidden cursor-pointer shadow-md ${currentImage === imgUrl ? 'opacity-100' : 'opacity-50'}`}
+                  onClick={() => setCurrentImage(imgUrl)}
+                >
+                  <img src={imgUrl} />
+>>>>>>> main
                 </div>
               )
             }
@@ -40,7 +50,11 @@ const ItemDetailDialogContent = ({
         </div>
 
         <div className='w-[400px] rounded overflow-hidden shadow'>
+<<<<<<< HEAD
           <LazyLoadImage src={currentImage} effect='blur' alt='' />
+=======
+          <img src={currentImage} alt='' />
+>>>>>>> main
         </div>
       </div>
 

@@ -3,8 +3,13 @@
 import React from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
+<<<<<<< HEAD
 import { sidebar } from '@/constants/sidebar'
 import { ROUTE } from '@/constants/route'
+=======
+import Image from 'next/image'
+import { sidebar } from '@/constants/sidebar'
+>>>>>>> main
 
 const Sidebar = () => {
   const pathname = usePathname()
@@ -12,6 +17,7 @@ const Sidebar = () => {
 
   return (
     <div className='fixed w-[230px] h-full py-8 px-6 border-r flex flex-col gap-12'>
+<<<<<<< HEAD
       <div
         className='flex gap-1 items-center cursor-pointer'
         onClick={() => router.push(ROUTE.HOME)}
@@ -22,6 +28,11 @@ const Sidebar = () => {
         <span className='text-[28px] font-semibold'>Fastyle</span>
       </div>
 
+=======
+      <div className='w-[100px] h-[93]'>
+        <Image src='/Logo.png' width={100} height={93} alt='Logo' />
+      </div>
+>>>>>>> main
       <div className='flex flex-col gap-4'>
         {sidebar.map((item) => {
           return (

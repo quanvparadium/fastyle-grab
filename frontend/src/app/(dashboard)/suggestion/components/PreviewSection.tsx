@@ -17,7 +17,11 @@ const PreviewSection = () => {
   }
 
   return (
+<<<<<<< HEAD
     <div className='step-3 flex-1 flex flex-col px-4 py-4'>
+=======
+    <div className='flex-1 flex flex-col px-4 py-4'>
+>>>>>>> main
       <div className='flex-1 flex flex-col gap-4 overflow-hidden pb-4'>
         <div className='w-full flex items-center justify-center'>
           <span className='text-[18px] font-medium'>YOUR ITEM</span>
@@ -28,13 +32,18 @@ const PreviewSection = () => {
 
       <div className='w-full flex justify-end'>
         <Button
+<<<<<<< HEAD
           className='step-4 w-[130px]'
+=======
+          className='step-3 w-[130px]'
+>>>>>>> main
           onClick={handleCreateOutfit}
           disabled={
             Object.keys(selectedOutfit).length === 0 ||
             createRecommendOutfit.isPending
           }
         >
+<<<<<<< HEAD
           {createRecommendOutfit.isPending ? (
             <div className='flex gap-2 items-center'>
               <Spinner />
@@ -43,6 +52,9 @@ const PreviewSection = () => {
           ) : (
             'Submit'
           )}
+=======
+          {createRecommendOutfit.isPending ? 'Loading...' : 'Submit'}
+>>>>>>> main
         </Button>
       </div>
     </div>

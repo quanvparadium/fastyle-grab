@@ -8,36 +8,69 @@ import MemberInfo from '../../interfaces/MemberInfo'
 const AboutUsSection = () => {
   const members: MemberInfo[] = [
     {
+<<<<<<< HEAD
       name: 'Hieu Khuong',
       avatar:
         'https://static-00.iconduck.com/assets.00/avatar-default-icon-1975x2048-2mpk4u9k.png',
       school: 'Mentor',
       description:
         'As a mentor, I help my team shape the projects we undertake, providing guidance and solutions to overcome challenges. In my first experience as a mentor, I look forward to creating memorable moments with the team and learning from the younger members.',
+=======
+      name: 'Nguyễn Minh Kha',
+      avatar:
+        'https://static-00.iconduck.com/assets.00/avatar-default-icon-1975x2048-2mpk4u9k.png',
+      school: 'HCMUS',
+      description:
+        'abcd dkd cnjwdc kmdc mdsackm mdksmc ksmdackmcasd ksad cmasdkc masdkcmasdkcm aksdcm asdkcm kadscm dkscm weicow eocmweco mwedcodewm cowedcmoewicdmoewicdmoweidcm oweidcmode wocimweodcm wedocm d edocmdeocm j',
+>>>>>>> main
     },
     {
       name: 'Trần Bình Kha',
       avatar:
         'https://www.strasys.uk/wp-content/uploads/2022/02/Depositphotos_484354208_S.jpg',
+<<<<<<< HEAD
       school: 'Fullstack developer',
       description:
         'My goal in joining Grab this time is to apply my knowledge in practice while learning and experiencing the working environment of a big tech company. I want to understand how they create products for hundreds of millions of users. Additionally, I hope to network and gain insights from senior colleagues who have many years of experience in the field.',
+=======
+      school: 'HCMUS',
+      description: 'abcd dkd',
+>>>>>>> main
     },
     {
       name: 'Võ Phan Anh Quân',
       avatar:
+<<<<<<< HEAD
         'https://www.strasys.uk/wp-content/uploads/2022/02/Depositphotos_484354208_S.jpg',
       school: 'Back-end/AI Engineer',
       description:
         'I thrive on collaborative development sessions with my team, finding great satisfaction in overcoming challenges together. I am passionate about continuous learning and am eager to expand my skills in a dynamic and innovative big tech environment.',
+=======
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc3hMXsYcyINCaXkRBhVyEjHMQszmNStck2ELBWXKUYw&s',
+      school: 'HCMUS',
+      description: 'abcd dkd',
+>>>>>>> main
     },
     {
       name: 'Nguyễn Minh Kha',
       avatar:
         'https://www.strasys.uk/wp-content/uploads/2022/02/Depositphotos_484354208_S.jpg',
+<<<<<<< HEAD
       school: 'Front-end',
       description:
         'My goal in joining Grab this time is to learn and experience the working environment of a big tech company and to understand how they create products for hundreds of millions of users. Additionally, I hope to network and gain insights from senior colleagues who have many years of experience in the field.',
+=======
+      school: 'HCMUS',
+      description:
+        'abcd dkd cnjwdc kmdc mdsackm mdksmc ksmdackmcasd ksad cmasdkc masdkcmasdkcm aksdcm asdkcm kadscm dkscm weicow eocmweco mwedcodewm cowedcmoewicdmoewicdmoweidcm oweidcmode wocimweodcm wedocm d edocmdeocm j',
+    },
+    {
+      name: 'Nguyễn Minh Kha',
+      avatar:
+        'https://www.strasys.uk/wp-content/uploads/2022/02/Depositphotos_484354208_S.jpg',
+      school: 'HCMUS',
+      description: 'abcd dkd',
+>>>>>>> main
     },
   ]
 

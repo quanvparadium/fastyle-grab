@@ -12,9 +12,12 @@ import {
 } from '@/components/ui/tooltip'
 import useTryOnOutfitStore from '@/store/tryOnManuallyStore'
 import { fabric } from 'fabric'
+<<<<<<< HEAD
 import { MoveLeft } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { ROUTE } from '@/constants/route'
+=======
+>>>>>>> main
 
 interface CanvasProps {
   canvasRef: React.MutableRefObject<HTMLCanvasElement | null>
@@ -23,6 +26,7 @@ interface CanvasProps {
 
 const Canvas = ({ canvasRef, canvas }: CanvasProps) => {
   const { activeTool, setActiveTool } = useTryOnOutfitStore((state) => state)
+<<<<<<< HEAD
   const router = useRouter()
 
   return (
@@ -38,6 +42,14 @@ const Canvas = ({ canvasRef, canvas }: CanvasProps) => {
       <canvas ref={canvasRef} />
 
       {/* <div className='absolute bg-white bottom-10 left-1/2 -translate-x-1/2 py-1 px-2 flex gap-1 rounded-md shadow-md'>
+=======
+
+  return (
+    <div id='canvas' className='relative flex-1 h-full'>
+      <canvas ref={canvasRef} />
+
+      <div className='absolute bg-white bottom-10 left-1/2 -translate-x-1/2 py-1 px-2 flex gap-1 rounded-md shadow-md'>
+>>>>>>> main
         {toolbar.map((item) => (
           <TooltipProvider key={item.id} delayDuration={0}>
             <Tooltip>
@@ -61,7 +73,11 @@ const Canvas = ({ canvasRef, canvas }: CanvasProps) => {
             </Tooltip>
           </TooltipProvider>
         ))}
+<<<<<<< HEAD
       </div> */}
+=======
+      </div>
+>>>>>>> main
     </div>
   )
 }

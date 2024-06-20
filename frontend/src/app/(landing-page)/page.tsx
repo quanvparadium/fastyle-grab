@@ -11,7 +11,11 @@ export default function LandingPage() {
     <div>
       <HeroSection />
       <IntroSection />
+<<<<<<< HEAD
       {/* <FeaturesSection /> */}
+=======
+      <FeaturesSection />
+>>>>>>> main
       <AboutUsSection />
       <Footer />
       <div style={{ height: 16 }} />
